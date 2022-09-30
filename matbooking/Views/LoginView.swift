@@ -17,8 +17,8 @@ struct LoginView: View {
                 Text("맛북킹")
                     .font(.title)
                 VStack {
-                    LoginFiled(filed: "id", value: "")
-                    LoginFiled(filed: "pw", value: "")
+                    LoginField(label: "id", value: "")
+                    LoginField(label: "pw", value: "")
                 }
                 .padding([.top, .bottom])
                 NavigationLink("Login") {
@@ -29,9 +29,10 @@ struct LoginView: View {
                 .foregroundColor(.white)
                 .clipShape(Capsule())
                 HStack {
-                    NavigationLink("회원가입  |") {
-                        RestaurantListView()
+                    NavigationLink("회원가입") {
+                        JoinView()
                     }
+                    Text("|")
                     NavigationLink("아이디/비밀번호 찾기") {
                         RestaurantListView()
                     }
@@ -44,17 +45,14 @@ struct LoginView: View {
     }
 }
 
-struct LoginFiled: View {
+struct LoginField: View {
     
-    let filed: String
+    let label: String
     @State var value: String
     
     var body: some View {
         HStack {
-            Text("\(filed) :")
-                .font(.headline)
-                .frame(width: 50)
-            TextField("\(filed)", text: $value)
+            TextField("\(label)", text: $value)
                 .padding(5)
                 .background(.gray.opacity(0.1))
                 .cornerRadius(10)
@@ -65,7 +63,7 @@ struct LoginFiled: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
-        LoginFiled(filed: "id", value: "abcas")
+        LoginField(label: "id", value: "abcas")
             .previewLayout(.sizeThatFits)
     }
 }

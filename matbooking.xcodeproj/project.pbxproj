@@ -15,6 +15,9 @@
 		1E2ED90928E74090005E1412 /* RestaurantListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2ED90828E74090005E1412 /* RestaurantListView.swift */; };
 		1E2ED90C28E7443A005E1412 /* RestaurantModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2ED90B28E7443A005E1412 /* RestaurantModel.swift */; };
 		1E2ED91028E75413005E1412 /* RestaurantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2ED90F28E75413005E1412 /* RestaurantViewModel.swift */; };
+		1EF34C7A28E75EFD00F1396B /* JoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF34C7928E75EFD00F1396B /* JoinView.swift */; };
+		1EF34C7E28E7622E00F1396B /* RestaurantDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF34C7D28E7622E00F1396B /* RestaurantDetailView.swift */; };
+		8ABB7901AFE9790246F0DC38 /* Pods_matbooking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 503847C7DC227164F12D8542 /* Pods_matbooking.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +30,11 @@
 		1E2ED90828E74090005E1412 /* RestaurantListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantListView.swift; sourceTree = "<group>"; };
 		1E2ED90B28E7443A005E1412 /* RestaurantModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantModel.swift; sourceTree = "<group>"; };
 		1E2ED90F28E75413005E1412 /* RestaurantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewModel.swift; sourceTree = "<group>"; };
+		1EF34C7928E75EFD00F1396B /* JoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinView.swift; sourceTree = "<group>"; };
+		1EF34C7D28E7622E00F1396B /* RestaurantDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailView.swift; sourceTree = "<group>"; };
+		503847C7DC227164F12D8542 /* Pods_matbooking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_matbooking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		66449D3E40C7FB44E0056772 /* Pods-matbooking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-matbooking.release.xcconfig"; path = "Target Support Files/Pods-matbooking/Pods-matbooking.release.xcconfig"; sourceTree = "<group>"; };
+		E1F075C96C115F26BECA5113 /* Pods-matbooking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-matbooking.debug.xcconfig"; path = "Target Support Files/Pods-matbooking/Pods-matbooking.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8ABB7901AFE9790246F0DC38 /* Pods_matbooking.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,6 +54,8 @@
 			children = (
 				1E2ED8F628E738A0005E1412 /* matbooking */,
 				1E2ED8F528E738A0005E1412 /* Products */,
+				C6819B4253A3B691D31D554E /* Pods */,
+				DEB292FC787E5C4977906275 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -82,7 +93,9 @@
 			children = (
 				1E2ED8F928E738A0005E1412 /* LoginView.swift */,
 				1E2ED90528E7391A005E1412 /* RestaurantContentView.swift */,
+				1EF34C7D28E7622E00F1396B /* RestaurantDetailView.swift */,
 				1E2ED90828E74090005E1412 /* RestaurantListView.swift */,
+				1EF34C7928E75EFD00F1396B /* JoinView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -103,6 +116,23 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		C6819B4253A3B691D31D554E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E1F075C96C115F26BECA5113 /* Pods-matbooking.debug.xcconfig */,
+				66449D3E40C7FB44E0056772 /* Pods-matbooking.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		DEB292FC787E5C4977906275 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				503847C7DC227164F12D8542 /* Pods_matbooking.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -110,9 +140,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1E2ED90228E738A0005E1412 /* Build configuration list for PBXNativeTarget "matbooking" */;
 			buildPhases = (
+				24650B3C5097E44E436A208A /* [CP] Check Pods Manifest.lock */,
 				1E2ED8F028E738A0005E1412 /* Sources */,
 				1E2ED8F128E738A0005E1412 /* Frameworks */,
 				1E2ED8F228E738A0005E1412 /* Resources */,
+				B85F4DD71C115D2462078F7B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -168,6 +200,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		24650B3C5097E44E436A208A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-matbooking-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B85F4DD71C115D2462078F7B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-matbooking/Pods-matbooking-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-matbooking/Pods-matbooking-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-matbooking/Pods-matbooking-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1E2ED8F028E738A0005E1412 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -177,7 +251,9 @@
 				1E2ED91028E75413005E1412 /* RestaurantViewModel.swift in Sources */,
 				1E2ED8FA28E738A0005E1412 /* LoginView.swift in Sources */,
 				1E2ED90628E7391A005E1412 /* RestaurantContentView.swift in Sources */,
+				1EF34C7E28E7622E00F1396B /* RestaurantDetailView.swift in Sources */,
 				1E2ED8F828E738A0005E1412 /* matbookingApp.swift in Sources */,
+				1EF34C7A28E75EFD00F1396B /* JoinView.swift in Sources */,
 				1E2ED90928E74090005E1412 /* RestaurantListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -301,6 +377,7 @@
 		};
 		1E2ED90328E738A0005E1412 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E1F075C96C115F26BECA5113 /* Pods-matbooking.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -330,6 +407,7 @@
 		};
 		1E2ED90428E738A0005E1412 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66449D3E40C7FB44E0056772 /* Pods-matbooking.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct RestaurantModel {
+struct RestaurantModel: Hashable {
     let id = UUID()
     let name: String
-    var isOpne: Bool
+    var isOpen: Bool
     let introduction: String
 }

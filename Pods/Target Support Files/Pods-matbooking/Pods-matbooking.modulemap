@@ -1,0 +1,6 @@
+framework module Pods_matbooking {
+  umbrella header "Pods-matbooking-umbrella.h"
+
+  export *
+  module * { export * }
+}

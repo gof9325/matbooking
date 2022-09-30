@@ -12,7 +12,6 @@ struct matbookingApp: App {
     var body: some Scene {
         WindowGroup {
             LoginView()
-//            RestaurantListView()
         }
     }
 }

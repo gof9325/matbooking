@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct RestaurantListView: View {
-    
-    var restaurantList = ["감자 순댓국", "감자탕"]
+    @ObservedObject var restaurantStore = RestaurantViewModel()
     
     var body: some View {
-//        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-        List {
-            ForEach(restaurantList , id: \.self) { restaurant in
-                RestaurantContentView()
+        NavigationView {
+            List {
+                ForEach(restaurantStore.RestaurantList , id: \.self) { restaurant in
+                    NavigationLink(destination: RestaurantDetailView(restaurant: restaurant) , label: {
+                        RestaurantContentView(restaurant: restaurant)
+                    })
+                }
             }
         }
     }

@@ -9,9 +9,7 @@ import SwiftUI
 
 struct RestaurantContentView: View {
     
-    
-    
-    
+    let restaurant: RestaurantModel
     
     var body: some View {
         HStack(alignment: .top) {
@@ -23,19 +21,15 @@ struct RestaurantContentView: View {
                 .cornerRadius(25)
             VStack(alignment: .leading) {
                 VStack(alignment: .leading) {
-                    Text("감자 순대국밥")
+                    Text("\(restaurant.name)")
                         .font(.title)
                         .fontWeight(.bold)
                         .padding(.top, 5)
                         .padding(.bottom, -3)
-                    Text("예약가능")
-                        .padding(5)
-                        .background(.blue)
-                        .foregroundColor(.white)
-                        .clipShape(Capsule())
+                    RestaurantReservable(reservable: restaurant.isOpen)
                 }
                 Spacer()
-                Text("어쩌고 저쩌고 어쩔티비 저쩔티비 블라블라 맛있다 어쩌고 저짜고 룰루랄라asdfasdfasdfasdfasdfasdfasdfasdfasdfsdfasdfasdfasdfasdfasdfxcvdfasdf")
+                Text("\(restaurant.introduction)")
             }
             .padding(.leading, 3)
         }
@@ -45,9 +39,20 @@ struct RestaurantContentView: View {
     }
 }
 
+struct RestaurantReservable: View {
+    let reservable: Bool
+    var body: some View {
+        Text(reservable ? "예약가능" : "예약불가")
+            .padding(5)
+            .background(reservable ? .blue : .red)
+            .foregroundColor(.white)
+            .clipShape(Capsule())
+    }
+}
+
 struct RestaurantItem_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantContentView()
+        RestaurantContentView(restaurant: RestaurantModel(name: "감자탕", isOpen: true, introduction: "호로록"))
             .previewLayout(.sizeThatFits)
             .frame(width: 500)
     }
