@@ -11,7 +11,8 @@ import SwiftUI
 struct matbookingApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LoginView()
+//            RestaurantListView()
         }
     }
 }
