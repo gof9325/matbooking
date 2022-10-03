@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RestaurantDetailView: View {
     
-    let restaurant: RestaurantModel
+    let restaurant: Restaurant
     
     var body: some View {
         VStack {
@@ -22,6 +22,6 @@ struct RestaurantDetailView: View {
 
 struct RestaurantDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantDetailView(restaurant: RestaurantModel(name: "aaa", isOpen: true, introduction: "vvvv"))
+        RestaurantDetailView(restaurant: Restaurant(name: "aaa", isOpen: true, introduction: "vvvv"))
     }
 }

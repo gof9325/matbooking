@@ -6,10 +6,12 @@
 //
 
 import Foundation
+//import SwiftUI
 
-struct RestaurantModel: Hashable {
+struct Restaurant: Hashable {
     let id = UUID()
     let name: String
     var isOpen: Bool
     let introduction: String
+//    let pictures:
 }

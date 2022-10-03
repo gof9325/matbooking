@@ -9,12 +9,12 @@ import Foundation
 import RxSwift
 
 class RestaurantViewModel: ObservableObject {
-    @Published var RestaurantList: [RestaurantModel] = []
+    @Published var restaurantList: [Restaurant] = []
     
     init() {
-        RestaurantList = [
-            RestaurantModel(name: "감자탕", isOpen: true, introduction: "존맛탱이다"),
-            RestaurantModel(name: "떡볶이", isOpen: false, introduction: "맵다매워")
+        restaurantList = [
+            Restaurant(name: "감자탕", isOpen: true, introduction: "존맛탱이다"),
+            Restaurant(name: "떡볶이", isOpen: false, introduction: "맵다매워")
         ]
     }
     

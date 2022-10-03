@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RestaurantContentView: View {
     
-    let restaurant: RestaurantModel
+    let restaurant: Restaurant
     
     var body: some View {
         HStack(alignment: .top) {
@@ -52,7 +52,7 @@ struct RestaurantReservable: View {
 
 struct RestaurantItem_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantContentView(restaurant: RestaurantModel(name: "감자탕", isOpen: true, introduction: "호로록"))
+        RestaurantContentView(restaurant: Restaurant(name: "감자탕", isOpen: true, introduction: "호로록"))
             .previewLayout(.sizeThatFits)
             .frame(width: 500)
     }
