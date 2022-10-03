@@ -12,11 +12,14 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
+            
             TabView {
+                
                 RestaurantListView(restaurantList: $restaurantStore.restaurantList)
                     .tabItem {
                         Image(systemName: "house")
                     }
+                
             }
         }
         

@@ -13,5 +13,5 @@ struct Restaurant: Hashable {
     let name: String
     var isOpen: Bool
     let introduction: String
-//    let pictures:
+//    let pictures: String
 }

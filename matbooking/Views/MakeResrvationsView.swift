@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct MakeResrvationsView: View {
+    @ObservedObject var ReservationStore = ReservationViewModel()
+    
     var body: some View {
         VStack {
             DatePicker(selection: .constant(Date()), label: { Text("예약날짜") })
