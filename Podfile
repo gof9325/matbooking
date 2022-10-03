@@ -7,4 +7,5 @@ target 'matbooking' do
 
   # Pods for matbooking
   pod 'RxSwift'
+  pod 'Auth0'
 end
