@@ -17,6 +17,6 @@ struct UserDetailView: View {
 
 struct UserDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        UserDetailView(user: .constant(User(id: "asdf", email: "asdf", picture: "ff")))
+        UserDetailView(user: .constant(User(id: "asdf", email: "asdf", picture: "ff", token: "")))
     }
 }

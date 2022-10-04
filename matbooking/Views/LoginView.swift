@@ -8,6 +8,7 @@
 import SwiftUI
 import Auth0
 import Alamofire
+import Security
 
 struct LoginView: View {
     @State var user: User?
@@ -18,18 +19,13 @@ struct LoginView: View {
             VStack {
                 Text("맛북킹")
                     .font(.title)
-//                VStack {
-//                    LoginField(label: "id", value: "")
-//                    LoginField(label: "pw", value: "")
-//                }
-                .padding([.top, .bottom])
+                    .padding([.top, .bottom])
                 Button("Login") {
-//                    login()
+                    login()
                     isLoginSuccess.toggle()
                 }
-//                Navigatio?nLink("Login") {
-//                    ContentView()
-//                    login()
+//                Button("Logout") {
+//                    logout()
 //                }
                 .padding()
                 .background(.blue)
@@ -41,28 +37,13 @@ struct LoginView: View {
                     }
                     Text("|")
                     NavigationLink("아이디/비밀번호 찾기") {
-//                        RestaurantListView()
+                        //                        RestaurantListView()
                     }
                 }
                 .foregroundColor(.gray)
                 .padding()
             }
             .frame(width: 300, height: 200)
-        }
-    }
-}
-
-struct LoginField: View {
-    
-    let label: String
-    @State var value: String
-    
-    var body: some View {
-        HStack {
-            TextField("\(label)", text: $value)
-                .padding(5)
-                .background(.gray.opacity(0.1))
-                .cornerRadius(10)
         }
     }
 }
@@ -76,8 +57,9 @@ extension LoginView {
                 switch result {
                 case .success(let credentials):
                     print("Success")
-                    print("token: \(credentials.accessToken)")
-                    self.user = User(from: credentials.idToken)
+                    self.user = User(from: credentials.idToken)!
+                    KeyChain.create(key: "userAccessToken", token: credentials.accessToken)
+                    isLoginSuccess.toggle()
                 case .failure(let error):
                     print("Failed with: \(error)")
                 }
@@ -92,6 +74,7 @@ extension LoginView {
                 switch result {
                 case .success:
                     self.user = nil
+                    KeyChain.delete(key: "userAccessToken")
                 case .failure(let error):
                     print("Failed with: \(error)")
                 }
@@ -102,7 +85,5 @@ extension LoginView {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView(isLoginSuccess: .constant(true))
-//        LoginField(label: "id", value: "abcas")
-//            .previewLayout(.sizeThatFits)
     }
 }
