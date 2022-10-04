@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Auth0
+import Alamofire
 
 struct LoginView: View {
     @State var user: User?
@@ -23,7 +24,7 @@ struct LoginView: View {
 //                }
                 .padding([.top, .bottom])
                 Button("Login") {
-                    login()
+//                    login()
                     isLoginSuccess.toggle()
                 }
 //                Navigatio?nLink("Login") {
