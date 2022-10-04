@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct Reservation: Codable {
-    var date: Date
+struct Reservation: Hashable {
     let id = UUID()
+    var date: Date
     let pax: Int
 }

@@ -9,35 +9,39 @@ import SwiftUI
 import Alamofire
 
 struct ContentView: View {
+//    @ObservedObject var user: UserViewModel
     @ObservedObject var restaurantStore = RestaurantViewModel()
     @State var isLoginSuccess = false
     @State var restaurantNmae = ""
-//    @State var user: User
+    @State var selection = 0
     
     var body: some View {
         VStack {
             
             if isLoginSuccess {
                 searchBar(restaurantName: $restaurantNmae)
-                Button("asdf"){
-                    callAPIProtected()
-                }
-                TabView {
-//                    UserDetailView(user: $user)
-//                        .tabItem {
-//                            Image(systemName: "person")
-//                        }
+                TabView(selection: $selection) {
+                 
+                    ChatView()
+                        .tabItem {
+                            Image(systemName: "message")
+                        }
+                        .tag(1)
+                    
                     RestaurantListView(restaurantList: $restaurantStore.restaurantList)
                         .tabItem {
                             Image(systemName: "house")
                         }
+                        .tag(0)
+                    UserDetailView(user: UserViewModel(from: ""))
+                        .tabItem {
+                            Image(systemName: "person")
+                        }
+                        .tag(2)
                     
                 }
-//                .onAppear() {
-//                    callAPIProtected()
-//                }
             } else {
-                LoginView(isLoginSuccess: $isLoginSuccess)
+                LoginView(user: UserViewModel(from: ""),isLoginSuccess: $isLoginSuccess)
             }
             
             
@@ -45,19 +49,18 @@ struct ContentView: View {
         
     }
     
-    func callAPIProtected(){
-        let url = "http://172.30.1.81:3000/protected"
-        let headers: HTTPHeaders = ["Authorization" : KeyChain.read(key: "userAccessToken")!]
-        print("usertoken:  \(KeyChain.read(key: "userAccessToken")!)")
-        let request = AF.request(url, headers: headers).responseString { res in
-            res.result.map{ print($0) }
-        }
-    }
+//    func callAPIProtected(){
+//        let url = "http://172.30.1.81:3000/protected"
+//        let headers: HTTPHeaders = ["Authorization" : KeyChain.read(key: "userAccessToken")!]
+//        print("usertoken:  \(KeyChain.read(key: "userAccessToken")!)")
+//        let request = AF.request(url, headers: headers).responseString { res in
+//            res.result.map{ print($0) }
+//        }
+//    }
     
 }
 
 struct searchBar: View{
-    
     @Binding var restaurantName: String
     
     var body: some View {

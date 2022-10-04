@@ -12,7 +12,6 @@ struct User {
     let id: String
     let email: String
     let picture: String
-    var token: String
 }
 
 extension User {
@@ -25,6 +24,5 @@ extension User {
         self.id = id
         self.email = email
         self.picture = picture
-        self.token = idToken
     }
 }

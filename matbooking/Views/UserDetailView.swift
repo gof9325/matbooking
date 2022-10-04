@@ -8,15 +8,36 @@
 import SwiftUI
 
 struct UserDetailView: View {
-    @Binding var user: User
+//    @Binding var user: User
+    @ObservedObject var user: UserViewModel
+    // 로그아웃
+    // 예약목록
     
     var body: some View {
-        Text(user.id)
+        
+        VStack {
+            HStack {
+                Image(systemName: "person")
+                    .resizable()
+                    .scaledToFit()
+                    .background(.gray.opacity(0.3))
+                    .cornerRadius(100)
+                    .frame(width: 150, height: 150)
+                    .padding()
+                Text(user.user?.id ?? "asdfasdf")
+                    .font(.largeTitle)
+            }
+            Button("로그아웃") {
+                user.logout()
+            }
+            
+        }
+        
     }
 }
 
 struct UserDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        UserDetailView(user: .constant(User(id: "asdf", email: "asdf", picture: "ff", token: "")))
+        UserDetailView(user: UserViewModel(from: ""))
     }
 }
