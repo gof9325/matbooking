@@ -11,4 +11,5 @@ struct Reservation: Hashable {
     let id = UUID()
     var date: Date
     let pax: Int
+    let restaurantName: String
 }

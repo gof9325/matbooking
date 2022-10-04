@@ -18,6 +18,6 @@ class RestaurantViewModel: ObservableObject {
         ]
     }
     
-    //MARK: intant functions
+    // MARK: intant functions
     
 }

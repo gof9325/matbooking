@@ -23,7 +23,7 @@ struct MakeResrvationsView: View {
 
 struct MakeResrvationsView_Previews: PreviewProvider {
     static var previews: some View {
-        MakeResrvationsView(reservation: .constant(Reservation(date: Date(), pax: 2)))
+        MakeResrvationsView(reservation: .constant(Reservation(date: Date(), pax: 2, restaurantName: "asdf")))
             .previewLayout(.sizeThatFits)
             .frame(width: 500)
     }

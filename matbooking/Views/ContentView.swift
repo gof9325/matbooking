@@ -21,7 +21,6 @@ struct ContentView: View {
             if isLoginSuccess {
                 searchBar(restaurantName: $restaurantNmae)
                 TabView(selection: $selection) {
-                 
                     ChatView()
                         .tabItem {
                             Image(systemName: "message")
@@ -33,17 +32,15 @@ struct ContentView: View {
                             Image(systemName: "house")
                         }
                         .tag(0)
-                    UserDetailView(user: UserViewModel(from: ""))
+                    UserDetailView(user: UserViewModel(from: ""), reservationList: ReservationViewModel())
                         .tabItem {
                             Image(systemName: "person")
                         }
                         .tag(2)
-                    
                 }
             } else {
-                LoginView(user: UserViewModel(from: ""),isLoginSuccess: $isLoginSuccess)
+                LoginView(user: UserViewModel(from: ""), isLoginSuccess: $isLoginSuccess)
             }
-            
             
         }
         
@@ -66,7 +63,9 @@ struct searchBar: View{
     var body: some View {
         HStack {
             TextField("", text: $restaurantName)
-            Button(action: {}, label: {
+            Button(action: {
+                
+            }, label: {
                 Image(systemName: "search")
             })
         }
