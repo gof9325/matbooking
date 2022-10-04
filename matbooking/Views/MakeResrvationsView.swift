@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct MakeResrvationsView: View {
-    @ObservedObject var ReservationStore = ReservationViewModel()
+    @Binding var reservation: Reservation
     
     var body: some View {
         VStack {
-            DatePicker(selection: .constant(Date()), label: { Text("예약날짜") })
+            DatePicker(selection: $reservation.date, in: Date()..., label: { Text("예약날짜") })
+                .datePickerStyle(.graphical)
+            
             // 예약 인원
             // 예약 금액
         }
@@ -21,6 +23,8 @@ struct MakeResrvationsView: View {
 
 struct MakeResrvationsView_Previews: PreviewProvider {
     static var previews: some View {
-        MakeResrvationsView()
+        MakeResrvationsView(reservation: .constant(Reservation(date: Date(), pax: 2)))
+            .previewLayout(.sizeThatFits)
+            .frame(width: 500)
     }
 }

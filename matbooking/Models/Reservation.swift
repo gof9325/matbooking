@@ -8,8 +8,7 @@
 import Foundation
 
 struct Reservation: Codable {
-    let date: Date
+    var date: Date
     let id = UUID()
-    let restaurantId: UUID
-//    let 
+    let pax: Int
 }

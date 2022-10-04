@@ -9,13 +9,33 @@ import SwiftUI
 
 struct RestaurantDetailView: View {
     
+    @ObservedObject var reservationStore = ReservationViewModel()
     let restaurant: Restaurant
+    @State var isPresented = false
     
     var body: some View {
         VStack {
-//            Image(systemName: "")
-            Text("\(restaurant.name)")
-            Text("\(restaurant.introduction)")
+            VStack {
+                Image(systemName: "house")
+                    .resizable()
+                    .scaledToFit()
+                    .background(.yellow)
+                Text("\(restaurant.name)")
+                    .font(.system(size: 50, weight: .heavy))
+                    .padding()
+                Text("\(restaurant.introduction)")
+                    .padding()
+                Button("예약하기") {
+                    isPresented.toggle()
+                }
+                .padding()
+                .background(.blue)
+                .foregroundColor(.white)
+                .cornerRadius(15)
+            }
+            .popover(isPresented: $isPresented) {
+                MakeResrvationsView(reservation: $reservationStore.reservationList[0])
+            }
         }
     }
 }

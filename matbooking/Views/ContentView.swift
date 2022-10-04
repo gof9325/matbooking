@@ -9,20 +9,44 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var restaurantStore = RestaurantViewModel()
+    @State var isLoginSuccess = false
+    @State var restaurantNmae = ""
     
     var body: some View {
         VStack {
             
-            TabView {
-                
-                RestaurantListView(restaurantList: $restaurantStore.restaurantList)
-                    .tabItem {
-                        Image(systemName: "house")
-                    }
-                
+            if isLoginSuccess {
+                searchBar(restaurantName: $restaurantNmae)
+                TabView {
+                    
+                    RestaurantListView(restaurantList: $restaurantStore.restaurantList)
+                        .tabItem {
+                            Image(systemName: "house")
+                        }
+                    
+                }
+            } else {
+                LoginView(user: nil, isLoginSuccess: $isLoginSuccess)
             }
+            
+           
         }
         
+    }
+}
+
+struct searchBar: View{
+    
+    @Binding var restaurantName: String
+    
+    var body: some View {
+        HStack {
+            TextField("", text: $restaurantName)
+            Button(action: {}, label: {
+                Image(systemName: "search")
+            })
+        }
+            
     }
 }
 

@@ -12,6 +12,6 @@ class ReservationViewModel: ObservableObject {
     @Published var reservationList: [Reservation]
     
     init() {
-        reservationList = [Reservation(date: Date(), restaurantId: UUID())]
+        reservationList = [Reservation(date: Date(), pax: 1)]
     }
 }
