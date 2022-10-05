@@ -15,5 +15,5 @@ class ReservationViewModel: ObservableObject {
         reservationList = [Reservation(date: Date(), pax: 1, restaurantName: "")]
     }
     
-    // MARK : intant functions
+    // MARK: Intant functions
 }

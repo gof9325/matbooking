@@ -52,7 +52,7 @@ struct RestaurantReservable: View {
 
 struct RestaurantItem_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantContentView(restaurant: Restaurant(name: "감자탕", isOpen: true, introduction: "호로록"))
+        RestaurantContentView(restaurant: Restaurant(name: "감자탕", isOpen: true, introduction: "호로록", pictures: ""))
             .previewLayout(.sizeThatFits)
             .frame(width: 500)
     }

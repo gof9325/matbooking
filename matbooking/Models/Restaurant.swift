@@ -8,10 +8,10 @@
 import Foundation
 //import SwiftUI
 
-struct Restaurant: Hashable {
-    let id = UUID()
+struct Restaurant: Hashable, Codable {
+    var id = UUID()
     let name: String
     var isOpen: Bool
     let introduction: String
-//    let pictures: String
+    let pictures: String
 }

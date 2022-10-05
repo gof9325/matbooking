@@ -15,6 +15,8 @@ struct ContentView: View {
     @State var restaurantNmae = ""
     @State var selection = 0
     
+    @State var restaurantsList: [Restaurant] = []
+    
     var body: some View {
         VStack {
             
@@ -26,8 +28,13 @@ struct ContentView: View {
                             Image(systemName: "message")
                         }
                         .tag(1)
-                    
-                    RestaurantListView(restaurantList: $restaurantStore.restaurantList)
+                    RestaurantListView(restaurantList: $restaurantsList)
+                        .onAppear{
+                            restaurantStore.getRestaurantList()
+                        }
+                        .onReceive(restaurantStore.$restaurantList, perform: {
+                            self.restaurantsList = $0
+                        })
                         .tabItem {
                             Image(systemName: "house")
                         }

@@ -42,6 +42,6 @@ struct RestaurantDetailView: View {
 
 struct RestaurantDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantDetailView(restaurant: Restaurant(name: "aaa", isOpen: true, introduction: "vvvv"))
+        RestaurantDetailView(restaurant: Restaurant(name: "aaa", isOpen: true, introduction: "vvvv", pictures: ""))
     }
 }

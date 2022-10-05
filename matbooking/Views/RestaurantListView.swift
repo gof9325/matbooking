@@ -25,6 +25,6 @@ struct RestaurantListView: View {
 
 struct RestaurantListView_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantListView(restaurantList: .constant([Restaurant(name: "aa", isOpen: true, introduction: "asdf")]))
+        RestaurantListView(restaurantList: .constant([Restaurant(name: "aa", isOpen: true, introduction: "asdf", pictures: "")]))
     }
 }
