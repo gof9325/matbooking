@@ -10,10 +10,13 @@ import SwiftUI
 struct UserDetailView: View {
     @ObservedObject var user: UserViewModel
     @ObservedObject var reservationList: ReservationViewModel
-
+    
+    @Binding var isLoginSuccess: Bool
     var body: some View {
         
         VStack {
+            Text("마이페이지")
+                .font(.largeTitle)
             VStack {
                 HStack {
                     Image(systemName: "person")
@@ -23,11 +26,12 @@ struct UserDetailView: View {
                         .cornerRadius(100)
                         .frame(width: 150, height: 150)
                         .padding()
-                    Text(user.user?.id ?? "asdfasdf")
+                    Text(user.user?.id ?? "" )
                         .font(.largeTitle)
                 }
                 Button("로그아웃") {
                     user.logout()
+                    isLoginSuccess = false
                 }
             }
             NavigationView {
@@ -44,6 +48,6 @@ struct UserDetailView: View {
 
 struct UserDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        UserDetailView(user: UserViewModel(from: ""), reservationList: ReservationViewModel())
+        UserDetailView(user: UserViewModel(from: ""), reservationList: ReservationViewModel(), isLoginSuccess: .constant(true))
     }
 }

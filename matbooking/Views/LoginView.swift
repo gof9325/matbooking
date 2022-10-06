@@ -11,6 +11,8 @@ struct LoginView: View {
     @ObservedObject var user: UserViewModel
     @Binding var isLoginSuccess: Bool
     
+    @State var isActive = false
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -19,14 +21,19 @@ struct LoginView: View {
                     .padding([.top, .bottom])
                 Button("Login") {
                     user.login()
-                    isLoginSuccess = user.user == nil ? false : true
+                    if user.auto0User != nil {
+                            isActive = true
+                        if user.user != nil {
+                            isLoginSuccess = true
+                        }
+                    }
                 }
                 .padding()
                 .background(.blue)
                 .foregroundColor(.white)
                 .clipShape(Capsule())
                 HStack {
-                    NavigationLink("회원가입") {
+                    NavigationLink("회원가입", isActive: $isActive) {
                         JoinView()
                     }
                     Text("|")

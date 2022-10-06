@@ -23,7 +23,7 @@ class RestaurantViewModel: ObservableObject {
     // MARK: intant functions
     func getRestaurantList() {
         print("RestaurantViewModel - getRestaurantList() called")
-        RestaurantsService.getRestaurants()
+        RestaurantsApiService.getRestaurants()
             .sink(receiveCompletion: { completion in
                 print("RestaurantViewModel getRestaurantList completion: \(completion)")
             }, receiveValue: { restaurantList in

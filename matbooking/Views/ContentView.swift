@@ -39,7 +39,7 @@ struct ContentView: View {
                             Image(systemName: "house")
                         }
                         .tag(0)
-                    UserDetailView(user: UserViewModel(from: ""), reservationList: ReservationViewModel())
+                    UserDetailView(user: UserViewModel(from: ""), reservationList: ReservationViewModel(), isLoginSuccess: $isLoginSuccess)
                         .tabItem {
                             Image(systemName: "person")
                         }

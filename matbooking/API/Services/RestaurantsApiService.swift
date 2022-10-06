@@ -9,14 +9,15 @@ import Foundation
 import Alamofire
 import Combine
 
-enum RestaurantsService {
+enum RestaurantsApiService {
     static func getRestaurants() -> AnyPublisher< [Restaurant] , AFError> {
-        print("RestaurantsService - getRestaurants() called")
+        print("RestaurantsApiService - getRestaurants() called")
         
         return ApiClient.shared.session
             .request(RestaurantsRouter.getRestarants)
             .publishDecodable(type: RestaurantsListResponse.self)
             .value()
-            .map{ $0.data }.eraseToAnyPublisher()
+            .map{ $0.data }
+            .eraseToAnyPublisher()
     }
 }

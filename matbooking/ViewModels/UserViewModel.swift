@@ -8,12 +8,16 @@
 import Foundation
 import Auth0
 import Security
+import Combine
+import Alamofire
 
 class UserViewModel: ObservableObject {
-    @Published var user: User?
+    var subscription = Set<AnyCancellable>()
+    @Published var auto0User: Auth0User?
+    @Published var user: User? = nil
     
     init(from: String) {
-        self.user = User(from: from)
+        self.auto0User = Auth0User(from: from)
     }
     
     // MARK: Intant functions
@@ -24,9 +28,11 @@ class UserViewModel: ObservableObject {
             .start { result in
                 switch result {
                 case .success(let credentials):
-                    print("Login Successs")
-                    self.user = User(from: credentials.idToken)!
+                    print("Auth0Login Successs")
+                    self.auto0User = Auth0User(from: credentials.idToken)!
+                    print("accessToken : \(credentials.accessToken)")
                     KeyChain.create(key: "userAccessToken", token: credentials.accessToken)
+                    self.getUserInfo()
                 case .failure(let error):
                     print("Failed with: \(error)")
                 }
@@ -40,11 +46,21 @@ class UserViewModel: ObservableObject {
             .clearSession { result in
                 switch result {
                 case .success:
-                    self.user = nil
+                    self.auto0User = nil
                     KeyChain.delete(key: "userAccessToken")
                 case .failure(let error):
                     print("Failed with: \(error)")
                 }
             }
+    }
+    
+    func getUserInfo() {
+        print("UserViewModel - getUserInfo() called")
+        UserApiService.getUserInfo()
+            .sink(receiveCompletion: { completion in
+                print("UserViewModel getUserInfo completion: \(completion)")
+            }, receiveValue: { userInfo in
+                self.user = User(id: self.auto0User?.id ?? "", picture: self.auto0User?.picture ?? "", name: userInfo.name, mobile: userInfo.mobile)
+            }).store(in: &subscription)
     }
 }
