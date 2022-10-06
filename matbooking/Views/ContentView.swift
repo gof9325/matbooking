@@ -9,7 +9,7 @@ import SwiftUI
 import Alamofire
 
 struct ContentView: View {
-//    @ObservedObject var user: UserViewModel
+    @EnvironmentObject var userVM: UserViewModel
     @ObservedObject var restaurantStore = RestaurantViewModel()
     @State var isLoginSuccess = false
     @State var restaurantNmae = ""
@@ -19,8 +19,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            
-            if isLoginSuccess {
+            if userVM.user != nil {
                 searchBar(restaurantName: $restaurantNmae)
                 TabView(selection: $selection) {
                     ChatView()
@@ -46,22 +45,13 @@ struct ContentView: View {
                         .tag(2)
                 }
             } else {
-                LoginView(user: UserViewModel(from: ""), isLoginSuccess: $isLoginSuccess)
+                LoginView()
             }
             
         }
         
     }
-    
-//    func callAPIProtected(){
-//        let url = "http://172.30.1.81:3000/protected"
-//        let headers: HTTPHeaders = ["Authorization" : KeyChain.read(key: "userAccessToken")!]
-//        print("usertoken:  \(KeyChain.read(key: "userAccessToken")!)")
-//        let request = AF.request(url, headers: headers).responseString { res in
-//            res.result.map{ print($0) }
-//        }
-//    }
-    
+
 }
 
 struct searchBar: View{

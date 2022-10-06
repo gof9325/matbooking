@@ -13,11 +13,11 @@ import Alamofire
 
 class UserViewModel: ObservableObject {
     var subscription = Set<AnyCancellable>()
-    @Published var auto0User: Auth0User?
+    @Published var auth0User: Auth0User?
     @Published var user: User? = nil
     
     init(from: String) {
-        self.auto0User = Auth0User(from: from)
+        self.auth0User = Auth0User(from: from)
     }
     
     // MARK: Intant functions
@@ -29,10 +29,12 @@ class UserViewModel: ObservableObject {
                 switch result {
                 case .success(let credentials):
                     print("Auth0Login Successs")
-                    self.auto0User = Auth0User(from: credentials.idToken)!
+                    self.auth0User = Auth0User(from: credentials.idToken)!
                     print("accessToken : \(credentials.accessToken)")
                     KeyChain.create(key: "userAccessToken", token: credentials.accessToken)
-                    self.getUserInfo()
+                    if let auth0User = self.auth0User {
+                        self.getUserInfo(auth0User)
+                    }
                 case .failure(let error):
                     print("Failed with: \(error)")
                 }
@@ -46,7 +48,7 @@ class UserViewModel: ObservableObject {
             .clearSession { result in
                 switch result {
                 case .success:
-                    self.auto0User = nil
+                    self.auth0User = nil
                     KeyChain.delete(key: "userAccessToken")
                 case .failure(let error):
                     print("Failed with: \(error)")
@@ -54,13 +56,16 @@ class UserViewModel: ObservableObject {
             }
     }
     
-    func getUserInfo() {
+    func getUserInfo(_ auth0User: Auth0User) {
         print("UserViewModel - getUserInfo() called")
         UserApiService.getUserInfo()
             .sink(receiveCompletion: { completion in
                 print("UserViewModel getUserInfo completion: \(completion)")
             }, receiveValue: { userInfo in
-                self.user = User(id: self.auto0User?.id ?? "", picture: self.auto0User?.picture ?? "", name: userInfo.name, mobile: userInfo.mobile)
+                if userInfo.data.exists {
+                    // 유저가 있다
+                    self.user = User(id: auth0User.id, picture: auth0User.picture, name: userInfo.data.name!, mobile: userInfo.data.mobile!)
+                }
             }).store(in: &subscription)
     }
 }

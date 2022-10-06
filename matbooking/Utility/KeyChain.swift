@@ -13,7 +13,7 @@ class KeyChain {
         let query: NSDictionary = [
             kSecClass: kSecClassGenericPassword,
             kSecAttrAccount: key,
-            kSecValueData: ("Bearer " + token).data(using: .utf8, allowLossyConversion: false) as Any
+            kSecValueData: (token).data(using: .utf8, allowLossyConversion: false) as Any
         ]
         SecItemDelete(query)
         

@@ -11,6 +11,9 @@ struct JoinView: View {
     @State var name: String = ""
     @State var phoneNumber: String = ""
     @Environment(\.dismiss) var dismiss
+    @Binding var isPresendted: Bool
+//    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
     var body: some View {
         VStack {
             VStack {
@@ -48,7 +51,9 @@ struct JoinView: View {
                     .foregroundColor(.white)
                     Spacer()
                     Button("취소") {
-                        self.dismiss()
+                        isPresendted = false
+//                        self.dismiss()
+//                        self.presentationMode.wrappedValue.dismiss()
                     }
                     .padding()
                     .frame(width: 100)
@@ -65,6 +70,6 @@ struct JoinView: View {
 
 struct JoinView_Previews: PreviewProvider {
     static var previews: some View {
-        JoinView()
+        JoinView(isPresendted: .constant(true))
     }
 }
