@@ -14,9 +14,12 @@ struct MakeResrvationsView: View {
         VStack {
             DatePicker(selection: $reservation.date, in: Date()..., label: { Text("예약날짜") })
                 .datePickerStyle(.graphical)
-            
+            Button("asdf") {
+                
+            }
             // 예약 인원
             // 예약 금액
+            clipped()
         }
     }
 }
@@ -24,7 +27,7 @@ struct MakeResrvationsView: View {
 struct MakeResrvationsView_Previews: PreviewProvider {
     static var previews: some View {
         MakeResrvationsView(reservation: .constant(Reservation(date: Date(), pax: 2, restaurantName: "asdf")))
-            .previewLayout(.sizeThatFits)
-            .frame(width: 500)
+//            .previewLayout(.sizeThatFits)
+//            .frame(width: 100)
     }
 }

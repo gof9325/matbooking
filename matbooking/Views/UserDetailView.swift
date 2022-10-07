@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UserDetailView: View {
-    @ObservedObject var userVM: UserViewModel
+    @EnvironmentObject var userVM: UserViewModel
     @ObservedObject var reservationList: ReservationViewModel
     
     var body: some View {
@@ -25,7 +25,7 @@ struct UserDetailView: View {
                         .cornerRadius(100)
                         .frame(width: 150, height: 150)
                         .padding()
-                    Text(userVM.user?.id ?? "" )
+                    Text(userVM.user?.name ?? "" )
                         .font(.largeTitle)
                 }
                 Button("로그아웃") {
@@ -34,7 +34,6 @@ struct UserDetailView: View {
             }
             NavigationView {
                 List {
-                    
                     Text("asdf")
                 }
                 .navigationBarTitleDisplayMode(.inline)
@@ -46,6 +45,6 @@ struct UserDetailView: View {
 
 struct UserDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        UserDetailView(userVM: UserViewModel(from: ""), reservationList: ReservationViewModel())
+        UserDetailView(reservationList: ReservationViewModel())
     }
 }

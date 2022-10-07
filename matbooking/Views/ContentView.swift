@@ -38,7 +38,7 @@ struct ContentView: View {
                             Image(systemName: "house")
                         }
                         .tag(0)
-                    UserDetailView(userVM: UserViewModel(from: ""), reservationList: ReservationViewModel())
+                    UserDetailView(reservationList: ReservationViewModel())
                         .tabItem {
                             Image(systemName: "person")
                         }

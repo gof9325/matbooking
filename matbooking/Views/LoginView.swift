@@ -13,7 +13,7 @@ struct LoginView: View {
     
     var body: some View {
         if isJoinViewPresented {
-            JoinView()
+            JoinView(isPresented: $isJoinViewPresented)
         } else {
             VStack {
                 Text("맛북킹")

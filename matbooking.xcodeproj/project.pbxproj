@@ -23,6 +23,7 @@
 		1E5FE2E028EC1A5F00736C0C /* KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5FE2DF28EC1A5F00736C0C /* KeyChain.swift */; };
 		1E5FE2E328EC2E5600736C0C /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5FE2E228EC2E5600736C0C /* UserViewModel.swift */; };
 		1E5FE2E528EC352700736C0C /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5FE2E428EC352700736C0C /* ChatView.swift */; };
+		1E83C63A28F00DCE00C69431 /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E83C63928F00DCE00C69431 /* BaseResponse.swift */; };
 		1E8CDF1928EDA9E300651C4D /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8CDF1828EDA9E300651C4D /* ApiClient.swift */; };
 		1E8CDF1B28EDAB5300651C4D /* ApiLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8CDF1A28EDAB5300651C4D /* ApiLogger.swift */; };
 		1E8CDF1E28EDAC7600651C4D /* BaseInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8CDF1D28EDAC7600651C4D /* BaseInterceptor.swift */; };
@@ -34,6 +35,7 @@
 		1EE612FD28EEBDC200797DD9 /* UserApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE612FC28EEBDC200797DD9 /* UserApiService.swift */; };
 		1EE612FF28EEC13300797DD9 /* Auth0Interceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE612FE28EEC13300797DD9 /* Auth0Interceptor.swift */; };
 		1EE6130128EEC8F800797DD9 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE6130028EEC8F800797DD9 /* UserResponse.swift */; };
+		1EE6130328F0010100797DD9 /* JoinResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE6130228F0010100797DD9 /* JoinResponse.swift */; };
 		1EF34C7A28E75EFD00F1396B /* JoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF34C7928E75EFD00F1396B /* JoinView.swift */; };
 		1EF34C7E28E7622E00F1396B /* RestaurantDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF34C7D28E7622E00F1396B /* RestaurantDetailView.swift */; };
 		1EF34C8128EACDC800F1396B /* Auth0.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1EF34C8028EACDC800F1396B /* Auth0.plist */; };
@@ -59,6 +61,7 @@
 		1E5FE2DF28EC1A5F00736C0C /* KeyChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChain.swift; sourceTree = "<group>"; };
 		1E5FE2E228EC2E5600736C0C /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		1E5FE2E428EC352700736C0C /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		1E83C63928F00DCE00C69431 /* BaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
 		1E8CDF1828EDA9E300651C4D /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		1E8CDF1A28EDAB5300651C4D /* ApiLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiLogger.swift; sourceTree = "<group>"; };
 		1E8CDF1D28EDAC7600651C4D /* BaseInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInterceptor.swift; sourceTree = "<group>"; };
@@ -70,6 +73,7 @@
 		1EE612FC28EEBDC200797DD9 /* UserApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserApiService.swift; sourceTree = "<group>"; };
 		1EE612FE28EEC13300797DD9 /* Auth0Interceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth0Interceptor.swift; sourceTree = "<group>"; };
 		1EE6130028EEC8F800797DD9 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
+		1EE6130228F0010100797DD9 /* JoinResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinResponse.swift; sourceTree = "<group>"; };
 		1EF34C7928E75EFD00F1396B /* JoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinView.swift; sourceTree = "<group>"; };
 		1EF34C7D28E7622E00F1396B /* RestaurantDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailView.swift; sourceTree = "<group>"; };
 		1EF34C7F28EACC3300F1396B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -158,6 +162,8 @@
 				1EF34C8228EACEE400F1396B /* Auth0User.swift */,
 				1EE612F828EEBA7700797DD9 /* User.swift */,
 				1EE6130028EEC8F800797DD9 /* UserResponse.swift */,
+				1E83C63928F00DCE00C69431 /* BaseResponse.swift */,
+				1EE6130228F0010100797DD9 /* JoinResponse.swift */,
 				1E5FE2D928EAFC4500736C0C /* Reservation.swift */,
 				1E8CDF2528EDB35400651C4D /* RestaurantsListResponse.swift */,
 			);
@@ -364,9 +370,11 @@
 				1E2ED8FA28E738A0005E1412 /* LoginView.swift in Sources */,
 				1E2ED90628E7391A005E1412 /* RestaurantContentView.swift in Sources */,
 				1E8CDF2628EDB35400651C4D /* RestaurantsListResponse.swift in Sources */,
+				1EE6130328F0010100797DD9 /* JoinResponse.swift in Sources */,
 				1EE6130128EEC8F800797DD9 /* UserResponse.swift in Sources */,
 				1E5FE2E028EC1A5F00736C0C /* KeyChain.swift in Sources */,
 				1EF34C7E28E7622E00F1396B /* RestaurantDetailView.swift in Sources */,
+				1E83C63A28F00DCE00C69431 /* BaseResponse.swift in Sources */,
 				1E5FE2E328EC2E5600736C0C /* UserViewModel.swift in Sources */,
 				1E5FE2D228EADFF000736C0C /* MakeResrvationsView.swift in Sources */,
 				1E8CDF2128EDAF9F00651C4D /* RestaurantsRouter.swift in Sources */,

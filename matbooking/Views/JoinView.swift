@@ -10,8 +10,10 @@ import SwiftUI
 struct JoinView: View {
     @EnvironmentObject var userVM: UserViewModel
     @State var name: String = ""
-    @State var phoneNumber: String = ""
+    @State var mobile: String = ""
 
+    @Binding var isPresented: Bool
+    
     var body: some View {
         VStack {
             VStack {
@@ -32,7 +34,7 @@ struct JoinView: View {
                         TextField("닉네임", text: $name)
                     }
                     Section("전화번호") {
-                        TextField("000-0000-0000", text: $phoneNumber)
+                        TextField("000-0000-0000", text: $mobile)
                     }
                 }
                 .padding()
@@ -40,8 +42,9 @@ struct JoinView: View {
                 HStack {
                     Spacer()
                     Button("완료") {
-                        // 회원가입 완료
-                        
+                        if let auth0User = userVM.auth0User {
+                            userVM.join(name: name, mobile: mobile, auth0User)
+                        }
                     }
                     .padding()
                     .frame(width: 100)
@@ -59,6 +62,11 @@ struct JoinView: View {
                     .foregroundColor(.white)
                     Spacer()
                 }
+                .onReceive(userVM.$user, perform: {
+                    if $0 != nil {
+                        isPresented = false
+                    }
+                })
             }
         }
         
@@ -67,6 +75,6 @@ struct JoinView: View {
 
 struct JoinView_Previews: PreviewProvider {
     static var previews: some View {
-        JoinView()
+        JoinView(isPresented: .constant(true))
     }
 }

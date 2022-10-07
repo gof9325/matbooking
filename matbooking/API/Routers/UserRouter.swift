@@ -10,6 +10,7 @@ import Alamofire
 
 enum UserRouter: URLRequestConvertible {
     case getUserInfo
+    case join(name: String, mobile: String)
     
     var baseURL: URL {
         return URL(string: ApiClient.BASE_URL)!
@@ -19,18 +20,29 @@ enum UserRouter: URLRequestConvertible {
         switch self {
         case .getUserInfo:
             return "customers/me"
+        case .join:
+            return "customers"
         }
     }
     
     var method: HTTPMethod {
         switch self {
-        default: return .get
+        case .getUserInfo :
+            return .get
+        case .join :
+            return .post
         }
     }
     
     var parameters: Parameters{
         switch self {
-        default: return Parameters()
+        case .getUserInfo :
+            return Parameters()
+        case let .join(name, mobile) :
+            var parameters = Parameters()
+            parameters["name"] = name
+            parameters["mobile"] = mobile
+            return parameters
         }
     }
     
@@ -38,6 +50,9 @@ enum UserRouter: URLRequestConvertible {
         let url = baseURL.appendingPathComponent(endPoint)
         var request = URLRequest(url: url)
         request.method = method
+        if method == .post {
+            request.httpBody = try JSONEncoding.default.encode(request, with: parameters).httpBody
+        }
         return request
     }
 }

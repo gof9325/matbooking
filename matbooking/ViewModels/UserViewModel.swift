@@ -57,8 +57,14 @@ class UserViewModel: ObservableObject {
             }
     }
     
-    func join() {
-        
+    func join(name: String, mobile: String, _ auth0User: Auth0User) {
+        print("UserViewModel - join() called")
+        UserApiService.join(name: name, mobile: mobile)
+            .sink(receiveCompletion: { completion in
+                print("UserViewModel join completion: \(completion)")
+            }, receiveValue: { userInfo in
+                self.user = User(id: auth0User.id, picture: auth0User.picture, name: name, mobile: mobile)
+            }).store(in: &subscription)
     }
     
     private func getUserInfo(_ auth0User: Auth0User) {
@@ -68,7 +74,6 @@ class UserViewModel: ObservableObject {
                 print("UserViewModel getUserInfo completion: \(completion)")
             }, receiveValue: { userInfo in
                 if userInfo.data.exists {
-                    // 유저가 있다
                     self.user = User(id: auth0User.id, picture: auth0User.picture, name: userInfo.data.name!, mobile: userInfo.data.mobile!)
                 }
             }).store(in: &subscription)

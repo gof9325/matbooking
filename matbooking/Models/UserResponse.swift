@@ -7,16 +7,8 @@
 
 import Foundation
 
-// MARK: - Welcome
+// MARK: - UserResponse
 struct UserResponse: Codable {
-    let success: Bool
-    let error: String
-    let data: DataClass
-    let message: String
-}
-
-// MARK: - DataClass
-struct DataClass: Codable {
     let exists: Bool
     let name: String?
     let mobile: String?
