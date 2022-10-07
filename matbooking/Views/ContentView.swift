@@ -11,7 +11,7 @@ import Alamofire
 struct ContentView: View {
     @EnvironmentObject var userVM: UserViewModel
     @ObservedObject var restaurantStore = RestaurantViewModel()
-    @State var isLoginSuccess = false
+    @State var user: User?
     @State var restaurantNmae = ""
     @State var selection = 0
     
@@ -19,7 +19,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            if userVM.user != nil {
+            if self.user != nil {
                 searchBar(restaurantName: $restaurantNmae)
                 TabView(selection: $selection) {
                     ChatView()
@@ -38,7 +38,7 @@ struct ContentView: View {
                             Image(systemName: "house")
                         }
                         .tag(0)
-                    UserDetailView(user: UserViewModel(from: ""), reservationList: ReservationViewModel(), isLoginSuccess: $isLoginSuccess)
+                    UserDetailView(userVM: UserViewModel(from: ""), reservationList: ReservationViewModel())
                         .tabItem {
                             Image(systemName: "person")
                         }
@@ -47,11 +47,8 @@ struct ContentView: View {
             } else {
                 LoginView()
             }
-            
-        }
-        
+        }.onReceive(userVM.$user, perform: { self.user = $0})
     }
-
 }
 
 struct searchBar: View{

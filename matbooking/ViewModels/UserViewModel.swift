@@ -14,7 +14,7 @@ import Alamofire
 class UserViewModel: ObservableObject {
     var subscription = Set<AnyCancellable>()
     @Published var auth0User: Auth0User?
-    @Published var user: User? = nil
+    @Published var user: User?
     
     init(from: String) {
         self.auth0User = Auth0User(from: from)
@@ -49,6 +49,7 @@ class UserViewModel: ObservableObject {
                 switch result {
                 case .success:
                     self.auth0User = nil
+                    self.user = nil
                     KeyChain.delete(key: "userAccessToken")
                 case .failure(let error):
                     print("Failed with: \(error)")
@@ -56,7 +57,11 @@ class UserViewModel: ObservableObject {
             }
     }
     
-    func getUserInfo(_ auth0User: Auth0User) {
+    func join() {
+        
+    }
+    
+    private func getUserInfo(_ auth0User: Auth0User) {
         print("UserViewModel - getUserInfo() called")
         UserApiService.getUserInfo()
             .sink(receiveCompletion: { completion in

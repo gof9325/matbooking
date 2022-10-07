@@ -8,10 +8,9 @@
 import SwiftUI
 
 struct UserDetailView: View {
-    @ObservedObject var user: UserViewModel
+    @ObservedObject var userVM: UserViewModel
     @ObservedObject var reservationList: ReservationViewModel
     
-    @Binding var isLoginSuccess: Bool
     var body: some View {
         
         VStack {
@@ -26,12 +25,11 @@ struct UserDetailView: View {
                         .cornerRadius(100)
                         .frame(width: 150, height: 150)
                         .padding()
-                    Text(user.user?.id ?? "" )
+                    Text(userVM.user?.id ?? "" )
                         .font(.largeTitle)
                 }
                 Button("로그아웃") {
-                    user.logout()
-                    isLoginSuccess = false
+                    userVM.logout()
                 }
             }
             NavigationView {
@@ -48,6 +46,6 @@ struct UserDetailView: View {
 
 struct UserDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        UserDetailView(user: UserViewModel(from: ""), reservationList: ReservationViewModel(), isLoginSuccess: .constant(true))
+        UserDetailView(userVM: UserViewModel(from: ""), reservationList: ReservationViewModel())
     }
 }

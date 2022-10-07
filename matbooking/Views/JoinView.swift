@@ -8,11 +8,9 @@
 import SwiftUI
 
 struct JoinView: View {
+    @EnvironmentObject var userVM: UserViewModel
     @State var name: String = ""
     @State var phoneNumber: String = ""
-    @Environment(\.dismiss) var dismiss
-    @Binding var isPresendted: Bool
-//    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     var body: some View {
         VStack {
@@ -43,6 +41,7 @@ struct JoinView: View {
                     Spacer()
                     Button("완료") {
                         // 회원가입 완료
+                        
                     }
                     .padding()
                     .frame(width: 100)
@@ -51,9 +50,7 @@ struct JoinView: View {
                     .foregroundColor(.white)
                     Spacer()
                     Button("취소") {
-                        isPresendted = false
-//                        self.dismiss()
-//                        self.presentationMode.wrappedValue.dismiss()
+                        userVM.auth0User = nil
                     }
                     .padding()
                     .frame(width: 100)
@@ -70,6 +67,6 @@ struct JoinView: View {
 
 struct JoinView_Previews: PreviewProvider {
     static var previews: some View {
-        JoinView(isPresendted: .constant(true))
+        JoinView()
     }
 }

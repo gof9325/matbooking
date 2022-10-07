@@ -12,9 +12,8 @@ struct LoginView: View {
     @State var isJoinViewPresented = false
     
     var body: some View {
-        
-        if userVM.auth0User != nil && isJoinViewPresented {
-            JoinView(isPresendted: $isJoinViewPresented)
+        if isJoinViewPresented {
+            JoinView()
         } else {
             VStack {
                 Text("맛북킹")
@@ -22,9 +21,6 @@ struct LoginView: View {
                     .padding([.top, .bottom])
                 Button("시작하기") {
                     userVM.login()
-//                    if userVM.auth0User != nil {
-                        isJoinViewPresented = true
-//                    }
                 }
                 .padding()
                 .background(.blue)
@@ -32,6 +28,11 @@ struct LoginView: View {
                 .clipShape(Capsule())
             }
             .frame(width: 300, height: 200)
+            .onReceive(userVM.$auth0User, perform: {
+                if $0 != nil {
+                    self.isJoinViewPresented = true
+                }
+            })
         }
     }
 }
