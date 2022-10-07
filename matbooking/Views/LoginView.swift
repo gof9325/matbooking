@@ -28,10 +28,8 @@ struct LoginView: View {
                 .clipShape(Capsule())
             }
             .frame(width: 300, height: 200)
-            .onReceive(userVM.$auth0User, perform: {
-                if $0 != nil {
-                    self.isJoinViewPresented = true
-                }
+            .onReceive(userVM.$haveToJoin, perform: {
+                    self.isJoinViewPresented = $0
             })
         }
     }

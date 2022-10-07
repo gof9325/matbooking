@@ -22,7 +22,7 @@ struct ContentView: View {
             if self.user != nil {
                 searchBar(restaurantName: $restaurantNmae)
                 TabView(selection: $selection) {
-                    ChatView()
+                    ChatListView()
                         .tabItem {
                             Image(systemName: "message")
                         }
@@ -60,7 +60,7 @@ struct searchBar: View{
             Button(action: {
                 
             }, label: {
-                Image(systemName: "search")
+                Image(systemName: "magnifyingglass")
             })
         }
         

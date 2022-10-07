@@ -18,13 +18,16 @@ struct UserDetailView: View {
                 .font(.largeTitle)
             VStack {
                 HStack {
-                    Image(systemName: "person")
-                        .resizable()
-                        .scaledToFit()
-                        .background(.gray.opacity(0.3))
-                        .cornerRadius(100)
-                        .frame(width: 150, height: 150)
-                        .padding()
+                    AsyncImage(url: URL(string: userVM.user?.picture ?? ""))
+                    { image in
+                        image.resizable()
+                    } placeholder: {
+                        ProgressView()
+                    }
+                    .scaledToFit()
+                    .cornerRadius(100)
+                    .frame(width: 150, height: 150)
+                    .padding()
                     Text(userVM.user?.name ?? "" )
                         .font(.largeTitle)
                 }
@@ -37,6 +40,7 @@ struct UserDetailView: View {
                     Text("asdf")
                 }
                 .navigationBarTitleDisplayMode(.inline)
+                .navigationTitle("나의 예약목록")
             }
         }
         

@@ -7,14 +7,24 @@
 
 import SwiftUI
 
-struct ChatView: View {
+struct ChatListView: View {
+    
+    
     var body: some View {
-        Text("Hello, World!")
+        VStack {
+            Text("채팅 목록")
+            List {
+//                ForEach() {
+//
+//                }
+            }
+            
+        }
     }
 }
 
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatView()
+        ChatListView()
     }
 }

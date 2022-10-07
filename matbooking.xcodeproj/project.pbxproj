@@ -22,8 +22,9 @@
 		1E5FE2DE28EB1DEF00736C0C /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5FE2DD28EB1DEF00736C0C /* UserDetailView.swift */; };
 		1E5FE2E028EC1A5F00736C0C /* KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5FE2DF28EC1A5F00736C0C /* KeyChain.swift */; };
 		1E5FE2E328EC2E5600736C0C /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5FE2E228EC2E5600736C0C /* UserViewModel.swift */; };
-		1E5FE2E528EC352700736C0C /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5FE2E428EC352700736C0C /* ChatView.swift */; };
+		1E5FE2E528EC352700736C0C /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5FE2E428EC352700736C0C /* ChatListView.swift */; };
 		1E83C63A28F00DCE00C69431 /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E83C63928F00DCE00C69431 /* BaseResponse.swift */; };
+		1E83C63E28F0228500C69431 /* ChatDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E83C63D28F0228500C69431 /* ChatDetailView.swift */; };
 		1E8CDF1928EDA9E300651C4D /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8CDF1828EDA9E300651C4D /* ApiClient.swift */; };
 		1E8CDF1B28EDAB5300651C4D /* ApiLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8CDF1A28EDAB5300651C4D /* ApiLogger.swift */; };
 		1E8CDF1E28EDAC7600651C4D /* BaseInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8CDF1D28EDAC7600651C4D /* BaseInterceptor.swift */; };
@@ -60,8 +61,9 @@
 		1E5FE2DD28EB1DEF00736C0C /* UserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
 		1E5FE2DF28EC1A5F00736C0C /* KeyChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChain.swift; sourceTree = "<group>"; };
 		1E5FE2E228EC2E5600736C0C /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
-		1E5FE2E428EC352700736C0C /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		1E5FE2E428EC352700736C0C /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
 		1E83C63928F00DCE00C69431 /* BaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
+		1E83C63D28F0228500C69431 /* ChatDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailView.swift; sourceTree = "<group>"; };
 		1E8CDF1828EDA9E300651C4D /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		1E8CDF1A28EDAB5300651C4D /* ApiLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiLogger.swift; sourceTree = "<group>"; };
 		1E8CDF1D28EDAC7600651C4D /* BaseInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInterceptor.swift; sourceTree = "<group>"; };
@@ -148,7 +150,8 @@
 				1EF34C7D28E7622E00F1396B /* RestaurantDetailView.swift */,
 				1E5FE2DD28EB1DEF00736C0C /* UserDetailView.swift */,
 				1E5FE2D528EAF84B00736C0C /* ContentView.swift */,
-				1E5FE2E428EC352700736C0C /* ChatView.swift */,
+				1E5FE2E428EC352700736C0C /* ChatListView.swift */,
+				1E83C63D28F0228500C69431 /* ChatDetailView.swift */,
 				1EF34C7928E75EFD00F1396B /* JoinView.swift */,
 				1E5FE2D128EADFF000736C0C /* MakeResrvationsView.swift */,
 			);
@@ -367,6 +370,7 @@
 				1E8CDF1B28EDAB5300651C4D /* ApiLogger.swift in Sources */,
 				1EE612FD28EEBDC200797DD9 /* UserApiService.swift in Sources */,
 				1E8CDF1E28EDAC7600651C4D /* BaseInterceptor.swift in Sources */,
+				1E83C63E28F0228500C69431 /* ChatDetailView.swift in Sources */,
 				1E2ED8FA28E738A0005E1412 /* LoginView.swift in Sources */,
 				1E2ED90628E7391A005E1412 /* RestaurantContentView.swift in Sources */,
 				1E8CDF2628EDB35400651C4D /* RestaurantsListResponse.swift in Sources */,
@@ -381,7 +385,7 @@
 				1E8CDF2428EDB15700651C4D /* RestaurantsApiService.swift in Sources */,
 				1E8CDF1928EDA9E300651C4D /* ApiClient.swift in Sources */,
 				1E5FE2D628EAF84B00736C0C /* ContentView.swift in Sources */,
-				1E5FE2E528EC352700736C0C /* ChatView.swift in Sources */,
+				1E5FE2E528EC352700736C0C /* ChatListView.swift in Sources */,
 				1EF34C8328EACEE400F1396B /* Auth0User.swift in Sources */,
 				1EE612F928EEBA7700797DD9 /* User.swift in Sources */,
 				1EE612FF28EEC13300797DD9 /* Auth0Interceptor.swift in Sources */,

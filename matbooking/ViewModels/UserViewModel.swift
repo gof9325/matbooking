@@ -16,6 +16,8 @@ class UserViewModel: ObservableObject {
     @Published var auth0User: Auth0User?
     @Published var user: User?
     
+    @Published var haveToJoin: Bool = false
+    
     init(from: String) {
         self.auth0User = Auth0User(from: from)
     }
@@ -29,11 +31,11 @@ class UserViewModel: ObservableObject {
                 switch result {
                 case .success(let credentials):
                     print("Auth0Login Successs")
-                    self.auth0User = Auth0User(from: credentials.idToken)!
                     print("accessToken : \(credentials.accessToken)")
                     KeyChain.create(key: "userAccessToken", token: credentials.accessToken)
-                    if let auth0User = self.auth0User {
+                    if let auth0User = Auth0User(from: credentials.idToken) {
                         self.getUserInfo(auth0User)
+                        self.auth0User = auth0User
                     }
                 case .failure(let error):
                     print("Failed with: \(error)")
@@ -67,6 +69,10 @@ class UserViewModel: ObservableObject {
             }).store(in: &subscription)
     }
     
+    func cancelJoin() {
+        self.haveToJoin = false
+    }
+    
     private func getUserInfo(_ auth0User: Auth0User) {
         print("UserViewModel - getUserInfo() called")
         UserApiService.getUserInfo()
@@ -75,6 +81,8 @@ class UserViewModel: ObservableObject {
             }, receiveValue: { userInfo in
                 if userInfo.data.exists {
                     self.user = User(id: auth0User.id, picture: auth0User.picture, name: userInfo.data.name!, mobile: userInfo.data.mobile!)
+                } else {
+                    self.haveToJoin = true
                 }
             }).store(in: &subscription)
     }
