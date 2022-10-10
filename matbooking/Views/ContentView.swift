@@ -11,6 +11,7 @@ import Alamofire
 struct ContentView: View {
     @EnvironmentObject var userVM: UserViewModel
     @ObservedObject var restaurantStore = RestaurantViewModel()
+    
     @State var user: User?
     @State var restaurantNmae = ""
     @State var selection = 0
@@ -20,7 +21,10 @@ struct ContentView: View {
     var body: some View {
         VStack {
             if self.user != nil {
-                searchBar(restaurantName: $restaurantNmae)
+                if selection == 0 {
+                    searchBar(restaurantName: $restaurantNmae)
+                        .padding()
+                }
                 TabView(selection: $selection) {
                     ChatListView()
                         .tabItem {
@@ -63,12 +67,15 @@ struct searchBar: View{
                 Image(systemName: "magnifyingglass")
             })
         }
-        
+        .padding()
+        .background(.gray.opacity(0.1))
+        .cornerRadius(18)
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+//        ContentView()
+        searchBar(restaurantName: .constant("asdf"))
     }
 }

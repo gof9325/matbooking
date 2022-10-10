@@ -9,16 +9,18 @@ import SwiftUI
 
 struct ChatListView: View {
     
+    var chatList = [
+        "a", "b"
+    ]
     
     var body: some View {
-        VStack {
-            Text("채팅 목록")
+        NavigationView {
             List {
-//                ForEach() {
-//
-//                }
+                ForEach(chatList, id:\.self) { item in
+                    Text(item)
+                }
             }
-            
+            .navigationTitle("채팅 목록")
         }
     }
 }

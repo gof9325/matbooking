@@ -16,7 +16,13 @@ class UserViewModel: ObservableObject {
     @Published var auth0User: Auth0User?
     @Published var user: User?
     
-    @Published var haveToJoin: Bool = false
+//    @Published var haveToJoin: Bool = false
+    
+    // 로그인 실패 이벤트
+    var loginFail = PassthroughSubject<(), Never>()
+    
+    // 회원가입 이벤트
+    var haveToJoin = PassthroughSubject<(), Never>()
     
     init(from: String) {
         self.auth0User = Auth0User(from: from)
@@ -27,7 +33,7 @@ class UserViewModel: ObservableObject {
         Auth0
             .webAuth()
             .audience("memos-node-docker")
-            .start { result in
+            .start { [self] result in
                 switch result {
                 case .success(let credentials):
                     print("Auth0Login Successs")
@@ -74,11 +80,18 @@ class UserViewModel: ObservableObject {
         UserApiService.getUserInfo()
             .sink(receiveCompletion: { completion in
                 print("UserViewModel getUserInfo completion: \(completion)")
+                switch completion {
+                case .finished:
+                    return
+                case .failure(let error) :
+                    print("UserViewModel getUserInfo error: \(error)")
+                    self.loginFail.send()
+                }
             }, receiveValue: { userInfo in
                 if userInfo.data.exists {
                     self.user = User(id: auth0User.id, picture: auth0User.picture, name: userInfo.data.name!, mobile: userInfo.data.mobile!)
                 } else {
-                    self.haveToJoin = true
+                    self.haveToJoin.send()
                 }
             }).store(in: &subscription)
     }

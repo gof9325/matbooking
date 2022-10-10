@@ -13,9 +13,11 @@ enum RestaurantsApiService {
     static func getRestaurants() -> AnyPublisher< [Restaurant] , AFError> {
         print("RestaurantsApiService - getRestaurants() called")
         
+        let interceptor = Auth0Interceptor()
+        
         return ApiClient.shared.session
-            .request(RestaurantsRouter.getRestarants)
-            .publishDecodable(type: RestaurantsListResponse.self)
+            .request(RestaurantsRouter.getRestaurants, interceptor: interceptor)
+            .publishDecodable(type: ApiResponse<[Restaurant]>.self)
             .value()
             .map{ $0.data }
             .eraseToAnyPublisher()

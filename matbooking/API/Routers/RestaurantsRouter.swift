@@ -10,7 +10,7 @@ import Alamofire
 
 enum RestaurantsRouter: URLRequestConvertible {
     
-    case getRestarants
+    case getRestaurants
     
     var baseURL: URL {
         return URL(string: ApiClient.BASE_URL)!
@@ -18,7 +18,7 @@ enum RestaurantsRouter: URLRequestConvertible {
     
     var endPoint: String {
         switch self {
-        case .getRestarants:
+        case .getRestaurants:
             return "stores"
         }
     

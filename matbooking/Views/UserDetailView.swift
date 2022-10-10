@@ -55,6 +55,7 @@ struct UserDetailView: View {
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationTitle("나의 예약목록")
             }
+            .padding()
         }
     }
 }
