@@ -11,6 +11,7 @@ import Alamofire
 enum UserRouter: URLRequestConvertible {
     case getUserInfo
     case join(name: String, mobile: String)
+    case deleteAccount
     
     var baseURL: URL {
         return URL(string: ApiClient.BASE_URL)!
@@ -22,6 +23,8 @@ enum UserRouter: URLRequestConvertible {
             return "customers/me"
         case .join:
             return "customers"
+        case .deleteAccount:
+            return "customers/me"
         }
     }
     
@@ -31,12 +34,14 @@ enum UserRouter: URLRequestConvertible {
             return .get
         case .join :
             return .post
+        case .deleteAccount :
+            return .delete
         }
     }
     
     var parameters: Parameters{
         switch self {
-        case .getUserInfo :
+        case .getUserInfo, .deleteAccount :
             return Parameters()
         case let .join(name, mobile) :
             var parameters = Parameters()

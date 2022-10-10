@@ -23,7 +23,7 @@ enum UserApiService {
             .eraseToAnyPublisher()
     }
     
-    static func join(name: String, mobile: String) -> AnyPublisher<ApiResponse<JoinResponse> , AFError> {
+    static func join(name: String, mobile: String) -> AnyPublisher<ApiResponse<JoinResponse>, AFError> {
         print("UserApiService - join() called")
         
         let interceptor = Auth0Interceptor()
@@ -31,6 +31,18 @@ enum UserApiService {
         return ApiClient.shared.session
             .request(UserRouter.join(name: name, mobile: mobile), interceptor: interceptor)
             .publishDecodable(type: ApiResponse<JoinResponse>.self)
+            .value()
+            .eraseToAnyPublisher()
+    }
+    
+    static func deleteAccount() -> AnyPublisher<ApiResponse<EmptyResponse>, AFError> {
+        print("UserApiService - deleteAccount() called")
+        
+        let interceptor = Auth0Interceptor()
+        
+        return ApiClient.shared.session
+            .request(UserRouter.deleteAccount, interceptor: interceptor)
+            .publishDecodable(type: ApiResponse<EmptyResponse>.self)
             .value()
             .eraseToAnyPublisher()
     }

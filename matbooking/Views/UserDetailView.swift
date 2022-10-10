@@ -28,12 +28,25 @@ struct UserDetailView: View {
                     .cornerRadius(100)
                     .frame(width: 150, height: 150)
                     .padding()
-                    Text(userVM.user?.name ?? "" )
+                    Text(userVM.user?.name ?? "")
                         .font(.largeTitle)
                 }
-                Button("로그아웃") {
-                    userVM.logout()
+                HStack {
+                    Spacer()
+                    Button("로그아웃") {
+                        userVM.logout()
+                    }
+                    .matbookingButtonStyle(width: 100)
+                    Spacer()
+                    Button("회원탈퇴") {
+//                        userVM.logout()
+                        userVM.deleteAccount()
+                    }
+                    .matbookingButtonStyle(width: 100)
+                    Spacer()
                 }
+                .padding()
+           
             }
             NavigationView {
                 List {
@@ -43,7 +56,6 @@ struct UserDetailView: View {
                 .navigationTitle("나의 예약목록")
             }
         }
-        
     }
 }
 

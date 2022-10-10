@@ -12,6 +12,8 @@ struct JoinView: View {
     @State var name: String = ""
     @State var mobile: String = ""
     
+    @State var validateMobileNumber = true
+    
     @Binding var isPresented: Bool
     
     var body: some View {
@@ -39,7 +41,16 @@ struct JoinView: View {
                     }
                     Section("전화번호") {
                         TextField("000-0000-0000", text: $mobile)
-//                        TextField("000-0000-0000", value: $mobile, format: .format(.))
+                            .keyboardType(.phonePad)
+                            .onChange(of: mobile, perform: { mobile in
+                                if mobile.validatePhone(number: mobile) {
+                                    self.mobile = mobile.withHypen
+                                    validateMobileNumber = true
+                                } else {
+                                    validateMobileNumber = false
+                                }
+                            })
+                            .foregroundColor(validateMobileNumber ? Color.black : Color.red)
                     }
                 }
                 .padding()
@@ -54,8 +65,8 @@ struct JoinView: View {
                     .matbookingButtonStyle(width: 100)
                     Spacer()
                     Button("취소") {
-//                        userVM.auth0User = nil
-                        userVM.cancelJoin()
+                        userVM.haveToJoin = false
+                        isPresented = false
                     }
                     .matbookingButtonStyle(width: 100)
                     Spacer()
@@ -68,17 +79,6 @@ struct JoinView: View {
             }
         }
         
-    }
-}
-
-extension Button {
-    func matbookingButtonStyle(width: CGFloat) -> some View {
-        self
-            .padding()
-            .frame(width: width)
-            .background(.blue)
-            .cornerRadius(10)
-            .foregroundColor(.white)
     }
 }
 

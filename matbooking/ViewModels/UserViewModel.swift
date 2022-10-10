@@ -69,10 +69,6 @@ class UserViewModel: ObservableObject {
             }).store(in: &subscription)
     }
     
-    func cancelJoin() {
-        self.haveToJoin = false
-    }
-    
     private func getUserInfo(_ auth0User: Auth0User) {
         print("UserViewModel - getUserInfo() called")
         UserApiService.getUserInfo()
@@ -84,6 +80,19 @@ class UserViewModel: ObservableObject {
                 } else {
                     self.haveToJoin = true
                 }
+            }).store(in: &subscription)
+    }
+    
+    func deleteAccount() {
+        print("UserViewModel - getUserInfo() called")
+        UserApiService.deleteAccount()
+            .sink(receiveCompletion: { completion in
+                print("UserViewModel deleteAccount completion: \(completion)")
+            }, receiveValue: { result in
+//                result.error != nil {
+                    self.user = nil
+                    self.auth0User = nil
+//                }
             }).store(in: &subscription)
     }
 }
