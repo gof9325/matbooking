@@ -7,7 +7,6 @@
 
 import Foundation
 import Auth0
-import Security
 import Combine
 import Alamofire
 
@@ -15,8 +14,6 @@ class UserViewModel: ObservableObject {
     var subscription = Set<AnyCancellable>()
     @Published var auth0User: Auth0User?
     @Published var user: User?
-    
-//    @Published var haveToJoin: Bool = false
     
     // 로그인 실패 이벤트
     var loginFail = PassthroughSubject<(), Never>()

@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - Welcome
+// MARK: - ApiResponse
 struct ApiResponse<T>: Codable where T: Codable {
     let success: Bool
     let error: String

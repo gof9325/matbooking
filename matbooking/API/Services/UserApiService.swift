@@ -14,10 +14,8 @@ enum UserApiService {
     static func getUserInfo() -> AnyPublisher<ApiResponse<UserResponse>, AFError> {
         print("UserApiService - getUserInfo() called")
         
-        let interceptor = Auth0Interceptor()
-        
         return ApiClient.shared.session
-            .request(UserRouter.getUserInfo, interceptor: interceptor)
+            .request(UserRouter.getUserInfo)
             .publishDecodable(type: ApiResponse<UserResponse>.self)
             .value()
             .eraseToAnyPublisher()
@@ -26,10 +24,8 @@ enum UserApiService {
     static func join(name: String, mobile: String) -> AnyPublisher<ApiResponse<JoinResponse>, AFError> {
         print("UserApiService - join() called")
         
-        let interceptor = Auth0Interceptor()
-        
         return ApiClient.shared.session
-            .request(UserRouter.join(name: name, mobile: mobile), interceptor: interceptor)
+            .request(UserRouter.join(name: name, mobile: mobile))
             .publishDecodable(type: ApiResponse<JoinResponse>.self)
             .value()
             .eraseToAnyPublisher()
@@ -38,10 +34,8 @@ enum UserApiService {
     static func deleteAccount() -> AnyPublisher<ApiResponse<EmptyResponse>, AFError> {
         print("UserApiService - deleteAccount() called")
         
-        let interceptor = Auth0Interceptor()
-        
         return ApiClient.shared.session
-            .request(UserRouter.deleteAccount, interceptor: interceptor)
+            .request(UserRouter.deleteAccount)
             .publishDecodable(type: ApiResponse<EmptyResponse>.self)
             .value()
             .eraseToAnyPublisher()

@@ -25,7 +25,7 @@
 		1E5FE2E028EC1A5F00736C0C /* KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5FE2DF28EC1A5F00736C0C /* KeyChain.swift */; };
 		1E5FE2E328EC2E5600736C0C /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5FE2E228EC2E5600736C0C /* UserViewModel.swift */; };
 		1E5FE2E528EC352700736C0C /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5FE2E428EC352700736C0C /* ChatListView.swift */; };
-		1E83C63A28F00DCE00C69431 /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E83C63928F00DCE00C69431 /* BaseResponse.swift */; };
+		1E83C63A28F00DCE00C69431 /* ApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E83C63928F00DCE00C69431 /* ApiResponse.swift */; };
 		1E83C63E28F0228500C69431 /* ChatDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E83C63D28F0228500C69431 /* ChatDetailView.swift */; };
 		1E8CDF1928EDA9E300651C4D /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8CDF1828EDA9E300651C4D /* ApiClient.swift */; };
 		1E8CDF1B28EDAB5300651C4D /* ApiLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8CDF1A28EDAB5300651C4D /* ApiLogger.swift */; };
@@ -66,7 +66,7 @@
 		1E5FE2DF28EC1A5F00736C0C /* KeyChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChain.swift; sourceTree = "<group>"; };
 		1E5FE2E228EC2E5600736C0C /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		1E5FE2E428EC352700736C0C /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
-		1E83C63928F00DCE00C69431 /* BaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
+		1E83C63928F00DCE00C69431 /* ApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResponse.swift; sourceTree = "<group>"; };
 		1E83C63D28F0228500C69431 /* ChatDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailView.swift; sourceTree = "<group>"; };
 		1E8CDF1828EDA9E300651C4D /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		1E8CDF1A28EDAB5300651C4D /* ApiLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiLogger.swift; sourceTree = "<group>"; };
@@ -170,7 +170,7 @@
 				1EF34C8228EACEE400F1396B /* Auth0User.swift */,
 				1EE612F828EEBA7700797DD9 /* User.swift */,
 				1EE6130028EEC8F800797DD9 /* UserResponse.swift */,
-				1E83C63928F00DCE00C69431 /* BaseResponse.swift */,
+				1E83C63928F00DCE00C69431 /* ApiResponse.swift */,
 				1EE6130228F0010100797DD9 /* JoinResponse.swift */,
 				1E36D3F728F3F33300F228A7 /* EmptyResponse.swift */,
 				1E5FE2D928EAFC4500736C0C /* Reservation.swift */,
@@ -394,7 +394,7 @@
 				1E36D3FB28F3FB6300F228A7 /* Extensions.swift in Sources */,
 				1E5FE2E028EC1A5F00736C0C /* KeyChain.swift in Sources */,
 				1EF34C7E28E7622E00F1396B /* RestaurantDetailView.swift in Sources */,
-				1E83C63A28F00DCE00C69431 /* BaseResponse.swift in Sources */,
+				1E83C63A28F00DCE00C69431 /* ApiResponse.swift in Sources */,
 				1E5FE2E328EC2E5600736C0C /* UserViewModel.swift in Sources */,
 				1E5FE2D228EADFF000736C0C /* MakeResrvationsView.swift in Sources */,
 				1E8CDF2128EDAF9F00651C4D /* RestaurantsRouter.swift in Sources */,
