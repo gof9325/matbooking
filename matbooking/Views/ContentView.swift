@@ -16,6 +16,8 @@ struct ContentView: View {
     @State var restaurantNmae = ""
     @State var selection = 0
     
+    @State var chatCount = 0
+    
     @State var restaurantsList: [Restaurant] = []
     
     var body: some View {
@@ -31,6 +33,7 @@ struct ContentView: View {
                             Image(systemName: "message")
                         }
                         .tag(1)
+                        .badge(chatCount)
                     RestaurantListView(restaurantList: $restaurantsList)
                         .onAppear{
                             restaurantStore.getRestaurantList()
@@ -75,7 +78,7 @@ struct searchBar: View{
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-//        ContentView()
-        searchBar(restaurantName: .constant("asdf"))
+        ContentView()
+//        searchBar(restaurantName: .constant("asdf"))
     }
 }

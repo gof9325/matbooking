@@ -10,14 +10,15 @@ import SwiftUI
 struct ChatListView: View {
     
     var chatList = [
-        "a", "b"
+        Chat(restaurantName: "가게 이름1", content: "채팅 내용1"),
+        Chat(restaurantName: "가게 이름2", content: "채팅 내용2")
     ]
     
     var body: some View {
         NavigationView {
             List {
                 ForEach(chatList, id:\.self) { item in
-                    Text(item)
+                    ChatListItemView(chat: item)
                 }
             }
             .navigationTitle("채팅 목록")
