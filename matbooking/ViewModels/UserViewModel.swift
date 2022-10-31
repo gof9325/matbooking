@@ -68,7 +68,7 @@ class UserViewModel: ObservableObject {
             .sink(receiveCompletion: { completion in
                 print("UserViewModel join completion: \(completion)")
             }, receiveValue: { userInfo in
-                self.user = User(id: auth0User.id, picture: auth0User.picture, name: name, mobile: mobile)
+                self.user = User(id: auth0User.id, picture: auth0User.picture, name: userInfo.data.name, mobile: userInfo.data.mobile)
             }).store(in: &subscription)
     }
     

@@ -14,24 +14,39 @@ struct RestaurantDetailView: View {
     @State var isPresented = false
     
     var body: some View {
-        VStack {
-            VStack {
-                Image(systemName: "house")
-                    .resizable()
-                    .scaledToFit()
+        ZStack(alignment: .bottom) {
+            ScrollView {
+                ImageSlider(images: ["house", "person"])
+                    .frame(minHeight: 300)
                     .background(.yellow)
-                Text("\(restaurant.name)")
-                    .font(.system(size: 50, weight: .heavy))
-                    .padding()
-                Text("\(restaurant.introduction)")
-                    .padding()
+                VStack(alignment: .leading) {
+                    Text("\(restaurant.name)")
+                        .font(.system(size: 50, weight: .heavy))
+                        .padding([.top, .bottom], 5)
+                    Text("\(restaurant.introduction)")
+                        .font(.headline)
+                        .padding([.top, .bottom], 5)
+                    HStack{
+                        Spacer()
+                        Image(systemName: "phone")
+                        Text("01023232233")
+                    }
+                    .padding([.top, .bottom], 5)
+                }
+                .frame(
+                    minWidth: 0,
+                    maxWidth: .infinity,
+                    minHeight: 0,
+                    maxHeight: .infinity,
+                    alignment: .topLeading
+                )
+                .padding()
+            }
+            HStack {
                 Button("예약하기") {
                     isPresented.toggle()
                 }
-                .padding()
-                .background(.blue)
-                .foregroundColor(.white)
-                .cornerRadius(15)
+                .matbookingButtonStyle(width: 100)
             }
             .popover(isPresented: $isPresented) {
                 MakeResrvationsView(reservation: $reservationStore.reservationList[0])
@@ -42,6 +57,6 @@ struct RestaurantDetailView: View {
 
 struct RestaurantDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantDetailView(restaurant: Restaurant(name: "aaa", isOpen: true, introduction: "vvvv", pictures: ""))
+        RestaurantDetailView(restaurant: Restaurant(name: "가게의 이름", isOpen: true, introduction: "가게에 대한 상세 설명", pictures: ""))
     }
 }

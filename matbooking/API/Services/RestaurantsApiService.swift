@@ -10,7 +10,7 @@ import Alamofire
 import Combine
 
 enum RestaurantsApiService {
-    static func getRestaurants() -> AnyPublisher< [Restaurant] , AFError> {
+    static func getRestaurants() -> AnyPublisher<[Restaurant] , AFError> {
         print("RestaurantsApiService - getRestaurants() called")
         
         return ApiClient.shared.session

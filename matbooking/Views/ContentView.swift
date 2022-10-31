@@ -54,7 +54,7 @@ struct ContentView: View {
             } else {
                 LoginView()
             }
-        }.onReceive(userVM.$user, perform: { self.user = $0})
+        }.onReceive(userVM.$user, perform: { self.user = $0 })
     }
 }
 

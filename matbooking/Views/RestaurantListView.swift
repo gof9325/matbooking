@@ -19,7 +19,7 @@ struct RestaurantListView: View {
                     })
                 }
             }
-        }
+        }.navigationBarHidden(true)
     }
 }
 

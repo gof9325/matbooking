@@ -10,6 +10,6 @@ import Foundation
 struct Reservation: Hashable {
     let id = UUID()
     var date: Date
-    let pax: Int
+    var pax: String
     let restaurantName: String
 }

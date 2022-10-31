@@ -12,7 +12,7 @@ class ReservationViewModel: ObservableObject {
     @Published var reservationList: [Reservation]
     
     init() {
-        reservationList = [Reservation(date: Date(), pax: 1, restaurantName: "")]
+        reservationList = [Reservation(date: Date(), pax: "1", restaurantName: "")]
     }
     
     // MARK: Intant functions

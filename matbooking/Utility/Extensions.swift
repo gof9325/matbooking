@@ -37,3 +37,19 @@ extension Button {
             .foregroundColor(.white)
     }
 }
+
+struct ImageSlider: View {
+
+    @State var images: [String]
+    
+    var body: some View {
+        TabView {
+            ForEach(images, id: \.self) { item in
+                 Image(systemName: item)
+                    .resizable()
+                    .scaledToFill()
+            }
+        }
+        .tabViewStyle(PageTabViewStyle())
+    }
+}
