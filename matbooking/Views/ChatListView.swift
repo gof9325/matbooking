@@ -15,13 +15,19 @@ struct ChatListView: View {
     ]
     
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(chatList, id:\.self) { item in
-                    ChatListItemView(chat: item)
+        VStack {
+            Text("채팅 목록")
+                .font(.largeTitle)
+            NavigationView {
+                List {
+                    ForEach(chatList, id:\.self) { item in
+                        NavigationLink(destination: ChatDetailView()) {
+                            ChatListItemView(chat: item)
+                        }
+                    }
+                    .navigationBarTitleDisplayMode(.inline)
                 }
             }
-            .navigationTitle("채팅 목록")
         }
     }
 }

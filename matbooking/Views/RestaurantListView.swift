@@ -8,23 +8,35 @@
 import SwiftUI
 
 struct RestaurantListView: View {
-    @Binding var restaurantList: [Restaurant]
+    @StateObject var restaurantVM: RestaurantViewModel
+    @State var restaurantList = [Restaurant]()
+    
+    @Binding var inDetailView: Bool
     
     var body: some View {
-        NavigationView {
+        VStack {
             List {
                 ForEach(restaurantList , id: \.self) { restaurant in
-                    NavigationLink(destination: RestaurantDetailView(restaurant: restaurant) , label: {
+                    NavigationLink(destination: RestaurantDetailView(restaurant: restaurant, inDetailView: $inDetailView) , label: {
                         RestaurantContentView(restaurant: restaurant)
                     })
                 }
+                if restaurantList.isEmpty {
+                    Text("레스토랑 리스트가 없습니다.")
+                }
             }
-        }.navigationBarHidden(true)
+            .navigationBarTitleDisplayMode(.inline)
+            .onAppear {
+                restaurantVM.getRestaurantList()
+                inDetailView = false
+            }
+            .onReceive(restaurantVM.$restaurantList, perform: {self.restaurantList = $0 })
+        }
     }
 }
 
 struct RestaurantListView_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantListView(restaurantList: .constant([Restaurant(name: "aa", isOpen: true, introduction: "asdf", pictures: "")]))
+        RestaurantListView(restaurantVM: RestaurantViewModel(), inDetailView: .constant(true))
     }
 }

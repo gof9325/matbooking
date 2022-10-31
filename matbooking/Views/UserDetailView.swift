@@ -39,7 +39,6 @@ struct UserDetailView: View {
                     .matbookingButtonStyle(width: 100)
                     Spacer()
                     Button("회원탈퇴") {
-//                        userVM.logout()
                         userVM.deleteAccount()
                     }
                     .matbookingButtonStyle(width: 100)

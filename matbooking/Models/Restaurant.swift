@@ -6,12 +6,42 @@
 //
 
 import Foundation
-//import SwiftUI
 
-struct Restaurant: Hashable, Codable {
-    var id = UUID()
-    let name: String
-    var isOpen: Bool
-    let introduction: String
-    let pictures: String
+//struct Restaurant: Hashable, Codable {
+//    var id = UUID()
+//    let name: String
+//    var isOpen: Bool
+//    let introduction: String
+//    let pictures: String
+//}
+
+struct Restaurant: Equatable, Codable, Hashable {
+    var id: String
+    var reservationRestrictions = ReservationRestrictions()
+    var storeInfo = StoreInfo()
+    
+    struct ReservationRestrictions: Codable, Equatable, Hashable {
+        var paxMin = 2
+        var paxMax = 4
+        var slotGapMinutes = 60
+        var daysReservableInFuture = 1
+        var openingHours = ["0": OpeningHours(start: "1", end: "1")]
+        
+        struct OpeningHours: Codable, Equatable, Hashable {
+            var start = ""
+            var end = ""
+        }
+    }
+    
+    struct StoreInfo: Codable, Equatable, Hashable {
+        var name = ""
+        var subtitle = "없음"
+        var pictures: String?
+        var description = ""
+        var address = ""
+        var phone = "021234"
+        var openingHours = "9"
+        var city = "부산"
+        var cuisine = "한식"
+    }
 }

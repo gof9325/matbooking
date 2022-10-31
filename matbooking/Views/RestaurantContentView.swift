@@ -21,15 +21,15 @@ struct RestaurantContentView: View {
                 .cornerRadius(25)
             VStack(alignment: .leading) {
                 VStack(alignment: .leading) {
-                    Text("\(restaurant.name)")
+                    Text("\(restaurant.storeInfo.name)")
                         .font(.title)
                         .fontWeight(.bold)
                         .padding(.top, 5)
                         .padding(.bottom, -3)
-                    RestaurantReservable(reservable: restaurant.isOpen)
+                    RestaurantReservable(reservable: true)
                 }
                 Spacer()
-                Text("\(restaurant.introduction)")
+                Text("\(restaurant.storeInfo.description)")
             }
             .padding(.leading, 3)
         }
@@ -50,10 +50,10 @@ struct RestaurantReservable: View {
     }
 }
 
-struct RestaurantItem_Previews: PreviewProvider {
-    static var previews: some View {
-        RestaurantContentView(restaurant: Restaurant(name: "감자탕", isOpen: true, introduction: "호로록", pictures: ""))
-            .previewLayout(.sizeThatFits)
-            .frame(width: 500)
-    }
-}
+//struct RestaurantItem_Previews: PreviewProvider {
+//    static var previews: some View {
+//        RestaurantContentView(restaurant: Restaurant(from: <#Decoder#>, name: "감자탕", isOpen: true, introduction: "호로록", pictures: ""))
+//            .previewLayout(.sizeThatFits)
+//            .frame(width: 500)
+//    }
+//}

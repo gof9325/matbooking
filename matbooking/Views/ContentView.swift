@@ -10,7 +10,7 @@ import Alamofire
 
 struct ContentView: View {
     @EnvironmentObject var userVM: UserViewModel
-    @ObservedObject var restaurantStore = RestaurantViewModel()
+    @StateObject var restaurantVM = RestaurantViewModel()
     
     @State var user: User?
     @State var restaurantNmae = ""
@@ -18,38 +18,35 @@ struct ContentView: View {
     
     @State var chatCount = 0
     
-    @State var restaurantsList: [Restaurant] = []
+    @State var inDetailView = false
     
     var body: some View {
         VStack {
             if self.user != nil {
-                if selection == 0 {
+                if selection == 0 && inDetailView == false {
                     searchBar(restaurantName: $restaurantNmae)
                         .padding()
                 }
-                TabView(selection: $selection) {
-                    ChatListView()
-                        .tabItem {
-                            Image(systemName: "message")
-                        }
-                        .tag(1)
-                        .badge(chatCount)
-                    RestaurantListView(restaurantList: $restaurantsList)
-                        .onAppear{
-                            restaurantStore.getRestaurantList()
-                        }
-                        .onReceive(restaurantStore.$restaurantList, perform: {
-                            self.restaurantsList = $0
-                        })
-                        .tabItem {
-                            Image(systemName: "house")
-                        }
-                        .tag(0)
-                    UserDetailView(reservationList: ReservationViewModel())
-                        .tabItem {
-                            Image(systemName: "person")
-                        }
-                        .tag(2)
+                NavigationView {
+                    TabView(selection: $selection) {
+                        ChatListView()
+                            .tabItem {
+                                Image(systemName: "message")
+                            }
+                            .tag(1)
+                            .badge(chatCount)
+                        RestaurantListView(restaurantVM: restaurantVM,inDetailView: $inDetailView )
+                            .tabItem {
+                                Image(systemName: "house")
+                            }
+                            .tag(0)
+                        UserDetailView(reservationList: ReservationViewModel())
+                            .tabItem {
+                                Image(systemName: "person")
+                            }
+                            .tag(2)
+                    }
+                    .navigationBarHidden(true)
                 }
             } else {
                 LoginView()
@@ -79,6 +76,5 @@ struct searchBar: View{
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-//        searchBar(restaurantName: .constant("asdf"))
     }
 }

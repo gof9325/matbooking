@@ -10,8 +10,10 @@ import SwiftUI
 struct RestaurantDetailView: View {
     
     @ObservedObject var reservationStore = ReservationViewModel()
-    let restaurant: Restaurant
+    var restaurant: Restaurant
     @State var isPresented = false
+    
+    @Binding var inDetailView: Bool
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -20,16 +22,16 @@ struct RestaurantDetailView: View {
                     .frame(minHeight: 300)
                     .background(.yellow)
                 VStack(alignment: .leading) {
-                    Text("\(restaurant.name)")
+                    Text(restaurant.storeInfo.name)
                         .font(.system(size: 50, weight: .heavy))
                         .padding([.top, .bottom], 5)
-                    Text("\(restaurant.introduction)")
+                    Text(restaurant.storeInfo.description)
                         .font(.headline)
                         .padding([.top, .bottom], 5)
                     HStack{
                         Spacer()
                         Image(systemName: "phone")
-                        Text("01023232233")
+                        Text(restaurant.storeInfo.phone)
                     }
                     .padding([.top, .bottom], 5)
                 }
@@ -52,11 +54,14 @@ struct RestaurantDetailView: View {
                 MakeResrvationsView(reservation: $reservationStore.reservationList[0])
             }
         }
+        .onAppear {
+            inDetailView = true
+        }
     }
 }
 
-struct RestaurantDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        RestaurantDetailView(restaurant: Restaurant(name: "가게의 이름", isOpen: true, introduction: "가게에 대한 상세 설명", pictures: ""))
-    }
-}
+//struct RestaurantDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        RestaurantDetailView(restaurant: Restaurant(name: "가게의 이름", isOpen: true, introduction: "가게에 대한 상세 설명", pictures: ""))
+//    }
+//}

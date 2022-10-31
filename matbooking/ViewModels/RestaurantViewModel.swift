@@ -11,15 +11,8 @@ import Combine
 
 class RestaurantViewModel: ObservableObject {
     var subscription = Set<AnyCancellable>()
-    @Published var restaurantList: [Restaurant] = []
-    
-    init() {
-        restaurantList = [
-            Restaurant(name: "감자탕", isOpen: true, introduction: "존맛탱이다", pictures: ""),
-            Restaurant(name: "떡볶이", isOpen: false, introduction: "맵다매워", pictures: "")
-        ]
-    }
-    
+    @Published var restaurantList = [Restaurant]()
+      
     // MARK: intant functions
     func getRestaurantList() {
         print("RestaurantViewModel - getRestaurantList() called")
@@ -28,7 +21,7 @@ class RestaurantViewModel: ObservableObject {
                 print("RestaurantViewModel getRestaurantList completion: \(completion)")
             }, receiveValue: { restaurantList in
                 print("UserVM fetchUsers fetchedUsers.count: \(restaurantList.count)")
-                self.restaurantList = restaurantList
+                    self.restaurantList = restaurantList
             }).store(in: &subscription)
     }
 }
