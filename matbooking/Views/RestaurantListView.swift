@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Introspect
 
 struct RestaurantListView: View {
     @StateObject var restaurantVM: RestaurantViewModel
@@ -14,7 +15,7 @@ struct RestaurantListView: View {
     @Binding var inDetailView: Bool
     
     var body: some View {
-        VStack {
+        NavigationView {
             List {
                 ForEach(restaurantList , id: \.self) { restaurant in
                     NavigationLink(destination: RestaurantDetailView(restaurant: restaurant, inDetailView: $inDetailView) , label: {
@@ -25,12 +26,12 @@ struct RestaurantListView: View {
                     Text("레스토랑 리스트가 없습니다.")
                 }
             }
-            .navigationBarTitleDisplayMode(.inline)
             .onAppear {
-                restaurantVM.getRestaurantList()
                 inDetailView = false
+                print("\(inDetailView) inDetailView")
+                restaurantVM.getRestaurantList()
             }
-            .onReceive(restaurantVM.$restaurantList, perform: {self.restaurantList = $0 })
+            .onReceive(restaurantVM.$restaurantList, perform: {self.restaurantList = $0})
         }
     }
 }

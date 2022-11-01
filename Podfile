@@ -9,4 +9,5 @@ target 'matbooking' do
   pod 'RxSwift'
   pod 'Auth0'
   pod 'Alamofire'
+  pod 'Introspect'
 end

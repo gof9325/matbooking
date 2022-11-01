@@ -6,8 +6,11 @@
 //
 
 import SwiftUI
+import Introspect
 
 struct RestaurantDetailView: View {
+    
+    @State var uiTabarController: UITabBarController?
     
     @ObservedObject var reservationStore = ReservationViewModel()
     var restaurant: Restaurant
@@ -57,6 +60,13 @@ struct RestaurantDetailView: View {
         .onAppear {
             inDetailView = true
         }
+        .navigationBarTitle("Title", displayMode: .inline)
+           .introspectTabBarController { (UITabBarController) in
+               UITabBarController.tabBar.isHidden = true
+               uiTabarController = UITabBarController
+           }.onDisappear{
+               uiTabarController?.tabBar.isHidden = false
+           }
     }
 }
 

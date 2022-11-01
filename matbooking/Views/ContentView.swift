@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Alamofire
 
 struct ContentView: View {
     @EnvironmentObject var userVM: UserViewModel
@@ -27,7 +26,6 @@ struct ContentView: View {
                     searchBar(restaurantName: $restaurantNmae)
                         .padding()
                 }
-                NavigationView {
                     TabView(selection: $selection) {
                         ChatListView()
                             .tabItem {
@@ -46,8 +44,6 @@ struct ContentView: View {
                             }
                             .tag(2)
                     }
-                    .navigationBarHidden(true)
-                }
             } else {
                 LoginView()
             }

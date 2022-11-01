@@ -3,6 +3,7 @@ PODS:
   - Auth0 (2.3.1):
     - JWTDecode (~> 3.0)
     - SimpleKeychain (~> 1.0)
+  - Introspect (0.1.4)
   - JWTDecode (3.0.0)
   - RxSwift (6.5.0)
   - SimpleKeychain (1.0.1)
@@ -10,12 +11,14 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - Auth0
+  - Introspect
   - RxSwift
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - Auth0
+    - Introspect
     - JWTDecode
     - RxSwift
     - SimpleKeychain
@@ -23,10 +26,11 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: d368e1ff8a298e6dde360e35a3e68e6c610e7204
   Auth0: 910a23b611b7f1c2978fca3ac7579898f8524b0d
+  Introspect: b62c4dd2063072327c21d618ef2bedc3c87bc366
   JWTDecode: 82480a7173f8a811954e7e14a2b59f688ca4222a
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   SimpleKeychain: 130211269f88f038d7dc5254cf0b1b9ce978c398
 
-PODFILE CHECKSUM: 078ec1f9aae54d0e2d938018a2cbfaeb6214b360
+PODFILE CHECKSUM: 60749a091784ec30ab653e21c7fd36e9d2a1becb
 
 COCOAPODS: 1.11.3

@@ -25,9 +25,9 @@ struct ChatListView: View {
                             ChatListItemView(chat: item)
                         }
                     }
-                    .navigationBarTitleDisplayMode(.inline)
                 }
             }
+           
         }
     }
 }
