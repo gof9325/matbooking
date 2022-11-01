@@ -54,7 +54,7 @@ struct RestaurantDetailView: View {
                 .matbookingButtonStyle(width: 100)
             }
             .popover(isPresented: $isPresented) {
-                MakeResrvationsView(reservation: $reservationStore.reservationList[0])
+                MakeReservationsView()
             }
         }
         .onAppear {
@@ -70,8 +70,8 @@ struct RestaurantDetailView: View {
     }
 }
 
-//struct RestaurantDetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        RestaurantDetailView(restaurant: Restaurant(name: "가게의 이름", isOpen: true, introduction: "가게에 대한 상세 설명", pictures: ""))
-//    }
-//}
+struct RestaurantDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        RestaurantDetailView(restaurant: Restaurant(id: ""), inDetailView: .constant(true))
+    }
+}

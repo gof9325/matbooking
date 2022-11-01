@@ -16,4 +16,5 @@ class ReservationViewModel: ObservableObject {
     }
     
     // MARK: Intant functions
+    
 }
