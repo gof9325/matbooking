@@ -12,6 +12,8 @@ struct RestaurantDetailView: View {
     
     @State var uiTabarController: UITabBarController?
     
+    @StateObject var restaurantVM: RestaurantViewModel
+    
     @ObservedObject var reservationStore = ReservationViewModel()
     var restaurant: Restaurant
     @State var isPresented = false
@@ -54,7 +56,7 @@ struct RestaurantDetailView: View {
                 .matbookingButtonStyle(width: 100)
             }
             .popover(isPresented: $isPresented) {
-                MakeReservationsView()
+                MakeReservationsView(restaurantVM: restaurantVM, restaurant: restaurant)
             }
         }
         .onAppear {
@@ -72,6 +74,6 @@ struct RestaurantDetailView: View {
 
 struct RestaurantDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantDetailView(restaurant: Restaurant(id: ""), inDetailView: .constant(true))
+        RestaurantDetailView(restaurantVM: RestaurantViewModel(), restaurant: Restaurant(id: ""), inDetailView: .constant(true))
     }
 }

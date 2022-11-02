@@ -9,18 +9,16 @@ import SwiftUI
 
 struct MakeReservationsView: View {
     
-//    @StateObject var restaurantVM: RestaurantViewModel
-//
-//    var restaurant: Restaurant
+    @StateObject var restaurantVM: RestaurantViewModel
+
+    var restaurant: Restaurant
     
     @Environment(\.dismiss) var dismiss
-    
-//    @Binding var reservation: Reservation
-    
+       
     @State var date = Date()
     @State var pax = 0
     
-    var reservableTimeslots = ["ㅁ", "ㅇti"]
+    @State var reservableTimeslots = [String]()
     
     var body: some View {
         VStack {
@@ -34,7 +32,7 @@ struct MakeReservationsView: View {
                 .datePickerStyle(.graphical)
                 .padding()
                 .onChange(of: date, perform: { newDate in
-                    // newDate기준으로 reservableTimeslots 갱신
+                    reservableTimeslots = restaurantVM.setResrvableTimeslots(date: newDate, restaurant: restaurant) ?? [String]()
                 })
             Stepper(value: $pax, in: 0...5) {
                 Image(systemName: "person.2")
@@ -44,10 +42,15 @@ struct MakeReservationsView: View {
             .padding()
             ScrollView(.horizontal) {
                 HStack {
-                    ForEach(reservableTimeslots, id:\.self) { time in
-                        Button(time) {
-                            
+                    if !reservableTimeslots.isEmpty {
+                        ForEach(reservableTimeslots, id:\.self) { time in
+                            Button(time) {
+                                    // 눌러지면 시간, 날짜, 인원 등을 수집해서 reservation 만들기
+                            }
+                            .matbookingButtonStyle(width: 100)
                         }
+                    } else {
+                        Text("휴무일 입니다.")
                     }
                 }
             }
@@ -56,12 +59,11 @@ struct MakeReservationsView: View {
                 self.dismiss()
             }
             .matbookingButtonStyle(width: .infinity)
-            // 예약 인원
-            // 예약 금액
         }
         .padding()
         .onAppear {
-//            restaurantVM.getReservableTimeslots(startTime: restaurant.reservationRestrictions.daysReservableInFuture., endTime: <#T##Date#>, slotGap: <#T##Int#>)
+            // 최초 세팅
+            reservableTimeslots = restaurantVM.setResrvableTimeslots(date: date, restaurant: restaurant) ?? [String]()
         }
     }
 }

@@ -7,14 +7,6 @@
 
 import Foundation
 
-//struct Restaurant: Hashable, Codable {
-//    var id = UUID()
-//    let name: String
-//    var isOpen: Bool
-//    let introduction: String
-//    let pictures: String
-//}
-
 struct Restaurant: Equatable, Codable, Hashable {
     var id: String
     var reservationRestrictions = ReservationRestrictions()
@@ -25,7 +17,7 @@ struct Restaurant: Equatable, Codable, Hashable {
         var paxMax = 4
         var slotGapMinutes = 60
         var daysReservableInFuture = 1
-        var openingHours = ["0": OpeningHours(start: "1", end: "1")]
+        var openingHours = ["0": OpeningHours(start: "09:00", end: "22:00")]
         
         struct OpeningHours: Codable, Equatable, Hashable {
             var start = ""

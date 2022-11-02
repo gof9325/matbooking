@@ -18,7 +18,7 @@ struct RestaurantListView: View {
         NavigationView {
             List {
                 ForEach(restaurantList , id: \.self) { restaurant in
-                    NavigationLink(destination: RestaurantDetailView(restaurant: restaurant, inDetailView: $inDetailView) , label: {
+                    NavigationLink(destination: RestaurantDetailView(restaurantVM: restaurantVM, restaurant: restaurant, inDetailView: $inDetailView) , label: {
                         RestaurantContentView(restaurant: restaurant)
                     })
                 }
