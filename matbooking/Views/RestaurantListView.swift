@@ -14,25 +14,36 @@ struct RestaurantListView: View {
     
     @Binding var inDetailView: Bool
     
+    @State var isLoading = false
+    
     var body: some View {
         NavigationView {
-            List {
-                ForEach(restaurantList , id: \.self) { restaurant in
-                    NavigationLink(destination: RestaurantDetailView(restaurantVM: restaurantVM, restaurant: restaurant, inDetailView: $inDetailView) , label: {
-                        RestaurantContentView(restaurant: restaurant)
-                    })
-                }
+            if isLoading {
+                ProgressView()
+            } else {
                 if restaurantList.isEmpty {
                     Text("레스토랑 리스트가 없습니다.")
+                } else {
+                    List {
+                        ForEach(restaurantList , id: \.self) { restaurant in
+                            NavigationLink(destination: RestaurantDetailView(restaurantVM: restaurantVM, restaurant: restaurant, inDetailView: $inDetailView) , label: {
+                                RestaurantContentView(restaurant: restaurant)
+                            })
+                        }
+                    }
                 }
             }
-            .onAppear {
-                inDetailView = false
-                print("\(inDetailView) inDetailView")
-                restaurantVM.getRestaurantList()
-            }
-            .onReceive(restaurantVM.$restaurantList, perform: {self.restaurantList = $0})
         }
+        .onAppear {
+            inDetailView = false
+            print("\(inDetailView) inDetailView")
+            restaurantVM.getRestaurantList()
+            isLoading = true
+        }
+        .onReceive(restaurantVM.$restaurantList, perform: {
+            self.restaurantList = $0
+            isLoading = false
+        })
     }
 }
 

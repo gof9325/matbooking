@@ -56,7 +56,7 @@ struct RestaurantDetailView: View {
                 .matbookingButtonStyle(width: 100)
             }
             .popover(isPresented: $isPresented) {
-                MakeReservationsView(restaurantVM: restaurantVM, restaurant: restaurant)
+                ReservationsView(restaurantVM: restaurantVM, restaurant: restaurant)
             }
         }
         .onAppear {

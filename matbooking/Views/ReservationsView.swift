@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MakeReservationsView: View {
+struct ReservationsView: View {
     
     @StateObject var restaurantVM: RestaurantViewModel
 
@@ -34,7 +34,7 @@ struct MakeReservationsView: View {
                 .onChange(of: date, perform: { newDate in
                     reservableTimeslots = restaurantVM.setResrvableTimeslots(date: newDate, restaurant: restaurant) ?? [String]()
                 })
-            Stepper(value: $pax, in: 0...5) {
+            Stepper(value: $pax, in: restaurant.reservationRestrictions.paxMin...restaurant.reservationRestrictions.paxMax) {
                 Image(systemName: "person.2")
                 Text("인원")
                 Text("\(pax)")
@@ -64,13 +64,15 @@ struct MakeReservationsView: View {
         .onAppear {
             // 최초 세팅
             reservableTimeslots = restaurantVM.setResrvableTimeslots(date: date, restaurant: restaurant) ?? [String]()
+            pax = restaurant.reservationRestrictions.paxMin
+            
         }
     }
 }
 
 //struct MakeResrvationsView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        MakeReservationsView(reservation: .constant(Reservation(date: Date(), pax: "2", restaurantName: "asdf")))
+//        ReservationsView(reservation: .constant(Reservation(date: Date(), pax: "2", restaurantName: "asdf")))
 //            .previewLayout(.sizeThatFits)
 //            .frame(width: 100, height: 500)
 //    }

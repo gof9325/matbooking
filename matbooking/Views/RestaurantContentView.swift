@@ -15,26 +15,27 @@ struct RestaurantContentView: View {
         HStack(alignment: .top) {
             Image(systemName: "sun.max.fill")
                 .resizable()
-                .frame(width: 150, height: 150)
+                .frame(maxWidth: 120, maxHeight: 120)
                 .scaledToFit()
                 .background(.green)
                 .cornerRadius(25)
             VStack(alignment: .leading) {
                 VStack(alignment: .leading) {
                     Text("\(restaurant.storeInfo.name)")
+//                    Text("테스트")
                         .font(.title)
                         .fontWeight(.bold)
-                        .padding(.top, 5)
-                        .padding(.bottom, -3)
+                        .padding(.bottom,  -3)
                     RestaurantReservable(reservable: true)
                 }
-                Spacer()
+//                Text("테스트asdfadsfsadfsadfsadfasdfasdf")
                 Text("\(restaurant.storeInfo.description)")
             }
+            .frame(maxHeight: 130)
             .padding(.leading, 3)
         }
-        .frame(height: 150)
-        .scaledToFit()
+        
+//        .scaledToFit()
         .padding()
     }
 }
@@ -52,7 +53,7 @@ struct RestaurantReservable: View {
 
 //struct RestaurantItem_Previews: PreviewProvider {
 //    static var previews: some View {
-//        RestaurantContentView(restaurant: Restaurant(from: <#Decoder#>, name: "감자탕", isOpen: true, introduction: "호로록", pictures: ""))
+//        RestaurantContentView()
 //            .previewLayout(.sizeThatFits)
 //            .frame(width: 500)
 //    }
