@@ -36,21 +36,24 @@ struct UserDetailView: View {
                     Button("로그아웃") {
                         userVM.logout()
                     }
-                    .matbookingButtonStyle(width: 100)
+                    .matbookingButtonStyle(width: 100, color: Color.matPeach)
                     Spacer()
                     Button("회원탈퇴") {
                         userVM.deleteAccount()
                     }
-                    .matbookingButtonStyle(width: 100)
+                    .matbookingButtonStyle(width: 100, color: Color.matPeach)
                     Spacer()
                 }
                 .padding()
            
             }
             NavigationView {
-                List {
-                    Text("asdf")
+                ScrollView {
+                    ReservationItemView()
                 }
+                .padding()
+                .background(Color.matSkin)
+                .cornerRadius(20)
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationTitle("나의 예약목록")
             }

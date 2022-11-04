@@ -55,10 +55,11 @@ struct ReservationsView: View {
                 }
             }
             .padding()
+            Spacer()
             Button("닫기") {
                 self.dismiss()
             }
-            .matbookingButtonStyle(width: .infinity)
+            .matbookingButtonStyle(width: .infinity, color: Color.matPeach)
         }
         .padding()
         .onAppear {

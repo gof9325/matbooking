@@ -22,8 +22,9 @@ struct ChatDetailView: View {
                         .clipShape(Circle())
                     Text("어쩌고 저쩌고")
                         .padding()
-                        .background(.blue)
+                        .background(Color.matPeach)
                         .cornerRadius(20)
+                        .foregroundColor(.white)
                 }
             }
             Spacer()
@@ -35,7 +36,7 @@ struct ChatDetailView: View {
                 Button("send") {
                     
                 }
-                .matbookingButtonStyle(width: 80)
+                .matbookingButtonStyle(width: 80, color: Color.matPeach)
             }
         }
         .padding()
