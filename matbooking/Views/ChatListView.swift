@@ -16,8 +16,6 @@ struct ChatListView: View {
     
     var body: some View {
         VStack {
-            Text("채팅 목록")
-                .font(.largeTitle)
             NavigationView {
                 List {
                     ForEach(chatList, id:\.self) { item in
@@ -26,8 +24,8 @@ struct ChatListView: View {
                         }
                     }
                 }
+                .navigationBarHidden(true)
             }
-           
         }
     }
 }

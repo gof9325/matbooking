@@ -12,60 +12,59 @@ struct ContentView: View {
     @StateObject var restaurantVM = RestaurantViewModel()
     
     @State var user: User?
-    @State var restaurantNmae = ""
     @State var selection = 0
     
     @State var chatCount = 0
     
     @State var inDetailView = false
     
+    var title: String {
+        switch selection {
+        case 0 :
+            return "맛북킹"
+        case 1:
+            return "채팅목록"
+        case 2:
+            return "마이페이지"
+        default:
+            return ""
+        }
+    }
+    
     var body: some View {
-        VStack {
+        NavigationView {
             if self.user != nil {
-                if selection == 0 && inDetailView == false {
-                    searchBar(restaurantName: $restaurantNmae)
-                        .padding()
-                }
+                GeometryReader { proxy in
                     TabView(selection: $selection) {
                         ChatListView()
+                            .navigationTitle(title)
                             .tabItem {
                                 Image(systemName: "message")
+                                Text("채팅목록")
                             }
                             .tag(1)
                             .badge(chatCount)
-                        RestaurantListView(restaurantVM: restaurantVM,inDetailView: $inDetailView )
+                        RestaurantListView(restaurantVM: restaurantVM,inDetailView: $inDetailView)
+                            .navigationTitle(title)
                             .tabItem {
                                 Image(systemName: "house")
+                                Text("홈")
                             }
                             .tag(0)
-                        UserDetailView(reservationList: ReservationViewModel())
+                        UserDetailView(rservationVM: ReservationViewModel())
+                            .navigationTitle(title)
                             .tabItem {
                                 Image(systemName: "person")
+                                Text("마이페이지")
                             }
                             .tag(2)
                     }
+                }
+                .navigationBarTitleDisplayMode(.inline)
             } else {
                 LoginView()
             }
         }.onReceive(userVM.$user, perform: { self.user = $0 })
-    }
-}
-
-struct searchBar: View{
-    @Binding var restaurantName: String
-    
-    var body: some View {
-        HStack {
-            TextField("", text: $restaurantName)
-            Button(action: {
-                
-            }, label: {
-                Image(systemName: "magnifyingglass")
-            })
-        }
-        .padding()
-        .background(.gray.opacity(0.1))
-        .cornerRadius(18)
     }
 }
 

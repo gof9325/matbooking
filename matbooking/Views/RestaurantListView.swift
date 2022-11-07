@@ -12,6 +12,8 @@ struct RestaurantListView: View {
     @StateObject var restaurantVM: RestaurantViewModel
     @State var restaurantList = [Restaurant]()
     
+    @State var restaurantName = ""
+    
     @Binding var inDetailView: Bool
     
     @State var isLoading = false
@@ -22,19 +24,24 @@ struct RestaurantListView: View {
                 if isLoading {
                     ProgressView()
                 } else {
-                    if restaurantList.isEmpty {
-                        Text("레스토랑 리스트가 없습니다.")
-                    } else {
-                        List {
-                            ForEach(restaurantList , id: \.self) { restaurant in
-                                NavigationLink(destination: RestaurantDetailView(restaurantVM: restaurantVM, restaurant: restaurant, inDetailView: $inDetailView) , label: {
-                                    RestaurantContentView(restaurant: restaurant)
-                                })
+                    VStack {
+                        searchBar(restaurantName: $restaurantName)
+                            .padding()
+                        if restaurantList.isEmpty {
+                            Text("레스토랑 리스트가 없습니다.")
+                        } else {
+                            List {
+                                ForEach(restaurantList , id: \.self) { restaurant in
+                                    NavigationLink(destination: RestaurantDetailView(restaurantVM: restaurantVM, restaurant: restaurant, inDetailView: $inDetailView) , label: {
+                                        RestaurantContentView(restaurant: restaurant)
+                                    })
+                                }
                             }
                         }
                     }
                 }
             }
+            .navigationBarHidden(true)
             .onAppear {
                 inDetailView = false
                 print("RetaurantListView onAppear: \(inDetailView)")
@@ -48,6 +55,25 @@ struct RestaurantListView: View {
         })
     }
 }
+
+struct searchBar: View{
+    @Binding var restaurantName: String
+    
+    var body: some View {
+        HStack {
+            TextField("", text: $restaurantName)
+            Button(action: {
+                
+            }, label: {
+                Image(systemName: "magnifyingglass")
+            })
+        }
+        .padding()
+        .background(.gray.opacity(0.1))
+        .cornerRadius(18)
+    }
+}
+
 
 struct RestaurantListView_Previews: PreviewProvider {
     static var previews: some View {

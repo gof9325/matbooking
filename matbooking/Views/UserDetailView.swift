@@ -9,13 +9,13 @@ import SwiftUI
 
 struct UserDetailView: View {
     @EnvironmentObject var userVM: UserViewModel
-    @ObservedObject var reservationList: ReservationViewModel
+    @ObservedObject var rservationVM: ReservationViewModel
+    
+    @State var reservationList = ["a", "b"]
     
     var body: some View {
         
         VStack {
-            Text("마이페이지")
-                .font(.largeTitle)
             VStack {
                 HStack {
                     AsyncImage(url: URL(string: userVM.user?.picture ?? ""))
@@ -49,7 +49,11 @@ struct UserDetailView: View {
             }
             NavigationView {
                 ScrollView {
-                    ReservationItemView()
+                    LazyVStack {
+                        ForEach(reservationList, id:\.self) { reservation in
+                            ReservationItemView()
+                        }
+                    }
                 }
                 .padding()
                 .background(Color.matSkin)
@@ -64,6 +68,6 @@ struct UserDetailView: View {
 
 struct UserDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        UserDetailView(reservationList: ReservationViewModel())
+        UserDetailView(rservationVM: ReservationViewModel())
     }
 }
