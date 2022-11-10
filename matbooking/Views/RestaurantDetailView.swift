@@ -96,8 +96,8 @@ struct RestaurantDetailView: View {
     }
 }
 
-struct RestaurantDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        RestaurantDetailView(restaurantVM: RestaurantViewModel(), restaurant: Restaurant(id: ""), inDetailView: .constant(true))
-    }
-}
+//struct RestaurantDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        RestaurantDetailView(restaurantVM: RestaurantViewModel(), restaurant: Restaurant(id: ""), inDetailView: .constant(true))
+//    }
+//}

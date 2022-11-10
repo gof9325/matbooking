@@ -31,11 +31,16 @@ struct RestaurantListView: View {
                             Text("레스토랑 리스트가 없습니다.")
                         } else {
                             List {
-                                ForEach(restaurantList , id: \.self) { restaurant in
-                                    NavigationLink(destination: RestaurantDetailView(restaurantVM: restaurantVM, restaurant: restaurant, inDetailView: $inDetailView) , label: {
-                                        RestaurantContentView(restaurant: restaurant)
-                                    })
-                                }
+                                
+                                RestaurantContentView(restaurant: restaurantList[0])
+                                
+//                                ForEach(restaurantList, id: \.self) { restaurant in {
+//                                    NavigationLink(destination: RestaurantDetailView(restaurantVM: restaurantVM, restaurant: restaurant, inDetailView: $inDetailView) , label: {
+//                                        RestaurantContentView(restaurant: restaurant)
+//                                    })
+//                                }
+//                                }
+                                
                             }
                         }
                     }

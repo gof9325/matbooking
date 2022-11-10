@@ -8,17 +8,30 @@
 import SwiftUI
 
 struct RestaurantContentView: View {
-    
     let restaurant: Restaurant
     
     var body: some View {
         HStack(alignment: .top) {
-            Image(systemName: "sun.max.fill")
-                .resizable()
-                .frame(maxWidth: 120, maxHeight: 120)
-                .scaledToFit()
-                .background(.green)
-                .cornerRadius(25)
+            if restaurant.imagesData.isEmpty {
+                Image(systemName: "sun.max.fill")
+                    .resizable()
+                    .frame(maxWidth: 120, maxHeight: 120)
+                    .scaledToFit()
+                    .background(.green)
+                    .cornerRadius(25)
+            }
+            else {
+                if let firstImageData = restaurant.imagesData.first {
+                    if let uiImage = UIImage(data: firstImageData) {
+                        Image(uiImage: uiImage)
+                            .resizable()
+                            .frame(maxWidth: 120, maxHeight: 120)
+                            .scaledToFit()
+                            .background(.green)
+                            .cornerRadius(25)
+                    }
+                }
+            }
             VStack(alignment: .leading) {
                 VStack(alignment: .leading) {
                     Text("\(restaurant.storeInfo.name)")

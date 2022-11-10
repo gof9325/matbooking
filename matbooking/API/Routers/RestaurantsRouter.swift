@@ -11,15 +11,24 @@ import Alamofire
 enum RestaurantsRouter: URLRequestConvertible {
     
     case getRestaurants
+    case downloadImage(url: String)
     
     var baseURL: URL {
-        return URL(string: ApiClient.BASE_URL)!
+        switch self {
+        case let .downloadImage(url):
+            return URL(string: url)!
+        default:
+            return URL(string: ApiClient.BASE_URL)!
+        }
+        
     }
     
     var endPoint: String {
         switch self {
         case .getRestaurants:
             return "stores"
+        case .downloadImage:
+            return ""
         }
     
     }

@@ -13,22 +13,37 @@ class RestaurantViewModel: ObservableObject {
     var subscription = Set<AnyCancellable>()
     @Published var restaurantList = [Restaurant]()
     
-    // MARK: intant functions
+    func getImageForRestaurant(restaurant: Restaurant) -> AnyPublisher<Restaurant, AFError> {
+        if let pictures = restaurant.storeInfo.pictures, !restaurant.storeInfo.pictures!.isEmpty {
+            var newRestaurant = restaurant
+            return RestaurantsApiService.downloadImage(imageUrl: pictures[0].url).map { data -> Restaurant in
+                newRestaurant.imagesData.append(data)
+                return newRestaurant
+            }.eraseToAnyPublisher()
+        } else {
+            return [restaurant].publisher.setFailureType(to: AFError.self).eraseToAnyPublisher()
+        }
+    }
+    
+    // MARK: intent functions
     func getRestaurantList() {
         print("RestaurantViewModel - getRestaurantList() called")
         RestaurantsApiService.getRestaurants()
+            .flatMap { restaurantList -> AnyPublisher<RestaurantResponse, Never> in
+                restaurantList.publisher.eraseToAnyPublisher()
+            }.flatMap({
+                // RestaurantResponse -> Restaurant
+                self.getImageForRestaurant(restaurant: $0.convertToRestaurant())
+            }).collect()
             .sink(receiveCompletion: { completion in
                 print("RestaurantViewModel getRestaurantList completion: \(completion)")
             }, receiveValue: { restaurantList in
-                print("UserVM fetchUsers fetchedUsers.count: \(restaurantList.count)")
                 self.restaurantList = restaurantList
             }).store(in: &subscription)
     }
     
     func setResrvableTimeslots(date: Date, restaurant: Restaurant) -> [String]? {
-        
         let days = ["월":"1", "화":"2", "수":"3", "목":"4", "금":"5", "토":"6", "일":"0"]
-        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEEE"
         dateFormatter.locale = Locale(identifier: "ko")

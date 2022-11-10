@@ -36,6 +36,9 @@
 		1E8CDF2428EDB15700651C4D /* RestaurantsApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8CDF2328EDB15700651C4D /* RestaurantsApiService.swift */; };
 		1E8CDF2628EDB35400651C4D /* RestaurantsListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8CDF2528EDB35400651C4D /* RestaurantsListResponse.swift */; };
 		1E8DFE132914E84800F683B6 /* ReservationItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8DFE122914E84800F683B6 /* ReservationItemView.swift */; };
+		1EDE654B291CF7A9004CC1B7 /* RestaurantResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDE654A291CF7A9004CC1B7 /* RestaurantResponse.swift */; };
+		1EDE654E291CF8B3004CC1B7 /* ImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDE654D291CF8B3004CC1B7 /* ImageResponse.swift */; };
+		1EDE6554291CFDE4004CC1B7 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDE6553291CFDE4004CC1B7 /* Common.swift */; };
 		1EE612F928EEBA7700797DD9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE612F828EEBA7700797DD9 /* User.swift */; };
 		1EE612FB28EEBCEC00797DD9 /* UserRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE612FA28EEBCEC00797DD9 /* UserRouter.swift */; };
 		1EE612FD28EEBDC200797DD9 /* UserApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE612FC28EEBDC200797DD9 /* UserApiService.swift */; };
@@ -80,6 +83,10 @@
 		1E8CDF2328EDB15700651C4D /* RestaurantsApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsApiService.swift; sourceTree = "<group>"; };
 		1E8CDF2528EDB35400651C4D /* RestaurantsListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsListResponse.swift; sourceTree = "<group>"; };
 		1E8DFE122914E84800F683B6 /* ReservationItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationItemView.swift; sourceTree = "<group>"; };
+		1EDE654A291CF7A9004CC1B7 /* RestaurantResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantResponse.swift; sourceTree = "<group>"; };
+		1EDE654C291CF802004CC1B7 /* Empty.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Empty.md; sourceTree = "<group>"; };
+		1EDE654D291CF8B3004CC1B7 /* ImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResponse.swift; sourceTree = "<group>"; };
+		1EDE6553291CFDE4004CC1B7 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		1EE612F828EEBA7700797DD9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1EE612FA28EEBCEC00797DD9 /* UserRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRouter.swift; sourceTree = "<group>"; };
 		1EE612FC28EEBDC200797DD9 /* UserApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserApiService.swift; sourceTree = "<group>"; };
@@ -174,14 +181,14 @@
 		1E2ED90A28E7441E005E1412 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				1E2ED90B28E7443A005E1412 /* Restaurant.swift */,
+				1EDE6551291CFD4F004CC1B7 /* Reservation */,
+				1EDE6550291CFD34004CC1B7 /* User */,
+				1EDE654F291CFCFD004CC1B7 /* Restaurant */,
+				1EDE654C291CF802004CC1B7 /* Empty.md */,
 				1EF34C8228EACEE400F1396B /* Auth0User.swift */,
-				1EE612F828EEBA7700797DD9 /* User.swift */,
-				1EE6130028EEC8F800797DD9 /* UserResponse.swift */,
 				1E83C63928F00DCE00C69431 /* ApiResponse.swift */,
 				1EE6130228F0010100797DD9 /* JoinResponse.swift */,
 				1E36D3F728F3F33300F228A7 /* EmptyResponse.swift */,
-				1E5FE2D928EAFC4500736C0C /* Reservation.swift */,
 				1E8CDF2528EDB35400651C4D /* RestaurantsListResponse.swift */,
 				1E21562F28F53E7200B03EFB /* Chat.swift */,
 			);
@@ -251,6 +258,42 @@
 				1EE612FC28EEBDC200797DD9 /* UserApiService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		1EDE654F291CFCFD004CC1B7 /* Restaurant */ = {
+			isa = PBXGroup;
+			children = (
+				1EDE6552291CFD81004CC1B7 /* Common */,
+				1E2ED90B28E7443A005E1412 /* Restaurant.swift */,
+				1EDE654A291CF7A9004CC1B7 /* RestaurantResponse.swift */,
+			);
+			path = Restaurant;
+			sourceTree = "<group>";
+		};
+		1EDE6550291CFD34004CC1B7 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				1EE612F828EEBA7700797DD9 /* User.swift */,
+				1EE6130028EEC8F800797DD9 /* UserResponse.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		1EDE6551291CFD4F004CC1B7 /* Reservation */ = {
+			isa = PBXGroup;
+			children = (
+				1E5FE2D928EAFC4500736C0C /* Reservation.swift */,
+			);
+			path = Reservation;
+			sourceTree = "<group>";
+		};
+		1EDE6552291CFD81004CC1B7 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				1EDE654D291CF8B3004CC1B7 /* ImageResponse.swift */,
+				1EDE6553291CFDE4004CC1B7 /* Common.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		C6819B4253A3B691D31D554E /* Pods */ = {
@@ -391,7 +434,9 @@
 				1E5FE2DA28EAFC4500736C0C /* Reservation.swift in Sources */,
 				1E5FE2DE28EB1DEF00736C0C /* UserDetailView.swift in Sources */,
 				1E8CDF1B28EDAB5300651C4D /* ApiLogger.swift in Sources */,
+				1EDE654E291CF8B3004CC1B7 /* ImageResponse.swift in Sources */,
 				1EE612FD28EEBDC200797DD9 /* UserApiService.swift in Sources */,
+				1EDE654B291CF7A9004CC1B7 /* RestaurantResponse.swift in Sources */,
 				1E8CDF1E28EDAC7600651C4D /* BaseInterceptor.swift in Sources */,
 				1E83C63E28F0228500C69431 /* ChatDetailView.swift in Sources */,
 				1E2ED8FA28E738A0005E1412 /* LoginView.swift in Sources */,
@@ -411,6 +456,7 @@
 				1E8CDF2128EDAF9F00651C4D /* RestaurantsRouter.swift in Sources */,
 				1E21563028F53E7200B03EFB /* Chat.swift in Sources */,
 				1E8CDF2428EDB15700651C4D /* RestaurantsApiService.swift in Sources */,
+				1EDE6554291CFDE4004CC1B7 /* Common.swift in Sources */,
 				1E8CDF1928EDA9E300651C4D /* ApiClient.swift in Sources */,
 				1E5FE2D628EAF84B00736C0C /* ContentView.swift in Sources */,
 				1E5FE2E528EC352700736C0C /* ChatListView.swift in Sources */,
