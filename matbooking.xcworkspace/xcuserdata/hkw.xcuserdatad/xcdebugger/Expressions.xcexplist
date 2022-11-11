@@ -3,18 +3,21 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "closure #1 in ContentView.body.getter:ContentView.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "user.user">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "closure #1 in RestaurantViewModel.getImageForRestaurant(restaurant:):RestaurantViewModel.swift">
       </ContextState>
       <ContextState
          contextName = "ApiLogger.request&lt;&#x3c4;_0_0&gt;(_:didParseResponse:):ApiLogger.swift">
          <PersistentStrings>
             <PersistentString
                value = "response.response.statusCode">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in ContentView.body.getter:ContentView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "user.user">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -26,6 +29,22 @@
             </PersistentString>
             <PersistentString
                value = "KeyChain.read(key: &quot;userAccessToken&quot;)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "static RestaurantsApiService.downloadImage(imageUrl:):RestaurantsApiService.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "URL(string: imageUrl)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in RestaurantContentView.body.getter:RestaurantContentView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "UIImage(data: firstImageData)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

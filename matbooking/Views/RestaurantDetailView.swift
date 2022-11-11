@@ -15,7 +15,7 @@ struct RestaurantDetailView: View {
     @StateObject var restaurantVM: RestaurantViewModel
     
     @ObservedObject var reservationStore = ReservationViewModel()
-    var restaurant: Restaurant
+    @State var restaurant: Restaurant
     @State var isPresented = false
     
     @Binding var inDetailView: Bool
@@ -23,16 +23,17 @@ struct RestaurantDetailView: View {
     var body: some View {
         ZStack(alignment: .bottom) {
             ScrollView {
-                ImageSlider(images: ["house", "person"])
-                    .frame(minHeight: 300)
-                    .background(.yellow)
+//                ImageSlider(images: restaurant.imagesData)
+//                ImageSlider(images: ["house", "person"])
+//                    .frame(minHeight: 300)
+//                    .background(.yellow)
                 VStack(alignment: .leading) {
-//                    Text(restaurant.storeInfo.name)
-                    Text("가게 이름")
+                    Text(restaurant.storeInfo.name)
+//                    Text("가게 이름")
                         .font(.system(size: 50, weight: .heavy))
                         .padding([.top, .bottom], 5)
-//                    Text(restaurant.storeInfo.description)
-                    Text("가게 설명1")
+                    Text(restaurant.storeInfo.description)
+//                    Text("가게 설명1")
                         .font(.headline)
                         .padding([.top, .bottom], 5)
                     Text("가게 설명2")

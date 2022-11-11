@@ -31,22 +31,17 @@ struct RestaurantListView: View {
                             Text("레스토랑 리스트가 없습니다.")
                         } else {
                             List {
-                                
-                                RestaurantContentView(restaurant: restaurantList[0])
-                                
-//                                ForEach(restaurantList, id: \.self) { restaurant in {
-//                                    NavigationLink(destination: RestaurantDetailView(restaurantVM: restaurantVM, restaurant: restaurant, inDetailView: $inDetailView) , label: {
-//                                        RestaurantContentView(restaurant: restaurant)
-//                                    })
-//                                }
-//                                }
-                                
+                                ForEach(restaurantList, id: \.self) { restaurant in
+                                    NavigationLink(destination: RestaurantDetailView(restaurantVM: restaurantVM, restaurant: restaurant, inDetailView: $inDetailView)) {
+                                        RestaurantContentView(restaurant: restaurant)
+                                    }
+                                }
                             }
                         }
                     }
+                    .navigationBarTitleDisplayMode(.inline)
                 }
             }
-            .navigationBarHidden(true)
             .onAppear {
                 inDetailView = false
                 print("RetaurantListView onAppear: \(inDetailView)")
@@ -60,6 +55,7 @@ struct RestaurantListView: View {
         })
     }
 }
+
 
 struct searchBar: View{
     @Binding var restaurantName: String

@@ -46,7 +46,12 @@ enum RestaurantsRouter: URLRequestConvertible {
     }
     
     func asURLRequest() throws -> URLRequest {
-        let url = baseURL.appendingPathComponent(endPoint)
+        let url: URL
+        if !endPoint.isEmpty {
+            url = baseURL.appendingPathComponent(endPoint)
+        } else {
+            url = baseURL
+        }
         var request = URLRequest(url: url)
         request.method = method
         return request

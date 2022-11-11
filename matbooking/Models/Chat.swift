@@ -8,7 +8,7 @@
 import Foundation
 
 struct Chat: Hashable, Codable, Identifiable {
-    let id = UUID()
+    var id = UUID()
     let restaurantName: String
     var content: String
 }

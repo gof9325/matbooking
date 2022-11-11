@@ -29,6 +29,8 @@ struct RestaurantContentView: View {
                             .scaledToFit()
                             .background(.green)
                             .cornerRadius(25)
+                    } else {
+                        Text("text")
                     }
                 }
             }

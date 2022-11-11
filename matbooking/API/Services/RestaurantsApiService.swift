@@ -23,8 +23,14 @@ enum RestaurantsApiService {
     
     static func downloadImage(imageUrl: String) -> AnyPublisher<Data, AFError> {
         
-        return ApiClient.shared.session
+        return ApiClient.imageDownloadShared.session
             .download(RestaurantsRouter.downloadImage(url: imageUrl))
+            .downloadProgress { progress in
+                print("download progress : \(progress)")
+            }
+            .response { res in
+                print("res: \(res)")
+            }
             .publishData()
             .value()
             .eraseToAnyPublisher()
