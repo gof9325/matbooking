@@ -15,54 +15,57 @@ struct UserDetailView: View {
     
     var body: some View {
         
-        VStack {
+        NavigationView {
             VStack {
-                HStack {
-                    AsyncImage(url: URL(string: userVM.user?.picture ?? ""))
-                    { image in
-                        image.resizable()
-                    } placeholder: {
-                        ProgressView()
+                VStack {
+                    HStack {
+                        AsyncImage(url: URL(string: userVM.user?.picture ?? ""))
+                        { image in
+                            image.resizable()
+                        } placeholder: {
+                            ProgressView()
+                        }
+                        .scaledToFit()
+                        .cornerRadius(100)
+                        .frame(width: 150, height: 150)
+                        .padding()
+                        Text(userVM.user?.name ?? "")
+                            .font(.largeTitle)
                     }
-                    .scaledToFit()
-                    .cornerRadius(100)
-                    .frame(width: 150, height: 150)
+                    HStack {
+                        Spacer()
+                        Button("로그아웃") {
+                            userVM.logout()
+                        }
+                        .matbookingButtonStyle(width: 100, color: Color.matPeach)
+                        Spacer()
+                        Button("회원탈퇴") {
+                            userVM.deleteAccount()
+                        }
+                        .matbookingButtonStyle(width: 100, color: Color.matPeach)
+                        Spacer()
+                    }
                     .padding()
-                    Text(userVM.user?.name ?? "")
-                        .font(.largeTitle)
                 }
-                HStack {
-                    Spacer()
-                    Button("로그아웃") {
-                        userVM.logout()
-                    }
-                    .matbookingButtonStyle(width: 100, color: Color.matPeach)
-                    Spacer()
-                    Button("회원탈퇴") {
-                        userVM.deleteAccount()
-                    }
-                    .matbookingButtonStyle(width: 100, color: Color.matPeach)
-                    Spacer()
-                }
-                .padding()
-           
-            }
-            NavigationView {
-                ScrollView {
-                    LazyVStack {
-                        ForEach(reservationList, id:\.self) { reservation in
-                            ReservationItemView()
+                NavigationView {
+                    ScrollView {
+                        LazyVStack {
+                            ForEach(reservationList, id:\.self) { reservation in
+                                ReservationItemView()
+                            }
                         }
                     }
+                    .padding()
+                    .background(Color.matSkin)
+                    .cornerRadius(20)
+                    .navigationBarTitleDisplayMode(.inline)
+                    .navigationTitle("나의 예약목록")
                 }
                 .padding()
-                .background(Color.matSkin)
-                .cornerRadius(20)
-                .navigationBarTitleDisplayMode(.inline)
-                .navigationTitle("나의 예약목록")
             }
-            .padding()
+            .navigationTitle("마이페이지")
         }
+
     }
 }
 

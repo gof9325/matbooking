@@ -39,7 +39,6 @@ struct RestaurantListView: View {
                             }
                         }
                     }
-                    .navigationBarTitleDisplayMode(.inline)
                 }
             }
             .onAppear {

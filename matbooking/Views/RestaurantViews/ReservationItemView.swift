@@ -19,7 +19,7 @@ struct ReservationItemView: View {
             }
             .padding()
             Rectangle()
-                .frame(width: .infinity, height: 1)
+                .frame(height: 1)
                 .foregroundColor(Color.matLightPink)
             HStack {
                 Image(systemName: "person.2")
