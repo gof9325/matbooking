@@ -27,7 +27,6 @@ struct RestaurantContentView: View {
                             .resizable()
                             .frame(maxWidth: 120, maxHeight: 120)
                             .scaledToFit()
-                            .background(.green)
                             .cornerRadius(25)
                     } else {
                         Text("text")

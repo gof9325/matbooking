@@ -17,23 +17,25 @@ struct RestaurantDetailView: View {
     @StateObject var reservationVM = ReservationViewModel()
     @State var restaurant: Restaurant
     @State var isPresented = false
+    @State var imageList = [UIImage]()
     
     @Binding var inDetailView: Bool
     
     var body: some View {
         ZStack(alignment: .bottom) {
             ScrollView {
-//                ImageSlider(images: restaurant.imagesData)
-//                ImageSlider(images: ["house", "person"])
-//                    .frame(minHeight: 300)
-//                    .background(.yellow)
+                ImageSlider(images: $imageList)
+                    .frame(minHeight: 300)
+                    .onAppear {
+                        imageList = restaurant.imagesData.map { data in
+                            UIImage(data: data) ?? UIImage()
+                        }
+                    }
                 VStack(alignment: .leading) {
                     Text(restaurant.storeInfo.name)
-//                    Text("가게 이름")
                         .font(.system(size: 50, weight: .heavy))
                         .padding([.top, .bottom], 5)
                     Text(restaurant.storeInfo.description)
-//                    Text("가게 설명1")
                         .font(.headline)
                         .padding([.top, .bottom], 5)
                     Text("가게 설명2")
@@ -51,7 +53,7 @@ struct RestaurantDetailView: View {
                                 .padding(.bottom, 5)
                             HStack {
                                 Image(systemName: "person.2")
-                                Text("2 ~ 22 명")
+                                Text("\(restaurant.reservationRestrictions.paxMin) ~ \(restaurant.reservationRestrictions.paxMax) 명")
                             }
                         }
                         Spacer()
