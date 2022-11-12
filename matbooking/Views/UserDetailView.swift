@@ -9,12 +9,11 @@ import SwiftUI
 
 struct UserDetailView: View {
     @EnvironmentObject var userVM: UserViewModel
-    @ObservedObject var rservationVM: ReservationViewModel
+    @ObservedObject var reservationVM: ReservationViewModel
     
-    @State var reservationList = ["a", "b"]
+    @State var reservationList: [Reservation]?
     
     var body: some View {
-        
         NavigationView {
             VStack {
                 VStack {
@@ -50,8 +49,12 @@ struct UserDetailView: View {
                 NavigationView {
                     ScrollView {
                         LazyVStack {
-                            ForEach(reservationList, id:\.self) { reservation in
-                                ReservationItemView()
+                            if reservationList == nil {
+                                ProgressView()
+                            } else {
+                                ForEach(reservationList!, id:\.self) { reservation in
+                                    ReservationItemView(reservation: reservation)
+                                }
                             }
                         }
                     }
@@ -62,15 +65,19 @@ struct UserDetailView: View {
                     .navigationTitle("나의 예약목록")
                 }
                 .padding()
+                .onAppear {
+                    reservationVM.getReservations()
+                }
+                .onReceive(reservationVM.$reservationList, perform: {reservationList = $0})
             }
             .navigationTitle("마이페이지")
         }
-
+        
     }
 }
 
-struct UserDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        UserDetailView(rservationVM: ReservationViewModel())
-    }
-}
+//struct UserDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        UserDetailView(rservationVM: ReservationViewModel())
+//    }
+//}

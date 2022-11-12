@@ -50,3 +50,69 @@
         ]
       }
     }
+
+reservation
+
+{
+  "success": true,
+  "error": "",
+  "data": [
+    {
+      "id": "bf19580f-4b5c-4e99-bd9f-fe353c477ca4",
+      "date": "2022-12-01T04:35:00.000Z",
+      "pax": 2,
+      "store": {
+        "id": "52ca047e-de8b-44e4-a995-c1dcf651877c",
+        "storeInfo": {
+          "name": "황가네 돼지국밥",
+          "subtitle": "없음",
+          "picturesFolderId": "abcdefg",
+          "description": "진하고 깊은 맛의 돼지국밥",
+          "address": "경기 성남시 분당구 대왕판교로 477",
+          "phone": "0212341234",
+          "openingHours": "주차장 없음",
+          "city": "부산",
+          "cuisine": "한식"
+        }
+      }
+    }
+  ],
+  "message": ""
+}
+
+/reservations POST
+{
+ storeId: string,
+ pax: number,
+ date: string, // 2022-01-01
+ time: string, // 15:30
+}
+
+/reservations GET (고객용, 예약 목록 들고오기) response
+파라미터 없음
+{
+  "success": true,
+  "error": "",
+  "data": [
+    {
+      "id": "bf19580f-4b5c-4e99-bd9f-fe353c477ca4",
+      "date": "2022-12-01T04:35:00.000Z",
+      "pax": 2,
+      "store": {
+        "id": "52ca047e-de8b-44e4-a995-c1dcf651877c",
+        "storeInfo": {
+          "name": "황가네 돼지국밥",
+          "subtitle": "없음",
+          "picturesFolderId": "abcdefg",
+          "description": "진하고 깊은 맛의 돼지국밥",
+          "address": "경기 성남시 분당구 대왕판교로 477",
+          "phone": "0212341234",
+          "openingHours": "주차장 없음",
+          "city": "부산",
+          "cuisine": "한식"
+        }
+      }
+    }
+  ],
+  "message": ""
+}

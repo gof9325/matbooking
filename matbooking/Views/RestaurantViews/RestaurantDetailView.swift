@@ -12,9 +12,9 @@ struct RestaurantDetailView: View {
     
     @State var uiTabarController: UITabBarController?
     
-    @StateObject var restaurantVM: RestaurantViewModel
+    @ObservedObject var restaurantVM: RestaurantViewModel
     
-    @ObservedObject var reservationStore = ReservationViewModel()
+    @StateObject var reservationVM = ReservationViewModel()
     @State var restaurant: Restaurant
     @State var isPresented = false
     
@@ -81,7 +81,7 @@ struct RestaurantDetailView: View {
                 .matbookingButtonStyle(width: 100, color: Color.matPeach)
             }
             .popover(isPresented: $isPresented) {
-                ReservationsView(restaurantVM: restaurantVM, restaurant: restaurant)
+                ReservationsView(reservationVM: reservationVM, restaurantVM: restaurantVM, restaurant: restaurant)
             }
         }
         .onAppear {

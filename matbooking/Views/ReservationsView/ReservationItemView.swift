@@ -7,15 +7,16 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct ReservationItemView: View {
+    
+    let reservation: Reservation
+    
     var body: some View {
         VStack {
             HStack {
-                Text("테스트 가게")
+                Text(reservation.restaurantName)
                 Spacer()
-                Text("2022-03-10 월요일")
+                Text(reservation.date.formatting(to: .date) ?? "none")
             }
             .padding()
             Rectangle()
@@ -23,10 +24,10 @@ struct ReservationItemView: View {
                 .foregroundColor(Color.matLightPink)
             HStack {
                 Image(systemName: "person.2")
-                Text("22 명")
+                Text("\(reservation.pax) 명")
                 Spacer()
                 Image(systemName: "clock")
-                Text("오전 09:00")
+                Text(reservation.date.formatting(to: .time) ?? "none")
             }
             .padding()
         }
@@ -37,8 +38,8 @@ struct ReservationItemView: View {
     }
 }
 
-struct ReservationItemView_Previews: PreviewProvider {
-    static var previews: some View {
-        ReservationItemView()
-    }
-}
+//struct ReservationItemView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ReservationItemView()
+//    }
+//}

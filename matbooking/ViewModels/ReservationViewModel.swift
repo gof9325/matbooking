@@ -6,15 +6,33 @@
 //
 
 import Foundation
+import Alamofire
+import Combine
 
 class ReservationViewModel: ObservableObject {
+    var subscription = Set<AnyCancellable>()
     
-    @Published var reservationList: [Reservation]
-    
-    init() {
-        reservationList = [Reservation(date: Date(), pax: "1", restaurantName: "")]
-    }
+    @Published var reservationList = [Reservation]()
     
     // MARK: Intant functions
+    func getReservations() {
+        print("ReservationViewModel - getReservations() called")
+        ReservationApiService.getReservations()
+            .sink(receiveCompletion: { completion in
+                print("ReservationViewModel getReservations completion: \(completion)")
+            }, receiveValue: { reservations in
+                for reservation in reservations {
+                    self.reservationList.append(Reservation(id: reservation.id, date: reservation.date, pax: reservation.pax, restaurantName: reservation.store.storeInfo.name))
+                }
+            }).store(in: &subscription)
+    }
     
+    func createReservation(storeId: String, pax: Int, date: String, time: String) {
+        print("ReservationViewModel - createReservation() called")
+        ReservationApiService.createReservation(storeId: storeId, pax: pax, date: date, time: time)
+            .sink(receiveCompletion: { completion in
+                print("ReservationViewModel getReservations completion: \(completion)")
+            }, receiveValue: { reservations in
+            }).store(in: &subscription)
+    }
 }

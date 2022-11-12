@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E207D04291F8DF6003B21CB /* ReservationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E207D03291F8DF6003B21CB /* ReservationRouter.swift */; };
+		1E207D06291F8FD5003B21CB /* ReservationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E207D05291F8FD5003B21CB /* ReservationResponse.swift */; };
+		1E207D08291F904A003B21CB /* ReservationApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E207D07291F904A003B21CB /* ReservationApiService.swift */; };
 		1E21562E28F53E2400B03EFB /* ChatListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E21562D28F53E2400B03EFB /* ChatListItemView.swift */; };
 		1E21563028F53E7200B03EFB /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E21562F28F53E7200B03EFB /* Chat.swift */; };
 		1E2ED8F828E738A0005E1412 /* matbookingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2ED8F728E738A0005E1412 /* matbookingApp.swift */; };
@@ -53,6 +56,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1E207D03291F8DF6003B21CB /* ReservationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationRouter.swift; sourceTree = "<group>"; };
+		1E207D05291F8FD5003B21CB /* ReservationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationResponse.swift; sourceTree = "<group>"; };
+		1E207D07291F904A003B21CB /* ReservationApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationApiService.swift; sourceTree = "<group>"; };
 		1E21562D28F53E2400B03EFB /* ChatListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListItemView.swift; sourceTree = "<group>"; };
 		1E21562F28F53E7200B03EFB /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		1E2ED8F428E738A0005E1412 /* matbooking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = matbooking.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,9 +127,17 @@
 				1E2ED90528E7391A005E1412 /* RestaurantContentView.swift */,
 				1E5FE2D728EAFA1800736C0C /* RestaurantListView.swift */,
 				1EF34C7D28E7622E00F1396B /* RestaurantDetailView.swift */,
-				1E8DFE122914E84800F683B6 /* ReservationItemView.swift */,
 			);
 			path = RestaurantViews;
+			sourceTree = "<group>";
+		};
+		1E207D09291F9198003B21CB /* ReservationsView */ = {
+			isa = PBXGroup;
+			children = (
+				1E5FE2D128EADFF000736C0C /* ReservationsView.swift */,
+				1E8DFE122914E84800F683B6 /* ReservationItemView.swift */,
+			);
+			path = ReservationsView;
 			sourceTree = "<group>";
 		};
 		1E2ED8EB28E738A0005E1412 = {
@@ -175,13 +189,13 @@
 			children = (
 				1E5FE2D528EAF84B00736C0C /* ContentView.swift */,
 				1E207D02291E68C1003B21CB /* RestaurantViews */,
+				1E207D09291F9198003B21CB /* ReservationsView */,
 				1E2ED8F928E738A0005E1412 /* LoginView.swift */,
 				1E5FE2DD28EB1DEF00736C0C /* UserDetailView.swift */,
 				1E5FE2E428EC352700736C0C /* ChatListView.swift */,
 				1E21562D28F53E2400B03EFB /* ChatListItemView.swift */,
 				1E83C63D28F0228500C69431 /* ChatDetailView.swift */,
 				1EF34C7928E75EFD00F1396B /* JoinView.swift */,
-				1E5FE2D128EADFF000736C0C /* ReservationsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -254,6 +268,7 @@
 			isa = PBXGroup;
 			children = (
 				1E8CDF2028EDAF9F00651C4D /* RestaurantsRouter.swift */,
+				1E207D03291F8DF6003B21CB /* ReservationRouter.swift */,
 				1EE612FA28EEBCEC00797DD9 /* UserRouter.swift */,
 			);
 			path = Routers;
@@ -263,6 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				1E8CDF2328EDB15700651C4D /* RestaurantsApiService.swift */,
+				1E207D07291F904A003B21CB /* ReservationApiService.swift */,
 				1EE612FC28EEBDC200797DD9 /* UserApiService.swift */,
 			);
 			path = Services;
@@ -291,6 +307,7 @@
 			isa = PBXGroup;
 			children = (
 				1E5FE2D928EAFC4500736C0C /* Reservation.swift */,
+				1E207D05291F8FD5003B21CB /* ReservationResponse.swift */,
 			);
 			path = Reservation;
 			sourceTree = "<group>";
@@ -436,12 +453,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E207D06291F8FD5003B21CB /* ReservationResponse.swift in Sources */,
 				1E5FE2DC28EAFD4700736C0C /* ReservationViewModel.swift in Sources */,
 				1E2ED90C28E7443A005E1412 /* Restaurant.swift in Sources */,
 				1E2ED91028E75413005E1412 /* RestaurantViewModel.swift in Sources */,
 				1E5FE2DA28EAFC4500736C0C /* Reservation.swift in Sources */,
 				1E5FE2DE28EB1DEF00736C0C /* UserDetailView.swift in Sources */,
 				1E8CDF1B28EDAB5300651C4D /* ApiLogger.swift in Sources */,
+				1E207D08291F904A003B21CB /* ReservationApiService.swift in Sources */,
 				1EDE654E291CF8B3004CC1B7 /* ImageResponse.swift in Sources */,
 				1EE612FD28EEBDC200797DD9 /* UserApiService.swift in Sources */,
 				1EDE654B291CF7A9004CC1B7 /* RestaurantResponse.swift in Sources */,
@@ -473,6 +492,7 @@
 				1EE612FF28EEC13300797DD9 /* Auth0Interceptor.swift in Sources */,
 				1E5FE2D828EAFA1800736C0C /* RestaurantListView.swift in Sources */,
 				1E2ED8F828E738A0005E1412 /* matbookingApp.swift in Sources */,
+				1E207D04291F8DF6003B21CB /* ReservationRouter.swift in Sources */,
 				1EF34C7A28E75EFD00F1396B /* JoinView.swift in Sources */,
 				1EE612FB28EEBCEC00797DD9 /* UserRouter.swift in Sources */,
 			);

@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ReservationsView: View {
     
-    @StateObject var restaurantVM: RestaurantViewModel
+    @ObservedObject var reservationVM: ReservationViewModel
+    @ObservedObject var restaurantVM: RestaurantViewModel
 
     var restaurant: Restaurant
     
@@ -45,7 +46,7 @@ struct ReservationsView: View {
                     if !reservableTimeslots.isEmpty {
                         ForEach(reservableTimeslots, id:\.self) { time in
                             Button(time) {
-                                    // 눌러지면 시간, 날짜, 인원 등을 수집해서 reservation 만들기
+                                reservationVM.createReservation(storeId: restaurant.id, pax: pax, date: date.formatting(to: "YYYY-MM-dd"), time: time)
                             }
                             .matbookingButtonStyle(width: 100)
                         }

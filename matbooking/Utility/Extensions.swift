@@ -8,7 +8,6 @@
 import Foundation
 import SwiftUI
 
-// MARK: String validation
 extension String {
     public func validatePhone(number: String) -> Bool {
         let regex = "^01([0|1|6|7|8|9])-?([0-9]{4})-?([0-9]{4})$"
@@ -23,6 +22,31 @@ extension String {
         stringWithHypen.insert("-", at: stringWithHypen.index(stringWithHypen.endIndex, offsetBy: -4))
         
         return stringWithHypen
+    }
+    
+    enum To: String {
+        case date = "yyyy-MM-dd EEEE"
+        case time = "a hh:mm"
+    }
+    
+    func formatting(to: To) -> String? {
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        guard let date = dateFormatter.date(from: self) else {
+            return nil
+        }
+        dateFormatter.dateFormat = to.rawValue
+        
+        return dateFormatter.string(from: date)
+    }
+}
+
+extension Date {
+    func formatting(to: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = to
+        return dateFormatter.string(from: self)
     }
 }
 

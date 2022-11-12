@@ -8,8 +8,8 @@
 import Foundation
 
 struct Reservation: Hashable {
-    let id = UUID()
-    var date: Date
-    var pax: String
+    let id: String
+    var date: String
+    var pax: Int
     let restaurantName: String
 }
