@@ -24,13 +24,18 @@ struct RestaurantDetailView: View {
     var body: some View {
         ZStack(alignment: .bottom) {
             ScrollView {
-                ImageSlider(images: $imageList)
+                ImageSlider(images: imageList)
                     .frame(minHeight: 300)
                     .onAppear {
-                        imageList = restaurant.imagesData.map { data in
-                            UIImage(data: data) ?? UIImage()
-                        }
+                        restaurantVM.getImages(myRestaurant: restaurant)
                     }
+                    .onReceive(restaurantVM.getImageFinished, perform: {
+                        if !$0.isEmpty {
+                            for data in $0 {
+                                imageList.append(UIImage(data: data) ?? UIImage())
+                            }
+                        }
+                    })
                 VStack(alignment: .leading) {
                     Text(restaurant.storeInfo.name)
                         .font(.system(size: 50, weight: .heavy))
@@ -90,12 +95,12 @@ struct RestaurantDetailView: View {
             inDetailView = true
         }
         .navigationBarTitle("", displayMode: .inline)
-           .introspectTabBarController { (UITabBarController) in
-               UITabBarController.tabBar.isHidden = true
-               uiTabarController = UITabBarController
-           }.onDisappear{
-               uiTabarController?.tabBar.isHidden = false
-           }
+        .introspectTabBarController { (UITabBarController) in
+            UITabBarController.tabBar.isHidden = true
+            uiTabarController = UITabBarController
+        }.onDisappear{
+            uiTabarController?.tabBar.isHidden = false
+        }
     }
 }
 

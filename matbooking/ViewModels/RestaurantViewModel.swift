@@ -12,6 +12,41 @@ import Combine
 class RestaurantViewModel: ObservableObject {
     var subscription = Set<AnyCancellable>()
     @Published var restaurantList = [Restaurant]()
+    @Published var currentRestaurantImages = [Data]()
+    
+    var getImageFinished = PassthroughSubject<
+    [Data], Never>()
+    
+    func getImages(myRestaurant: Restaurant) {
+        print("RestaurantViewModel - getImages() called")
+
+        guard let restaurantPictures = myRestaurant.storeInfo.pictures, let restaurantIndex = self.restaurantList.firstIndex(where: {
+            $0.id == myRestaurant.id
+        })
+        else {
+            return
+        }
+        
+        let imageUrls = restaurantPictures.compactMap { i in
+            return i.url
+        }
+        
+        imageUrls.publisher.flatMap { url in
+            RestaurantsApiService.downloadImage(imageUrl: url)
+        }.collect()
+        .sink(receiveCompletion: { completion in
+            switch completion {
+            case .failure(let err):
+                print("RestaurantViewModel getImages err: \(err)")
+            case .finished:
+                print("RestaurantViewModel getImages finished")
+            }
+        }, receiveValue: { imageDataList in
+            print("RestaurantViewModel getImages value receive")
+//            self.restaurantList[restaurantIndex].imagesData = imageDataList
+            self.getImageFinished.send(imageDataList)
+        }).store(in: &subscription)
+    }
     
     func getImageForRestaurant(restaurant: Restaurant) -> AnyPublisher<Restaurant, AFError> {
         if let pictures = restaurant.storeInfo.pictures, !restaurant.storeInfo.pictures!.isEmpty {
@@ -24,6 +59,8 @@ class RestaurantViewModel: ObservableObject {
             return [restaurant].publisher.setFailureType(to: AFError.self).eraseToAnyPublisher()
         }
     }
+    
+   
     
     // MARK: intent functions
     func getRestaurantList() {

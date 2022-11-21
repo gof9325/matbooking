@@ -40,7 +40,7 @@ struct JoinView: View {
                         TextField("닉네임", text: $name)
                     }
                     Section("전화번호") {
-                        TextField("000-0000-0000", text: $mobile)
+                        TextField("00000000000", text: $mobile)
                             .keyboardType(.phonePad)
 //                            .onChange(of: mobile, perform: { mobile in
 //                                if mobile.validatePhone(number: mobile) {
@@ -58,6 +58,8 @@ struct JoinView: View {
                 HStack {
                     Spacer()
                     Button("완료") {
+                        // published 쓸 필요 없다?
+                        // (간단한 자료형을 써야함 -> String이나 Bool과 같은 것들)
                         if let auth0User = userVM.auth0User {
                             userVM.join(name: name, mobile: mobile, auth0User)
                         }
@@ -81,8 +83,8 @@ struct JoinView: View {
     }
 }
 
-struct JoinView_Previews: PreviewProvider {
-    static var previews: some View {
-        JoinView(isPresented: .constant(true))
-    }
-}
+//struct JoinView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        JoinView(userVM: UserViewModel(from: ""), isPresented: .constant(true))
+//    }
+//}

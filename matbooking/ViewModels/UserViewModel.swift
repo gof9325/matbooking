@@ -12,7 +12,7 @@ import Alamofire
 
 class UserViewModel: ObservableObject {
     var subscription = Set<AnyCancellable>()
-    @Published var auth0User: Auth0User?
+    var auth0User: Auth0User?
     @Published var user: User?
     
     // 로그인 실패 이벤트

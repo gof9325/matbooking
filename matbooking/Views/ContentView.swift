@@ -11,7 +11,6 @@ struct ContentView: View {
     @EnvironmentObject var userVM: UserViewModel
     @StateObject var restaurantVM = RestaurantViewModel()
     
-    @State var user: User?
     @State var selection = 0
     
     @State var chatCount = 0
@@ -20,7 +19,7 @@ struct ContentView: View {
 
     var body: some View {
         NavigationView {
-            if self.user != nil {
+            if self.userVM.user != nil {
                 GeometryReader { proxy in
                     TabView(selection: $selection) {
                         ChatListView()
@@ -47,7 +46,7 @@ struct ContentView: View {
             } else {
                 LoginView()
             }
-        }.onReceive(userVM.$user, perform: { self.user = $0 })
+        }
     }
 }
 

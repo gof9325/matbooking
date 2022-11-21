@@ -24,7 +24,7 @@ struct StoreInfo: Codable, Equatable, Hashable {
     let name: String
     let subtitle: String
     let picturesFolderId: String?
-    let pictures: [ImageUploadResponse]?
+    let pictures: [ImageResponse]?
     let description: String
     let address: String
     let phone: String

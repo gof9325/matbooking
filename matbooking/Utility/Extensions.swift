@@ -94,7 +94,7 @@ extension Color {
 
 struct ImageSlider: View {
     
-    @Binding var images: [UIImage]
+    var images: [UIImage]
     
     var body: some View {
         if !images.isEmpty {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ImageUploadResponse: Codable, Equatable, Hashable {
+struct ImageResponse: Codable, Equatable, Hashable {
     let id: String
     let fileFolderId: String
     let url: String
