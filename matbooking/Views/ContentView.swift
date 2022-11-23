@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject var userVM: UserViewModel
     @StateObject var restaurantVM = RestaurantViewModel()
+    @StateObject var chatVM = ChatViewModel()
     
     @State var selection = 0
     
@@ -22,14 +23,14 @@ struct ContentView: View {
             if self.userVM.user != nil {
                 GeometryReader { proxy in
                     TabView(selection: $selection) {
-                        ChatListView()
+                        ChatListView(chatVM: chatVM)
                             .tabItem {
                                 Image(systemName: "message")
                                 Text("채팅목록")
                             }
                             .tag(1)
                             .badge(chatCount)
-                        RestaurantListView(restaurantVM: restaurantVM,inDetailView: $inDetailView)
+                        RestaurantListView(restaurantVM: restaurantVM,chatVM: chatVM, inDetailView: $inDetailView)
                             .tabItem {
                                 Image(systemName: "house")
                                 Text("홈")

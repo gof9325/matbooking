@@ -12,6 +12,8 @@ struct RestaurantListView: View {
     @StateObject var restaurantVM: RestaurantViewModel
     @State var restaurantList = [Restaurant]()
     
+    @ObservedObject var chatVM: ChatViewModel
+    
     @State var restaurantName = ""
     
     @Binding var inDetailView: Bool
@@ -32,7 +34,7 @@ struct RestaurantListView: View {
                         } else {
                             List {
                                 ForEach(restaurantList, id: \.self) { restaurant in
-                                    NavigationLink(destination: RestaurantDetailView(restaurantVM: restaurantVM, restaurant: restaurant, inDetailView: $inDetailView)) {
+                                    NavigationLink(destination: RestaurantDetailView(restaurantVM: restaurantVM, chatVM: chatVM, restaurant: restaurant, inDetailView: $inDetailView)) {
                                         RestaurantContentView(restaurant: restaurant)
                                     }
                                 }
@@ -75,8 +77,8 @@ struct searchBar: View{
 }
 
 
-struct RestaurantListView_Previews: PreviewProvider {
-    static var previews: some View {
-        RestaurantListView(restaurantVM: RestaurantViewModel(), inDetailView: .constant(true))
-    }
-}
+//struct RestaurantListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        RestaurantListView(restaurantVM: RestaurantViewModel(), inDetailView: .constant(true))
+//    }
+//}

@@ -10,7 +10,7 @@ import Alamofire
 import Combine
 
 class ReservationViewModel: ObservableObject {
-    var subscription = Set<AnyCancellable>()
+    private var subscription = Set<AnyCancellable>()
     
     @Published var reservationList = [Reservation]()
     

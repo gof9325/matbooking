@@ -39,6 +39,13 @@
 		1E8CDF2428EDB15700651C4D /* RestaurantsApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8CDF2328EDB15700651C4D /* RestaurantsApiService.swift */; };
 		1E8CDF2628EDB35400651C4D /* RestaurantsListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8CDF2528EDB35400651C4D /* RestaurantsListResponse.swift */; };
 		1E8DFE132914E84800F683B6 /* ReservationItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8DFE122914E84800F683B6 /* ReservationItemView.swift */; };
+		1EBEDC44292C999E00FB41B8 /* CodableWebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBEDC43292C999E00FB41B8 /* CodableWebSocket.swift */; };
+		1EBEDC46292C99E200FB41B8 /* CodableWebsocketSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBEDC45292C99E200FB41B8 /* CodableWebsocketSubscription.swift */; };
+		1EBEDC49292C9EBD00FB41B8 /* ChatAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBEDC48292C9EBD00FB41B8 /* ChatAuth.swift */; };
+		1EBEDC4C292CB40A00FB41B8 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBEDC4B292CB40A00FB41B8 /* ChatViewModel.swift */; };
+		1EBEDC4E292CB4E200FB41B8 /* ChatRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBEDC4D292CB4E200FB41B8 /* ChatRouter.swift */; };
+		1EBEDC50292CB5D800FB41B8 /* ChatApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBEDC4F292CB5D800FB41B8 /* ChatApiService.swift */; };
+		1EBEDC53292CC08200FB41B8 /* ChatListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBEDC52292CC08200FB41B8 /* ChatListResponse.swift */; };
 		1EDE654B291CF7A9004CC1B7 /* RestaurantResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDE654A291CF7A9004CC1B7 /* RestaurantResponse.swift */; };
 		1EDE654E291CF8B3004CC1B7 /* ImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDE654D291CF8B3004CC1B7 /* ImageResponse.swift */; };
 		1EDE6554291CFDE4004CC1B7 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDE6553291CFDE4004CC1B7 /* Common.swift */; };
@@ -89,6 +96,13 @@
 		1E8CDF2328EDB15700651C4D /* RestaurantsApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsApiService.swift; sourceTree = "<group>"; };
 		1E8CDF2528EDB35400651C4D /* RestaurantsListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsListResponse.swift; sourceTree = "<group>"; };
 		1E8DFE122914E84800F683B6 /* ReservationItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationItemView.swift; sourceTree = "<group>"; };
+		1EBEDC43292C999E00FB41B8 /* CodableWebSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableWebSocket.swift; sourceTree = "<group>"; };
+		1EBEDC45292C99E200FB41B8 /* CodableWebsocketSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableWebsocketSubscription.swift; sourceTree = "<group>"; };
+		1EBEDC48292C9EBD00FB41B8 /* ChatAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAuth.swift; sourceTree = "<group>"; };
+		1EBEDC4B292CB40A00FB41B8 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		1EBEDC4D292CB4E200FB41B8 /* ChatRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRouter.swift; sourceTree = "<group>"; };
+		1EBEDC4F292CB5D800FB41B8 /* ChatApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatApiService.swift; sourceTree = "<group>"; };
+		1EBEDC52292CC08200FB41B8 /* ChatListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListResponse.swift; sourceTree = "<group>"; };
 		1EDE654A291CF7A9004CC1B7 /* RestaurantResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantResponse.swift; sourceTree = "<group>"; };
 		1EDE654C291CF802004CC1B7 /* Empty.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Empty.md; sourceTree = "<group>"; };
 		1EDE654D291CF8B3004CC1B7 /* ImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResponse.swift; sourceTree = "<group>"; };
@@ -190,11 +204,9 @@
 				1E5FE2D528EAF84B00736C0C /* ContentView.swift */,
 				1E207D02291E68C1003B21CB /* RestaurantViews */,
 				1E207D09291F9198003B21CB /* ReservationsView */,
+				1EBEDC4A292CAE9B00FB41B8 /* ChatViews */,
 				1E2ED8F928E738A0005E1412 /* LoginView.swift */,
 				1E5FE2DD28EB1DEF00736C0C /* UserDetailView.swift */,
-				1E5FE2E428EC352700736C0C /* ChatListView.swift */,
-				1E21562D28F53E2400B03EFB /* ChatListItemView.swift */,
-				1E83C63D28F0228500C69431 /* ChatDetailView.swift */,
 				1EF34C7928E75EFD00F1396B /* JoinView.swift */,
 			);
 			path = Views;
@@ -203,16 +215,18 @@
 		1E2ED90A28E7441E005E1412 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1EDE654C291CF802004CC1B7 /* Empty.md */,
 				1EDE6551291CFD4F004CC1B7 /* Reservation */,
 				1EDE6550291CFD34004CC1B7 /* User */,
 				1EDE654F291CFCFD004CC1B7 /* Restaurant */,
-				1EDE654C291CF802004CC1B7 /* Empty.md */,
 				1EF34C8228EACEE400F1396B /* Auth0User.swift */,
 				1E83C63928F00DCE00C69431 /* ApiResponse.swift */,
 				1EE6130228F0010100797DD9 /* JoinResponse.swift */,
 				1E36D3F728F3F33300F228A7 /* EmptyResponse.swift */,
 				1E8CDF2528EDB35400651C4D /* RestaurantsListResponse.swift */,
 				1E21562F28F53E7200B03EFB /* Chat.swift */,
+				1EBEDC52292CC08200FB41B8 /* ChatListResponse.swift */,
+				1EBEDC48292C9EBD00FB41B8 /* ChatAuth.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -222,6 +236,7 @@
 			children = (
 				1E2ED90F28E75413005E1412 /* RestaurantViewModel.swift */,
 				1E5FE2E228EC2E5600736C0C /* UserViewModel.swift */,
+				1EBEDC4B292CB40A00FB41B8 /* ChatViewModel.swift */,
 				1E5FE2DB28EAFD4700736C0C /* ReservationViewModel.swift */,
 			);
 			path = ViewModels;
@@ -231,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				1E36D3FA28F3FB6300F228A7 /* Extensions.swift */,
+				1EBEDC47292C9A1200FB41B8 /* CodableWebSocket */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -268,6 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				1E8CDF2028EDAF9F00651C4D /* RestaurantsRouter.swift */,
+				1EBEDC4D292CB4E200FB41B8 /* ChatRouter.swift */,
 				1E207D03291F8DF6003B21CB /* ReservationRouter.swift */,
 				1EE612FA28EEBCEC00797DD9 /* UserRouter.swift */,
 			);
@@ -279,9 +296,29 @@
 			children = (
 				1E8CDF2328EDB15700651C4D /* RestaurantsApiService.swift */,
 				1E207D07291F904A003B21CB /* ReservationApiService.swift */,
+				1EBEDC4F292CB5D800FB41B8 /* ChatApiService.swift */,
 				1EE612FC28EEBDC200797DD9 /* UserApiService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		1EBEDC47292C9A1200FB41B8 /* CodableWebSocket */ = {
+			isa = PBXGroup;
+			children = (
+				1EBEDC43292C999E00FB41B8 /* CodableWebSocket.swift */,
+				1EBEDC45292C99E200FB41B8 /* CodableWebsocketSubscription.swift */,
+			);
+			path = CodableWebSocket;
+			sourceTree = "<group>";
+		};
+		1EBEDC4A292CAE9B00FB41B8 /* ChatViews */ = {
+			isa = PBXGroup;
+			children = (
+				1E5FE2E428EC352700736C0C /* ChatListView.swift */,
+				1E83C63D28F0228500C69431 /* ChatDetailView.swift */,
+				1E21562D28F53E2400B03EFB /* ChatListItemView.swift */,
+			);
+			path = ChatViews;
 			sourceTree = "<group>";
 		};
 		1EDE654F291CFCFD004CC1B7 /* Restaurant */ = {
@@ -457,8 +494,10 @@
 				1E5FE2DC28EAFD4700736C0C /* ReservationViewModel.swift in Sources */,
 				1E2ED90C28E7443A005E1412 /* Restaurant.swift in Sources */,
 				1E2ED91028E75413005E1412 /* RestaurantViewModel.swift in Sources */,
+				1EBEDC53292CC08200FB41B8 /* ChatListResponse.swift in Sources */,
 				1E5FE2DA28EAFC4500736C0C /* Reservation.swift in Sources */,
 				1E5FE2DE28EB1DEF00736C0C /* UserDetailView.swift in Sources */,
+				1EBEDC4C292CB40A00FB41B8 /* ChatViewModel.swift in Sources */,
 				1E8CDF1B28EDAB5300651C4D /* ApiLogger.swift in Sources */,
 				1E207D08291F904A003B21CB /* ReservationApiService.swift in Sources */,
 				1EDE654E291CF8B3004CC1B7 /* ImageResponse.swift in Sources */,
@@ -474,22 +513,27 @@
 				1EE6130128EEC8F800797DD9 /* UserResponse.swift in Sources */,
 				1E36D3FB28F3FB6300F228A7 /* Extensions.swift in Sources */,
 				1E8DFE132914E84800F683B6 /* ReservationItemView.swift in Sources */,
+				1EBEDC4E292CB4E200FB41B8 /* ChatRouter.swift in Sources */,
 				1E5FE2E028EC1A5F00736C0C /* KeyChain.swift in Sources */,
 				1E21562E28F53E2400B03EFB /* ChatListItemView.swift in Sources */,
+				1EBEDC46292C99E200FB41B8 /* CodableWebsocketSubscription.swift in Sources */,
 				1EF34C7E28E7622E00F1396B /* RestaurantDetailView.swift in Sources */,
 				1E83C63A28F00DCE00C69431 /* ApiResponse.swift in Sources */,
 				1E5FE2E328EC2E5600736C0C /* UserViewModel.swift in Sources */,
 				1E5FE2D228EADFF000736C0C /* ReservationsView.swift in Sources */,
 				1E8CDF2128EDAF9F00651C4D /* RestaurantsRouter.swift in Sources */,
 				1E21563028F53E7200B03EFB /* Chat.swift in Sources */,
+				1EBEDC49292C9EBD00FB41B8 /* ChatAuth.swift in Sources */,
 				1E8CDF2428EDB15700651C4D /* RestaurantsApiService.swift in Sources */,
 				1EDE6554291CFDE4004CC1B7 /* Common.swift in Sources */,
 				1E8CDF1928EDA9E300651C4D /* ApiClient.swift in Sources */,
 				1E5FE2D628EAF84B00736C0C /* ContentView.swift in Sources */,
 				1E5FE2E528EC352700736C0C /* ChatListView.swift in Sources */,
 				1EF34C8328EACEE400F1396B /* Auth0User.swift in Sources */,
+				1EBEDC44292C999E00FB41B8 /* CodableWebSocket.swift in Sources */,
 				1EE612F928EEBA7700797DD9 /* User.swift in Sources */,
 				1EE612FF28EEC13300797DD9 /* Auth0Interceptor.swift in Sources */,
+				1EBEDC50292CB5D800FB41B8 /* ChatApiService.swift in Sources */,
 				1E5FE2D828EAFA1800736C0C /* RestaurantListView.swift in Sources */,
 				1E2ED8F828E738A0005E1412 /* matbookingApp.swift in Sources */,
 				1E207D04291F8DF6003B21CB /* ReservationRouter.swift in Sources */,

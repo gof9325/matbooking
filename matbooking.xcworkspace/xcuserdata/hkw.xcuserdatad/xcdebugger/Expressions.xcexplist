@@ -33,10 +33,29 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "closure #2 in ChatDetailView.body.getter:ChatDetailView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "chatVM.socket.receive(.outgoingMessage(ChatAuth()))">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #2 in ReservationViewModel.getReservations():ReservationViewModel.swift">
          <PersistentStrings>
             <PersistentString
                value = "reservationList">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #2 in closure #1 in ChatDetailView.body.getter:ChatDetailView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "chatVM.socket.receive(.outgoingMessage(Chat(data: Chat.ChatData(to: restuarant.id, message: inputText))))">
+            </PersistentString>
+            <PersistentString
+               value = "restuarant.id">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -50,10 +69,10 @@
          contextName = "Auth0Interceptor.adapt(_:for:completion:):Auth0Interceptor.swift">
          <PersistentStrings>
             <PersistentString
-               value = "request.headers">
+               value = "KeyChain.read(key: &quot;userAccessToken&quot;)">
             </PersistentString>
             <PersistentString
-               value = "KeyChain.read(key: &quot;userAccessToken&quot;)">
+               value = "request.headers">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

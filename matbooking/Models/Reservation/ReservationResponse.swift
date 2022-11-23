@@ -14,7 +14,7 @@ struct ReservationResponse: Codable {
     let store: Store
 }
 
-struct Store: Codable {
+struct Store: Codable, Hashable {
     let id: String
     let storeInfo: StoreInfo
 }

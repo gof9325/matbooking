@@ -13,6 +13,7 @@ struct RestaurantDetailView: View {
     @State var uiTabarController: UITabBarController?
     
     @ObservedObject var restaurantVM: RestaurantViewModel
+    @ObservedObject var chatVM: ChatViewModel
     
     @StateObject var reservationVM = ReservationViewModel()
     @State var restaurant: Restaurant
@@ -20,6 +21,8 @@ struct RestaurantDetailView: View {
     @State var imageList = [UIImage]()
     
     @Binding var inDetailView: Bool
+    
+    @State var navigatedToChatDetailView = false
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -81,7 +84,23 @@ struct RestaurantDetailView: View {
                 )
                 .padding()
             }
-            HStack {
+            HStack(spacing: 30) {
+                NavigationLink("", destination: ChatDetailView(chatVM: chatVM, needsToControlTabbar: false, restuarant: ChatListResponse(message: "", store: Store(id: restaurant.id, storeInfo: restaurant.storeInfo), createdAt: "")), isActive: $navigatedToChatDetailView)
+                
+                Button("채팅하기") {
+                    navigatedToChatDetailView = true
+                }
+                .matbookingButtonStyle(width: 100, color: Color.matPeach)
+                
+//                NavigationLink(destination: ChatDetailView()) {
+//                    Text("채팅하기")
+//                }
+//                .padding()
+//                .frame(width: 100)
+//                .background(Color.matPeach)
+//                .cornerRadius(10)
+//                .foregroundColor(.white)
+                
                 Button("예약하기") {
                     isPresented.toggle()
                 }
@@ -92,14 +111,18 @@ struct RestaurantDetailView: View {
             }
         }
         .onAppear {
+//            print("RestaurantDetailView: OnAppear")
             inDetailView = true
+            navigatedToChatDetailView = false
         }
         .navigationBarTitle("", displayMode: .inline)
         .introspectTabBarController { (UITabBarController) in
             UITabBarController.tabBar.isHidden = true
             uiTabarController = UITabBarController
         }.onDisappear{
-            uiTabarController?.tabBar.isHidden = false
+            if !navigatedToChatDetailView {
+                uiTabarController?.tabBar.isHidden = false
+            }
         }
     }
 }

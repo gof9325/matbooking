@@ -7,8 +7,13 @@
 
 import Foundation
 
-struct Chat: Hashable, Codable, Identifiable {
+struct Chat: Codable, Hashable {
     var id = UUID()
-    let restaurantName: String
-    var content: String
+    var event = "message-to-store"
+    let data: ChatData
+    
+    struct ChatData: Codable, Hashable {
+        let to: String
+        let message: String
+    }
 }

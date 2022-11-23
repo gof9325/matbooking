@@ -11,7 +11,7 @@ import Combine
 import Alamofire
 
 class UserViewModel: ObservableObject {
-    var subscription = Set<AnyCancellable>()
+    private var subscription = Set<AnyCancellable>()
     var auth0User: Auth0User?
     @Published var user: User?
     
