@@ -14,6 +14,8 @@ struct ChatDetailView: View {
     
     @ObservedObject var chatVM: ChatViewModel
     
+    @State var chatDetailList = [ChatDetail]()
+    
     let needsToControlTabbar: Bool
     
     let restuarant: ChatListResponse
@@ -24,33 +26,38 @@ struct ChatDetailView: View {
                 .padding()
             GeometryReader { proxy in
                 LazyVStack {
-                    // TODO: 실제 채팅 리스트 기반으로 뿌려주기
-                    HStack {
-                        Image(systemName: "person")
-                            .padding()
-                            .background(.gray.opacity(0.5))
-                            .clipShape(Circle())
-                        Text("어쩌고 저쩌고")
-                            .padding()
-                            .background(Color.matPeach)
-                            .cornerRadius(20)
-                            .foregroundColor(.white)
-                        Spacer()
+                    ForEach(chatDetailList, id:\.self) { chat in
+                        Group{
+                            if chat.type == .CustomerToStore {
+                                HStack {
+                                    Spacer()
+                                    Text("\(chat.message)")
+                                        .padding()
+                                        .background(Color.matSkin)
+                                        .cornerRadius(20)
+                                        .foregroundColor(Color.matBlack)
+                                    Image(systemName: "person")
+                                        .padding()
+                                        .background(.gray.opacity(0.5))
+                                        .clipShape(Circle())
+                                }
+                            } else {
+                                HStack {
+                                    Image(systemName: "person")
+                                        .padding()
+                                        .background(.gray.opacity(0.5))
+                                        .clipShape(Circle())
+                                    Text("\(chat.message)")
+                                        .padding()
+                                        .background(Color.matPeach)
+                                        .cornerRadius(20)
+                                        .foregroundColor(.white)
+                                    Spacer()
+                                }
+                            }
+                        }
+                        .frame(width: proxy.size.width)
                     }
-                    .frame(width: proxy.size.width)
-                    HStack {
-                        Spacer()
-                        Text("어쩌고 저쩌고")
-                            .padding()
-                            .background(Color.matSkin)
-                            .cornerRadius(20)
-                            .foregroundColor(Color.matBlack)
-                        Image(systemName: "person")
-                            .padding()
-                            .background(.gray.opacity(0.5))
-                            .clipShape(Circle())
-                    }
-                    .frame(width: proxy.size.width)
                 }
             }
             Spacer()
@@ -60,19 +67,22 @@ struct ChatDetailView: View {
                     .background(.gray.opacity(0.3))
                     .cornerRadius(15)
                 Button("send") {
-                    _ = chatVM.socket.receive(.outgoingMessage(Chat(data: Chat.ChatData(to: restuarant.store.id, message: inputText))))
+                    _ = chatVM.socket.receive(.outgoingMessage(ChatSocketSend(data: ChatSocketSend.ChatData(to: restuarant.store.id, message: inputText))))
+                    chatDetailList.append(ChatDetail(id: UUID().uuidString, createdAt: Date(), message: inputText, type: .CustomerToStore))
+                    inputText = ""
                 }
                 .matbookingButtonStyle(width: 80, color: Color.matPeach)
             }
         }
-        .onAppear {
-            // 인증에 대해 소켓통신으로 보내고 소켓을 엶
-            _ = chatVM.socket.receive(.outgoingMessage(ChatAuth()))
-            
-            // TODO: 기존에 채팅내역을 가지고 와서 뿌려줌
-            
-        }
         .padding()
+        .onAppear {
+            _ = chatVM.socket.receive(.outgoingMessage(ChatAuth()))
+            chatVM.getChatDetailList(id: restuarant.store.id)
+        }
+        .onReceive(chatVM.$chatDetailList, perform: {
+            self.chatDetailList = $0 ?? [ChatDetail]()
+            chatDetailList.sort{ return $0.createdAt < $1.createdAt }
+        })
         .introspectTabBarController { (UITabBarController) in
             if needsToControlTabbar {
                 UITabBarController.tabBar.isHidden = true

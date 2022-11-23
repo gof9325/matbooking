@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Chat: Codable, Hashable {
+struct ChatSocketSend: Codable, Hashable {
     var id = UUID()
     var event = "message-to-store"
     let data: ChatData

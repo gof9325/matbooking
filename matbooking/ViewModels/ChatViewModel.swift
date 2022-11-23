@@ -9,6 +9,15 @@ import Foundation
 import Alamofire
 import Combine
 
+extension Publisher {
+    func filterOutErrors() -> Publishers.CompactMap<Publishers.ReplaceError<Publishers.Map<Self, Self.Output?>>, Self.Output>
+    {
+        map{ Optional($0)}
+            .replaceError(with:nil)
+            .compactMap{$0}
+    }
+}
+
 
 class ChatViewModel: ObservableObject {
     private var subscription = Set<AnyCancellable>()
@@ -18,9 +27,23 @@ class ChatViewModel: ObservableObject {
     }
     
     let socket = CodableWebSocket(url:URL(string:"ws://165.22.105.229:3001")!)
+    var cancelable:AnyCancellable?
     
     @Published var chatList: [ChatListResponse]?
+    @Published var chatDetailList: [ChatDetail]?
     @Published var chatListLoadingState: chatListLoadingState = .beforeLoad
+    
+    init() {
+        cancelable = socket
+            .codable()
+            .receive(on: DispatchQueue.main)
+            .filterOutErrors()
+            .sink(receiveCompletion: { _ in
+                
+            }, receiveValue: { chatMessage in
+                self.chatDetailList?.append(ChatDetail(id: UUID().uuidString, createdAt: Date(), message: chatMessage.data.message, type: .StoreToCustomer))
+            })
+    }
     
     func getChatList() {
         print("ChatViewModel - getChatList() called")
@@ -33,4 +56,15 @@ class ChatViewModel: ObservableObject {
             }).store(in: &subscription)
     }
     
+    func getChatDetailList(id: String) {
+        print("ChatViewModel - getChatDetailList() called")
+        ChatApiService.getChatDetailList(id: id)
+            .sink(receiveCompletion: { completion in
+                print("ChatViewModel getChatDetailList completion: \(completion)")
+            }, receiveValue: { chatDetailList in
+                self.chatDetailList = chatDetailList.map{ item in
+                    ChatDetail(id: item.id, createdAt: item.createdAt.formattingToDate() ?? Date(), message: item.message, type: item.type)
+                }
+            }).store(in: &subscription)
+    }
 }

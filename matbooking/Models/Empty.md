@@ -116,3 +116,30 @@ reservation
   ],
   "message": ""
 }
+
+ChatDetailList Response type
+{
+  "success": true,
+  "error": "",
+  "data": [
+    {
+      "id": "516d66f0-0a92-4dff-bddd-b27bd36617ae",
+      "createdAt": "2022-11-22T15:15:34.000Z",
+      "updatedAt": "2022-11-22T15:15:34.000Z",
+      "message": "Tt",
+      "type": "CUSTOMER->STORE",
+      "store": "e0b919a7-3f7d-4346-8def-78664f98692d",
+      "customer": "4054aaae-10bf-4fcd-a521-966f2b285e3c"
+    },
+    {
+      "id": "d797efd8-a0d6-4511-b543-3a8f0cff277f", -> 이 채팅에 대한 id
+      "createdAt": "2022-11-22T15:15:34.000Z",
+      "updatedAt": "2022-11-22T15:15:34.000Z",
+      "message": "Tt",
+      "type": "CUSTOMER->STORE",
+      "store": "e0b919a7-3f7d-4346-8def-78664f98692d", -> 가게의 id
+      "customer": "4054aaae-10bf-4fcd-a521-966f2b285e3c" -> 고객의 id
+    }
+  ],
+  "message": ""
+}
