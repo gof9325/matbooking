@@ -22,45 +22,44 @@ struct ChatDetailView: View {
 
     var body: some View {
         VStack {
-            Text("\(restuarant.store.storeInfo.name) 님과의 대화")
-                .padding()
-            GeometryReader { proxy in
-                LazyVStack {
-                    ForEach(chatDetailList, id:\.self) { chat in
-                        Group{
-                            if chat.type == .CustomerToStore {
-                                HStack {
-                                    Spacer()
-                                    Text("\(chat.message)")
-                                        .padding()
-                                        .background(Color.matSkin)
-                                        .cornerRadius(20)
-                                        .foregroundColor(Color.matBlack)
-                                    Image(systemName: "person")
-                                        .padding()
-                                        .background(.gray.opacity(0.5))
-                                        .clipShape(Circle())
-                                }
-                            } else {
-                                HStack {
-                                    Image(systemName: "person")
-                                        .padding()
-                                        .background(.gray.opacity(0.5))
-                                        .clipShape(Circle())
-                                    Text("\(chat.message)")
-                                        .padding()
-                                        .background(Color.matPeach)
-                                        .cornerRadius(20)
-                                        .foregroundColor(.white)
-                                    Spacer()
+            ScrollView(showsIndicators: false) {
+                    LazyVStack {
+                        ForEach(chatDetailList, id:\.self) { chat in
+                            Group{
+                                if chat.type == .CustomerToStore {
+                                    HStack {
+                                        Spacer()
+                                        Text("\(chat.message)")
+                                            .padding()
+                                            .background(Color.matSkin)
+                                            .cornerRadius(20)
+                                            .foregroundColor(Color.matBlack)
+                                        Image(systemName: "person")
+                                            .padding()
+                                            .background(.gray.opacity(0.5))
+                                            .clipShape(Circle())
+                                    }
+                                } else {
+                                    HStack {
+                                        Image(systemName: "person")
+                                            .padding()
+                                            .background(.gray.opacity(0.5))
+                                            .clipShape(Circle())
+                                        Text("\(chat.message)")
+                                            .padding()
+                                            .background(Color.matPeach)
+                                            .cornerRadius(20)
+                                            .foregroundColor(.white)
+                                        Spacer()
+                                    }
                                 }
                             }
                         }
-                        .frame(width: proxy.size.width)
                     }
-                }
+                Spacer()
             }
-            Spacer()
+            .navigationBarTitle("\(restuarant.store.storeInfo.name)님 과의 대화")
+            .navigationBarTitleDisplayMode(.inline)
             HStack {
                 TextField("", text: $inputText)
                     .padding()
@@ -98,6 +97,6 @@ struct ChatDetailView: View {
 
 //struct ChatDetailView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        ChatDetailView(needsToControlTabbar: false)
+//        ChatDetailView(chatVM: ChatViewModel(), chatDetailList: [ChatDetail(id: "", createdAt: Date(), message: "asdfe", type: .CustomerToStore)], needsToControlTabbar: true, restuarant: ChatListResponse(message: "asdf", store: Store(id: "", storeInfo: StoreInfo(name: "가게이름", subtitle: "가게설명", picturesFolderId: "", pictures: nil, description: "", address: "", phone: "", openingHours: "", city: "", cuisine: "")), createdAt: "2022-11-23T08:39:34.000Z"))
 //    }
 //}

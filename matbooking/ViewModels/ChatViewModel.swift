@@ -9,16 +9,6 @@ import Foundation
 import Alamofire
 import Combine
 
-extension Publisher {
-    func filterOutErrors() -> Publishers.CompactMap<Publishers.ReplaceError<Publishers.Map<Self, Self.Output?>>, Self.Output>
-    {
-        map{ Optional($0)}
-            .replaceError(with:nil)
-            .compactMap{$0}
-    }
-}
-
-
 class ChatViewModel: ObservableObject {
     private var subscription = Set<AnyCancellable>()
     
@@ -38,10 +28,11 @@ class ChatViewModel: ObservableObject {
             .codable()
             .receive(on: DispatchQueue.main)
             .filterOutErrors()
-            .sink(receiveCompletion: { _ in
-                
+            .sink(receiveCompletion: { completion in
+                print("ChatViewModel - socket receive : \(completion)")
             }, receiveValue: { chatMessage in
-                self.chatDetailList?.append(ChatDetail(id: UUID().uuidString, createdAt: Date(), message: chatMessage.data.message, type: .StoreToCustomer))
+                print("Receved:\(chatMessage)")
+                self.chatDetailList?.append(ChatDetail(id: UUID().uuidString, createdAt: Date(), message: chatMessage.data, type: .StoreToCustomer))
             })
     }
     
@@ -66,5 +57,14 @@ class ChatViewModel: ObservableObject {
                     ChatDetail(id: item.id, createdAt: item.createdAt.formattingToDate() ?? Date(), message: item.message, type: item.type)
                 }
             }).store(in: &subscription)
+    }
+}
+
+extension Publisher {
+    func filterOutErrors() -> Publishers.CompactMap<Publishers.ReplaceError<Publishers.Map<Self, Self.Output?>>, Self.Output>
+    {
+        map{ Optional($0)}
+            .replaceError(with:nil)
+            .compactMap{$0}
     }
 }

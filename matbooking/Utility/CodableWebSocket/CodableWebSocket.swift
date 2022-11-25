@@ -10,11 +10,12 @@ import Combine
 
 public struct ChatMessageIncoming: Codable {
     var event = "message"
-    var data: ChatData
+    var data: String
+    var from: From
     
-    struct ChatData: Codable {
-        let from: String
-        let message: String
+    struct From: Codable {
+        let id: String
+        let name: String
     }
 }
 
@@ -93,14 +94,22 @@ public final class CodableWebSocket: Publisher,Subscriber {
 }
 
 extension CodableWebSocket {
-    public func codable()-> AnyPublisher<ChatMessageIncoming, CodableWebSocket.Failure> {
-        return compactMap{ result -> ChatMessageIncoming? in
+    public func codable() -> AnyPublisher<ChatMessageIncoming, CodableWebSocket.Failure>
+    {
+        return compactMap { result -> ChatMessageIncoming? in
             guard case  Result<SocketData,Error>.success(let socketdata) = result,
-                  case SocketData.incomingMessage(let codable) = socketdata
+                  case SocketData.message(let messageString) = socketdata
             else { return nil }
-            return codable
+            let decoder = JSONDecoder()
+            
+            var chatMessage = ChatMessageIncoming(data: "", from: ChatMessageIncoming.From(id: "", name: ""))
+            do {
+                chatMessage = try decoder.decode(ChatMessageIncoming.self, from: Data(messageString.utf8))
+            } catch {
+                Swift.print(error.localizedDescription)
+            }
+             return chatMessage
         }.eraseToAnyPublisher()
     }
 }
-
 

@@ -91,16 +91,6 @@ struct RestaurantDetailView: View {
                     navigatedToChatDetailView = true
                 }
                 .matbookingButtonStyle(width: 100, color: Color.matPeach)
-                
-//                NavigationLink(destination: ChatDetailView()) {
-//                    Text("채팅하기")
-//                }
-//                .padding()
-//                .frame(width: 100)
-//                .background(Color.matPeach)
-//                .cornerRadius(10)
-//                .foregroundColor(.white)
-                
                 Button("예약하기") {
                     isPresented.toggle()
                 }
@@ -111,7 +101,6 @@ struct RestaurantDetailView: View {
             }
         }
         .onAppear {
-//            print("RestaurantDetailView: OnAppear")
             inDetailView = true
             navigatedToChatDetailView = false
         }
