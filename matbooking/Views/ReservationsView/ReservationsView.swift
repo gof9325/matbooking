@@ -21,6 +21,8 @@ struct ReservationsView: View {
     
     @State var reservableTimeslots = [String]()
     
+    @Binding var reservationResult: Bool
+    
     var body: some View {
         VStack {
             DatePicker(
@@ -47,6 +49,7 @@ struct ReservationsView: View {
                         ForEach(reservableTimeslots, id:\.self) { time in
                             Button(time) {
                                 reservationVM.createReservation(storeId: restaurant.id, pax: pax, date: date.formatting(to: "YYYY-MM-dd"), time: time)
+                                reservationResult = true
                             }
                             .matbookingButtonStyle(width: 100)
                         }

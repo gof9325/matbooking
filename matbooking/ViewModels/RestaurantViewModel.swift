@@ -9,6 +9,11 @@ import Foundation
 import Alamofire
 import Combine
 
+struct PictureData {
+    let url: String
+    var data: Data?
+}
+
 class RestaurantViewModel: ObservableObject {
     private var subscription = Set<AnyCancellable>()
     @Published var restaurantList = [Restaurant]()
@@ -16,6 +21,8 @@ class RestaurantViewModel: ObservableObject {
     
     var getImageFinished = PassthroughSubject<
     [Data], Never>()
+    var getImageTuplesFinished = PassthroughSubject<
+    [(Data, String)], Never>()
     
     func getImages(myRestaurant: Restaurant) {
         print("RestaurantViewModel - getImages() called")
@@ -48,6 +55,73 @@ class RestaurantViewModel: ObservableObject {
         }).store(in: &subscription)
     }
     
+    func getImagesNew(myRestaurant: Restaurant) {
+        print("RestaurantViewModel - getImages() called")
+
+        guard let restaurantPictures = myRestaurant.storeInfo.pictures, let restaurantIndex = self.restaurantList.firstIndex(where: {
+            $0.id == myRestaurant.id
+        })
+        else {
+            return
+        }
+        
+        let imageDataStructs = restaurantPictures.compactMap { i in
+            return PictureData(url: i.url)
+        }
+        
+        imageDataStructs.publisher.flatMap { imageData in
+            RestaurantsApiService.downloadImage(imageUrl: imageData.url)
+        }.collect()
+        .sink(receiveCompletion: { completion in
+            switch completion {
+            case .failure(let err):
+                print("RestaurantViewModel getImages err: \(err)")
+            case .finished:
+                print("RestaurantViewModel getImages finished")
+            }
+        }, receiveValue: { imageDataList in
+            print("RestaurantViewModel getImages value receive")
+//            self.restaurantList[restaurantIndex].imagesData = imageDataList
+            self.getImageFinished.send(imageDataList)
+        }).store(in: &subscription)
+    }
+    
+    func makePublisherForUrl(url: String) -> AnyPublisher<(Data, String), AFError> {
+        let pub1 = RestaurantsApiService.downloadImage(imageUrl: url)
+        let pub2 = Just(url).setFailureType(to: AFError.self)
+        return Publishers.Zip(pub1, pub2).eraseToAnyPublisher()
+    }
+    
+    func getImagesTuple(myRestaurant: Restaurant) {
+        print("RestaurantViewModel - getImages() called")
+
+        guard let restaurantPictures = myRestaurant.storeInfo.pictures, let restaurantIndex = self.restaurantList.firstIndex(where: {
+            $0.id == myRestaurant.id
+        })
+        else {
+            return
+        }
+        
+        let imageUrls = restaurantPictures.compactMap { i in
+            return i.url
+        }
+        
+        imageUrls.publisher.flatMap { url in
+            self.makePublisherForUrl(url: url)
+        }.collect()
+        .sink(receiveCompletion: { completion in
+            switch completion {
+            case .failure(let err):
+                print("RestaurantViewModel getImages err: \(err)")
+            case .finished:
+                print("RestaurantViewModel getImages finished")
+            }
+        }, receiveValue: { imageDataList in
+            print("RestaurantViewModel getImages value receive")
+            self.getImageTuplesFinished.send(imageDataList)
+        }).store(in: &subscription)
+    }
+    
     func getImageForRestaurant(restaurant: Restaurant) -> AnyPublisher<Restaurant, AFError> {
         if let pictures = restaurant.storeInfo.pictures, !restaurant.storeInfo.pictures!.isEmpty {
             var newRestaurant = restaurant
@@ -63,9 +137,9 @@ class RestaurantViewModel: ObservableObject {
    
     
     // MARK: intent functions
-    func getRestaurantList() {
+    func getRestaurantList(query: GetRestaurantsFilters) {
         print("RestaurantViewModel - getRestaurantList() called")
-        RestaurantsApiService.getRestaurants()
+        RestaurantsApiService.getRestaurants(query: query)
             .flatMap { restaurantList -> AnyPublisher<RestaurantResponse, Never> in
                 restaurantList.publisher.eraseToAnyPublisher()
             }.flatMap({

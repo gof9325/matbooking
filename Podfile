@@ -10,4 +10,5 @@ target 'matbooking' do
   pod 'Auth0'
   pod 'Introspect'
   pod 'Alamofire'
+  pod 'ExytePopupView'
 end

@@ -84,10 +84,6 @@ struct ChatDetailView: View {
                                                     .background(Color.matSkin)
                                                     .cornerRadius(20)
                                                     .foregroundColor(Color.matBlack)
-                                                Image(systemName: "person")
-                                                    .padding()
-                                                    .background(.gray.opacity(0.5))
-                                                    .clipShape(Circle())
                                             }
                                         } else {
                                             HStack {
@@ -167,16 +163,18 @@ struct ChatDetailView: View {
                         .background(.gray.opacity(0.3))
                         .cornerRadius(15)
                     Button("send") {
-                        _ = chatVM.socket.receive(.outgoingMessage(ChatSocketSend(data: ChatSocketSend.ChatData(to: restuarant.store.id, message: inputText))))
-                        chatDetailList.append(ChatDetail(id: UUID().uuidString, createdAt: Date(), message: inputText, type: .CustomerToStore))
-                        inputText = ""
-                        sendNewMessage = true
+                        if !inputText.isEmpty {
+                            _ = chatVM.socket.receive(.outgoingMessage(ChatSocketSend(data: ChatSocketSend.ChatData(to: restuarant.store.id, message: inputText))))
+                            chatDetailList.append(ChatDetail(id: UUID().uuidString, createdAt: Date(), message: inputText, type: .CustomerToStore))
+                            inputText = ""
+                            sendNewMessage = true
+                        }
                         print("viewModel.offset: \(viewModel.offset)")
                     }
                     .matbookingButtonStyle(width: 80, color: Color.matPeach)
                 }
             }
-            .padding()
+            .padding([.trailing, .leading])
             .onAppear {
                 _ = chatVM.socket.receive(.outgoingMessage(ChatAuth()))
                 chatVM.getChatDetailList(id: restuarant.store.id)

@@ -10,11 +10,11 @@ import Alamofire
 import Combine
 
 enum RestaurantsApiService {
-    static func getRestaurants() -> AnyPublisher<[RestaurantResponse] , AFError> {
+    static func getRestaurants(query: GetRestaurantsFilters) -> AnyPublisher<[RestaurantResponse] , AFError> {
         print("RestaurantsApiService - getRestaurants() called")
         
         return ApiClient.shared.session
-            .request(RestaurantsRouter.getRestaurants)
+            .request(RestaurantsRouter.getRestaurants(query: query))
             .publishDecodable(type: ApiResponse<[RestaurantResponse]>.self)
             .value()
             .map{ $0.data }

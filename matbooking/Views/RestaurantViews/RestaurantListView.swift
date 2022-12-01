@@ -30,7 +30,9 @@ struct RestaurantListView: View {
                         searchBar(restaurantName: $restaurantName)
                             .padding()
                         if restaurantList.isEmpty {
+                            Spacer()
                             Text("레스토랑 리스트가 없습니다.")
+                            Spacer()
                         } else {
                             List {
                                 ForEach(restaurantList, id: \.self) { restaurant in
@@ -46,7 +48,7 @@ struct RestaurantListView: View {
             .onAppear {
                 inDetailView = false
                 print("RetaurantListView onAppear: \(inDetailView)")
-                restaurantVM.getRestaurantList()
+                restaurantVM.getRestaurantList(query: GetRestaurantsFilters(name: nil, cuisine: nil))
                 isLoading = true
             }
         }
@@ -56,7 +58,6 @@ struct RestaurantListView: View {
         })
     }
 }
-
 
 struct searchBar: View{
     @Binding var restaurantName: String
@@ -75,7 +76,6 @@ struct searchBar: View{
         .cornerRadius(18)
     }
 }
-
 
 //struct RestaurantListView_Previews: PreviewProvider {
 //    static var previews: some View {

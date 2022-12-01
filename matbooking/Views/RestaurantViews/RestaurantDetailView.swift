@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Introspect
+import ExytePopupView
 
 struct RestaurantDetailView: View {
     
@@ -19,6 +20,8 @@ struct RestaurantDetailView: View {
     @State var restaurant: Restaurant
     @State var isPresented = false
     @State var imageList = [UIImage]()
+    
+    @State var reservationResult = false
     
     @Binding var inDetailView: Bool
     
@@ -38,6 +41,45 @@ struct RestaurantDetailView: View {
                                 imageList.append(UIImage(data: data) ?? UIImage())
                             }
                         }
+                    })
+                    .onReceive(restaurantVM.getImageTuplesFinished, perform: { tupleList in
+                        guard let urlList = restaurant.storeInfo.pictures?.map({$0.url}) else {
+                            return
+                        }
+                        
+                        // 딕셔너리 버전
+                        if !tupleList.isEmpty {
+                            var tupleDict = [String: (Data, String)]()
+                            for tuple in tupleList {
+                                tupleDict[tuple.1] = tuple
+                            }
+                            
+                            imageList = urlList.map { url in
+                                UIImage(data: tupleDict[url]!.0) ?? UIImage()
+                            }
+                        }
+                        
+                        // 딕셔너리 버전 - 함수
+                        if !tupleList.isEmpty {
+                            let tupleDict = arrayToDict(arr: tupleList) { tuple in
+                                tuple.1
+                            }
+                            
+                            imageList = urlList.map { url in
+                                UIImage(data: tupleDict[url]!.0) ?? UIImage()
+                            }
+                        }
+                        
+                        // 배열 각 요소 비교 버전
+//                        if !tupleList.isEmpty {
+//                            for url in urlList {
+//                                if let data = tupleList.first(where: {
+//                                    url == $0.1
+//                                })?.0 {
+//                                    imageList.append(UIImage(data: data) ?? UIImage())
+//                                }
+//                            }
+//                        }
                     })
                 VStack(alignment: .leading) {
                     Text(restaurant.storeInfo.name)
@@ -97,7 +139,7 @@ struct RestaurantDetailView: View {
                 .matbookingButtonStyle(width: 100, color: Color.matPeach)
             }
             .popover(isPresented: $isPresented) {
-                ReservationsView(reservationVM: reservationVM, restaurantVM: restaurantVM, restaurant: restaurant)
+                ReservationsView(reservationVM: reservationVM, restaurantVM: restaurantVM, restaurant: restaurant, reservationResult: $reservationResult)
             }
         }
         .onAppear {
@@ -113,6 +155,9 @@ struct RestaurantDetailView: View {
                 uiTabarController?.tabBar.isHidden = false
             }
         }
+        .popup(isPresented: $reservationResult, view: {
+            Text("토스트")
+        })
     }
 }
 
@@ -121,3 +166,11 @@ struct RestaurantDetailView: View {
 //        RestaurantDetailView(restaurantVM: RestaurantViewModel(), restaurant: Restaurant(id: ""), inDetailView: .constant(true))
 //    }
 //}
+
+func arrayToDict<E, KeyType>(arr: [E], getKey: (E) -> KeyType) -> [KeyType:E] where KeyType: Hashable {
+    var dict = [KeyType: E]()
+    for element in arr {
+        dict[getKey(element)] = element
+    }
+    return dict
+}
