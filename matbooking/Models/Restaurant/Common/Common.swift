@@ -32,3 +32,7 @@ struct StoreInfo: Codable, Equatable, Hashable {
     let city: String
     let cuisine: String
 }
+
+enum Cuisine: String, CaseIterable {
+    case korean = "한식", italian = "이탈리아음식", japanese = "일식"
+}

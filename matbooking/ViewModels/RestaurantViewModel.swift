@@ -16,8 +16,10 @@ struct PictureData {
 
 class RestaurantViewModel: ObservableObject {
     private var subscription = Set<AnyCancellable>()
+    
     @Published var restaurantList = [Restaurant]()
     @Published var currentRestaurantImages = [Data]()
+    @Published var query = ""
     
     var getImageFinished = PassthroughSubject<
     [Data], Never>()
@@ -27,7 +29,7 @@ class RestaurantViewModel: ObservableObject {
     func getImages(myRestaurant: Restaurant) {
         print("RestaurantViewModel - getImages() called")
 
-        guard let restaurantPictures = myRestaurant.storeInfo.pictures, let restaurantIndex = self.restaurantList.firstIndex(where: {
+        guard let restaurantPictures = myRestaurant.storeInfo.pictures, let _ = self.restaurantList.firstIndex(where: {
             $0.id == myRestaurant.id
         })
         else {
@@ -58,7 +60,7 @@ class RestaurantViewModel: ObservableObject {
     func getImagesNew(myRestaurant: Restaurant) {
         print("RestaurantViewModel - getImages() called")
 
-        guard let restaurantPictures = myRestaurant.storeInfo.pictures, let restaurantIndex = self.restaurantList.firstIndex(where: {
+        guard let restaurantPictures = myRestaurant.storeInfo.pictures, let _ = self.restaurantList.firstIndex(where: {
             $0.id == myRestaurant.id
         })
         else {
@@ -86,7 +88,7 @@ class RestaurantViewModel: ObservableObject {
         }).store(in: &subscription)
     }
     
-    func makePublisherForUrl(url: String) -> AnyPublisher<(Data, String), AFError> {
+    private func makePublisherForUrl(url: String) -> AnyPublisher<(Data, String), AFError> {
         let pub1 = RestaurantsApiService.downloadImage(imageUrl: url)
         let pub2 = Just(url).setFailureType(to: AFError.self)
         return Publishers.Zip(pub1, pub2).eraseToAnyPublisher()
@@ -95,7 +97,7 @@ class RestaurantViewModel: ObservableObject {
     func getImagesTuple(myRestaurant: Restaurant) {
         print("RestaurantViewModel - getImages() called")
 
-        guard let restaurantPictures = myRestaurant.storeInfo.pictures, let restaurantIndex = self.restaurantList.firstIndex(where: {
+        guard let restaurantPictures = myRestaurant.storeInfo.pictures, let _ = self.restaurantList.firstIndex(where: {
             $0.id == myRestaurant.id
         })
         else {
@@ -134,25 +136,7 @@ class RestaurantViewModel: ObservableObject {
         }
     }
     
-   
-    
     // MARK: intent functions
-    func getRestaurantList(query: GetRestaurantsFilters) {
-        print("RestaurantViewModel - getRestaurantList() called")
-        RestaurantsApiService.getRestaurants(query: query)
-            .flatMap { restaurantList -> AnyPublisher<RestaurantResponse, Never> in
-                restaurantList.publisher.eraseToAnyPublisher()
-            }.flatMap({
-                // RestaurantResponse -> Restaurant
-                self.getImageForRestaurant(restaurant: $0.convertToRestaurant())
-            }).collect()
-            .sink(receiveCompletion: { completion in
-                print("RestaurantViewModel getRestaurantList completion: \(completion)")
-            }, receiveValue: { restaurantList in
-                self.restaurantList = restaurantList
-            }).store(in: &subscription)
-    }
-    
     func setResrvableTimeslots(date: Date, restaurant: Restaurant) -> [String]? {
         let days = ["월":"1", "화":"2", "수":"3", "목":"4", "금":"5", "토":"6", "일":"0"]
         let dateFormatter = DateFormatter()

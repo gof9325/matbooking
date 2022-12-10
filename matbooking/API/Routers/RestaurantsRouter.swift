@@ -8,9 +8,9 @@
 import Foundation
 import Alamofire
 
-struct GetRestaurantsFilters {
-    let name: String?
-    let cuisine: String?
+struct GetRestaurantsFilters: Equatable {
+    var name: String = ""
+    var cuisine: String = ""
 }
 
 enum RestaurantsRouter: URLRequestConvertible {
@@ -47,10 +47,10 @@ enum RestaurantsRouter: URLRequestConvertible {
         switch self {
         case let .getRestaurants(query):
             var parameters = Parameters()
-            if query.name != nil {
+            if !query.name.isEmpty {
                 parameters["name"] = query.name
             }
-            if query.cuisine != nil {
+            if !query.cuisine.isEmpty {
                 parameters["cuisine"] = query.cuisine
             }
             return parameters
@@ -67,6 +67,9 @@ enum RestaurantsRouter: URLRequestConvertible {
         }
         var request = URLRequest(url: url)
         request.method = method
+        if method == .get {
+            request.url = (try URLEncodedFormParameterEncoder.default.encode(parameters as? [String: String], into: request)).url
+        }
         return request
     }
 }

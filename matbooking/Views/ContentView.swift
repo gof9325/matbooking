@@ -30,7 +30,7 @@ struct ContentView: View {
                             }
                             .tag(1)
                             .badge(chatCount)
-                        RestaurantListView(restaurantVM: restaurantVM,chatVM: chatVM, inDetailView: $inDetailView)
+                        RestaurantListView(restaurantVM: restaurantVM,restaurantQueryVM: RestaurantQuery(restaurantVM: restaurantVM), chatVM: chatVM, inDetailView: $inDetailView)
                             .tabItem {
                                 Image(systemName: "house")
                                 Text("홈")

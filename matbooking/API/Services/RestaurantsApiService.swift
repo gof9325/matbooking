@@ -12,6 +12,7 @@ import Combine
 enum RestaurantsApiService {
     static func getRestaurants(query: GetRestaurantsFilters) -> AnyPublisher<[RestaurantResponse] , AFError> {
         print("RestaurantsApiService - getRestaurants() called")
+        print("@@@@@@@@@@@ QUERY: \(query)")
         
         return ApiClient.shared.session
             .request(RestaurantsRouter.getRestaurants(query: query))

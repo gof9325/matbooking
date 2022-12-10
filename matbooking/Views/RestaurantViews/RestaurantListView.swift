@@ -9,12 +9,10 @@ import SwiftUI
 import Introspect
 
 struct RestaurantListView: View {
-    @StateObject var restaurantVM: RestaurantViewModel
-    @State var restaurantList = [Restaurant]()
+    @ObservedObject var restaurantVM: RestaurantViewModel // 주인은 상위 view
+    @StateObject var restaurantQueryVM: RestaurantQuery // 주인은 이 view
     
-    @ObservedObject var chatVM: ChatViewModel
-    
-    @State var restaurantName = ""
+    @ObservedObject var chatVM: ChatViewModel // 주인은 상위 view
     
     @Binding var inDetailView: Bool
     
@@ -27,15 +25,15 @@ struct RestaurantListView: View {
                     ProgressView()
                 } else {
                     VStack {
-                        searchBar(restaurantName: $restaurantName)
+                        searchBar(restaurantQueryVM: restaurantQueryVM)
                             .padding()
-                        if restaurantList.isEmpty {
+                        if restaurantVM.restaurantList.isEmpty {
                             Spacer()
                             Text("레스토랑 리스트가 없습니다.")
                             Spacer()
                         } else {
                             List {
-                                ForEach(restaurantList, id: \.self) { restaurant in
+                                ForEach(restaurantVM.restaurantList, id: \.self) { restaurant in
                                     NavigationLink(destination: RestaurantDetailView(restaurantVM: restaurantVM, chatVM: chatVM, restaurant: restaurant, inDetailView: $inDetailView)) {
                                         RestaurantContentView(restaurant: restaurant)
                                     }
@@ -48,32 +46,43 @@ struct RestaurantListView: View {
             .onAppear {
                 inDetailView = false
                 print("RetaurantListView onAppear: \(inDetailView)")
-                restaurantVM.getRestaurantList(query: GetRestaurantsFilters(name: nil, cuisine: nil))
-                isLoading = true
+                if (restaurantVM.restaurantList.isEmpty) {
+                    isLoading = true
+                }
             }
         }
-        .onReceive(restaurantVM.$restaurantList, perform: {
-            self.restaurantList = $0
+        .onReceive(restaurantVM.$restaurantList, perform: { _ in
+//            self.restaurantList = $0
             isLoading = false
         })
     }
 }
 
-struct searchBar: View{
-    @Binding var restaurantName: String
+struct searchBar: View {
+    @ObservedObject var restaurantQueryVM: RestaurantQuery
     
     var body: some View {
         HStack {
-            TextField("", text: $restaurantName)
-            Button(action: {
-                
-            }, label: {
-                Image(systemName: "magnifyingglass")
-            })
+            TextField("", text: $restaurantQueryVM.query.name)
+                .padding()
+                .background(.gray.opacity(0.1))
+                .cornerRadius(18)
+            // 카테고리(식사 종류 기준으로 정렬하는 것?)
+            Image(systemName: "fork.knife")
+                .contextMenu {
+                    Button("\(Cuisine.korean.rawValue)", action: {
+                        restaurantQueryVM.query.cuisine = Cuisine.korean.rawValue
+                    })
+                    Button("\(Cuisine.italian.rawValue)", action: {
+                        restaurantQueryVM.query.cuisine = Cuisine.italian.rawValue
+                    })
+                    Button("\(Cuisine.japanese.rawValue)", action: {
+                        restaurantQueryVM.query.cuisine = Cuisine.japanese.rawValue
+                    })
+                }
         }
         .padding()
-        .background(.gray.opacity(0.1))
-        .cornerRadius(18)
+        
     }
 }
 

@@ -99,10 +99,8 @@ class UserViewModel: ObservableObject {
             .sink(receiveCompletion: { completion in
                 print("UserViewModel deleteAccount completion: \(completion)")
             }, receiveValue: { result in
-//                result.error != nil {
                     self.user = nil
                     self.auth0User = nil
-//                }
             }).store(in: &subscription)
     }
 }
