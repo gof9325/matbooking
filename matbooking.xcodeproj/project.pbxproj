@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E1422E429430C0900655861 /* RestaurantQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1422E329430C0900655861 /* RestaurantQuery.swift */; };
 		1E207D04291F8DF6003B21CB /* ReservationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E207D03291F8DF6003B21CB /* ReservationRouter.swift */; };
 		1E207D06291F8FD5003B21CB /* ReservationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E207D05291F8FD5003B21CB /* ReservationResponse.swift */; };
 		1E207D08291F904A003B21CB /* ReservationApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E207D07291F904A003B21CB /* ReservationApiService.swift */; };
@@ -65,6 +66,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1E1422E329430C0900655861 /* RestaurantQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantQuery.swift; sourceTree = "<group>"; };
 		1E207D03291F8DF6003B21CB /* ReservationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationRouter.swift; sourceTree = "<group>"; };
 		1E207D05291F8FD5003B21CB /* ReservationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationResponse.swift; sourceTree = "<group>"; };
 		1E207D07291F904A003B21CB /* ReservationApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationApiService.swift; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 				1E2ED90F28E75413005E1412 /* RestaurantViewModel.swift */,
 				1E5FE2E228EC2E5600736C0C /* UserViewModel.swift */,
 				1EBEDC4B292CB40A00FB41B8 /* ChatViewModel.swift */,
+				1E1422E329430C0900655861 /* RestaurantQuery.swift */,
 				1E5FE2DB28EAFD4700736C0C /* ReservationViewModel.swift */,
 			);
 			path = ViewModels;
@@ -519,6 +522,7 @@
 				1EDE654B291CF7A9004CC1B7 /* RestaurantResponse.swift in Sources */,
 				1E8CDF1E28EDAC7600651C4D /* BaseInterceptor.swift in Sources */,
 				1E83C63E28F0228500C69431 /* ChatDetailView.swift in Sources */,
+				1E1422E429430C0900655861 /* RestaurantQuery.swift in Sources */,
 				1E2ED8FA28E738A0005E1412 /* LoginView.swift in Sources */,
 				1E2ED90628E7391A005E1412 /* RestaurantContentView.swift in Sources */,
 				1E8CDF2628EDB35400651C4D /* RestaurantsListResponse.swift in Sources */,
