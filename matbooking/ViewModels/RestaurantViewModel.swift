@@ -57,45 +57,14 @@ class RestaurantViewModel: ObservableObject {
         }).store(in: &subscription)
     }
     
-    func getImagesNew(myRestaurant: Restaurant) {
-        print("RestaurantViewModel - getImages() called")
-
-        guard let restaurantPictures = myRestaurant.storeInfo.pictures, let _ = self.restaurantList.firstIndex(where: {
-            $0.id == myRestaurant.id
-        })
-        else {
-            return
-        }
-        
-        let imageDataStructs = restaurantPictures.compactMap { i in
-            return PictureData(url: i.url)
-        }
-        
-        imageDataStructs.publisher.flatMap { imageData in
-            RestaurantsApiService.downloadImage(imageUrl: imageData.url)
-        }.collect()
-        .sink(receiveCompletion: { completion in
-            switch completion {
-            case .failure(let err):
-                print("RestaurantViewModel getImages err: \(err)")
-            case .finished:
-                print("RestaurantViewModel getImages finished")
-            }
-        }, receiveValue: { imageDataList in
-            print("RestaurantViewModel getImages value receive")
-//            self.restaurantList[restaurantIndex].imagesData = imageDataList
-            self.getImageFinished.send(imageDataList)
-        }).store(in: &subscription)
-    }
-    
     private func makePublisherForUrl(url: String) -> AnyPublisher<(Data, String), AFError> {
         let pub1 = RestaurantsApiService.downloadImage(imageUrl: url)
         let pub2 = Just(url).setFailureType(to: AFError.self)
         return Publishers.Zip(pub1, pub2).eraseToAnyPublisher()
     }
     
-    func getImagesTuple(myRestaurant: Restaurant) {
-        print("RestaurantViewModel - getImages() called")
+    func getImagesTuples(myRestaurant: Restaurant) {
+        print("RestaurantViewModel - getImagesTuples() called")
 
         guard let restaurantPictures = myRestaurant.storeInfo.pictures, let _ = self.restaurantList.firstIndex(where: {
             $0.id == myRestaurant.id
@@ -114,12 +83,12 @@ class RestaurantViewModel: ObservableObject {
         .sink(receiveCompletion: { completion in
             switch completion {
             case .failure(let err):
-                print("RestaurantViewModel getImages err: \(err)")
+                print("RestaurantViewModel getImagesTuples err: \(err)")
             case .finished:
-                print("RestaurantViewModel getImages finished")
+                print("RestaurantViewModel getImagesTuples finished")
             }
         }, receiveValue: { imageDataList in
-            print("RestaurantViewModel getImages value receive")
+            print("RestaurantViewModel getImagesTuples value receive")
             self.getImageTuplesFinished.send(imageDataList)
         }).store(in: &subscription)
     }
@@ -137,7 +106,7 @@ class RestaurantViewModel: ObservableObject {
     }
     
     // MARK: intent functions
-    func setResrvableTimeslots(date: Date, restaurant: Restaurant) -> [String]? {
+    func setReservableTimeslots(date: Date, restaurant: Restaurant) -> [String]? {
         let days = ["월":"1", "화":"2", "수":"3", "목":"4", "금":"5", "토":"6", "일":"0"]
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEEE"

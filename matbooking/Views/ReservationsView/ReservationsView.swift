@@ -35,7 +35,7 @@ struct ReservationsView: View {
                 .datePickerStyle(.graphical)
                 .padding()
                 .onChange(of: date, perform: { newDate in
-                    reservableTimeslots = restaurantVM.setResrvableTimeslots(date: newDate, restaurant: restaurant) ?? [String]()
+                    reservableTimeslots = restaurantVM.setReservableTimeslots(date: newDate, restaurant: restaurant) ?? [String]()
                 })
             Stepper(value: $pax, in: restaurant.reservationRestrictions.paxMin...restaurant.reservationRestrictions.paxMax) {
                 Image(systemName: "person.2")
@@ -50,6 +50,12 @@ struct ReservationsView: View {
                             Button(time) {
                                 reservationVM.createReservation(storeId: restaurant.id, pax: pax, date: date.formatting(to: "YYYY-MM-dd"), time: time)
                                 reservationResult = true
+                                DispatchQueue.main.asyncAfter(deadline: .now()+2) {
+                                    withAnimation{
+                                        reservationResult = false
+                                    }
+                                }
+                                self.dismiss()
                             }
                             .matbookingButtonStyle(width: 100)
                         }
@@ -68,7 +74,7 @@ struct ReservationsView: View {
         .padding()
         .onAppear {
             // 최초 세팅
-            reservableTimeslots = restaurantVM.setResrvableTimeslots(date: date, restaurant: restaurant) ?? [String]()
+            reservableTimeslots = restaurantVM.setReservableTimeslots(date: date, restaurant: restaurant) ?? [String]()
             pax = restaurant.reservationRestrictions.paxMin
             
         }

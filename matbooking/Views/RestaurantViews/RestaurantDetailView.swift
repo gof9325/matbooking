@@ -7,7 +7,6 @@
 
 import SwiftUI
 import Introspect
-import ExytePopupView
 
 struct RestaurantDetailView: View {
     
@@ -33,15 +32,15 @@ struct RestaurantDetailView: View {
                 ImageSlider(images: imageList)
                     .frame(minHeight: 300)
                     .onAppear {
-                        restaurantVM.getImages(myRestaurant: restaurant)
+                        restaurantVM.getImagesTuples(myRestaurant: restaurant)
                     }
-                    .onReceive(restaurantVM.getImageFinished, perform: {
-                        if !$0.isEmpty {
-                            for data in $0 {
-                                imageList.append(UIImage(data: data) ?? UIImage())
-                            }
-                        }
-                    })
+//                    .onReceive(restaurantVM.getImageFinished, perform: {
+//                        if !$0.isEmpty {
+//                            for data in $0 {
+//                                imageList.append(UIImage(data: data) ?? UIImage())
+//                            }
+//                        }
+//                    })
                     .onReceive(restaurantVM.getImageTuplesFinished, perform: { tupleList in
                         guard let urlList = restaurant.storeInfo.pictures?.map({$0.url}) else {
                             return
@@ -60,16 +59,16 @@ struct RestaurantDetailView: View {
                         }
                         
                         // 딕셔너리 버전 - 함수
-                        if !tupleList.isEmpty {
-                            let tupleDict = arrayToDict(arr: tupleList) { tuple in
-                                tuple.1
-                            }
-                            
-                            imageList = urlList.map { url in
-                                UIImage(data: tupleDict[url]!.0) ?? UIImage()
-                            }
-                        }
-                        
+//                        if !tupleList.isEmpty {
+//                            let tupleDict = arrayToDict(arr: tupleList) { tuple in
+//                                tuple.1
+//                            }
+//
+//                            imageList = urlList.map { url in
+//                                UIImage(data: tupleDict[url]!.0) ?? UIImage()
+//                            }
+//                        }
+//
                         // 배열 각 요소 비교 버전
 //                        if !tupleList.isEmpty {
 //                            for url in urlList {
@@ -126,17 +125,32 @@ struct RestaurantDetailView: View {
                 )
                 .padding()
             }
-            HStack(spacing: 30) {
-                NavigationLink("", destination: ChatDetailView(chatVM: chatVM, needsToControlTabbar: false, restuarant: ChatListResponse(message: "", store: Store(id: restaurant.id, storeInfo: restaurant.storeInfo), createdAt: "")), isActive: $navigatedToChatDetailView)
-                
-                Button("채팅하기") {
-                    navigatedToChatDetailView = true
+            VStack {
+                if reservationResult {
+                    HStack {
+                        Text("예약에 성공했습니다.")
+                    }
+                    .padding()
+                    .background(.gray)
+                    .opacity(0.7)
+                    .cornerRadius(10)
                 }
-                .matbookingButtonStyle(width: 100, color: Color.matPeach)
-                Button("예약하기") {
-                    isPresented.toggle()
+                HStack {
+                    NavigationLink("", destination: ChatDetailView(chatVM: chatVM, needsToControlTabbar: false, restuarant: ChatListResponse(message: "", store: Store(id: restaurant.id, storeInfo: restaurant.storeInfo), createdAt: "")), isActive: $navigatedToChatDetailView)
+                        .background(.yellow)
+                    Spacer()
+                    Button("채팅하기") {
+                        navigatedToChatDetailView = true
+                    }
+                    .matbookingButtonStyle(width: 100, color: Color.matPeach)
+                    Spacer()
+                    Button("예약하기") {
+                        isPresented.toggle()
+                    }
+                    .matbookingButtonStyle(width: 100, color: Color.matPeach)
+                    Spacer()
                 }
-                .matbookingButtonStyle(width: 100, color: Color.matPeach)
+                .padding()
             }
             .popover(isPresented: $isPresented) {
                 ReservationsView(reservationVM: reservationVM, restaurantVM: restaurantVM, restaurant: restaurant, reservationResult: $reservationResult)
@@ -155,9 +169,6 @@ struct RestaurantDetailView: View {
                 uiTabarController?.tabBar.isHidden = false
             }
         }
-        .popup(isPresented: $reservationResult, view: {
-            Text("토스트")
-        })
     }
 }
 

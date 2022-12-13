@@ -18,9 +18,6 @@ class RestaurantQuery: ObservableObject {
     init(restaurantVM: RestaurantViewModel) {
         self.restaurantVM = restaurantVM
         
-        
-        
-
         $query
         // 우리는 사용자가 입력을 마칠 때까지 기다리기 원할 것이므로 이를 위해 우리는 디바운스 연산자를 사용
         // 디바운스를 700밀리초로 설정
@@ -30,7 +27,6 @@ class RestaurantQuery: ObservableObject {
         .debounce(for: .milliseconds(700), scheduler: RunLoop.main)
         // 중복 제거 -> 동일한 값이 계속해서 Publish되는 것은 방지할 수 있음
         .removeDuplicates()
-//        .flatMap(self.getRestaurantList)
         .flatMap { newQuery in
             self.getRestaurantList(query: newQuery)
         }
@@ -43,7 +39,6 @@ class RestaurantQuery: ObservableObject {
     }
     
     func getRestaurantList(query: GetRestaurantsFilters) -> AnyPublisher<[Restaurant], Never> {
-//        print("cuisine: \(query.cuisine)")
         print("RestaurantViewModel - getRestaurantList() called")
         return RestaurantsApiService.getRestaurants(query: query)
             .flatMap { restaurantList -> AnyPublisher<RestaurantResponse, Never> in

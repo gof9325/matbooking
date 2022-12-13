@@ -10,15 +10,24 @@ import SwiftUI
 struct RestaurantContentView: View {
     let restaurant: Restaurant
     
+    var cuisineBadgeColor: Color {
+        switch restaurant.storeInfo.cuisine {
+        case Cuisine.korean.query:
+            return Color.matPeach
+        case Cuisine.italian.query:
+            return Color.matNature
+        case Cuisine.japanese.query:
+            return Color.matSkin
+        default:
+            return Color.clear
+        }
+    }
+    
     var body: some View {
         HStack(alignment: .top) {
             if restaurant.imagesData.isEmpty {
-                Image(systemName: "sun.max.fill")
-                    .resizable()
+                Text("등록된 이미지가 없어요 :(")
                     .frame(maxWidth: 120, maxHeight: 120)
-                    .scaledToFit()
-                    .background(.green)
-                    .cornerRadius(25)
             }
             else {
                 if let firstImageData = restaurant.imagesData.first {
@@ -34,6 +43,10 @@ struct RestaurantContentView: View {
                 }
             }
             VStack(alignment: .leading) {
+                Text("\(restaurant.storeInfo.cuisine)")
+                    .padding(5)
+                    .background(cuisineBadgeColor)
+                    .cornerRadius(10)
                 VStack(alignment: .leading) {
                     Text("\(restaurant.storeInfo.name)")
                         .font(.title)
@@ -51,7 +64,7 @@ struct RestaurantContentView: View {
 
 //struct RestaurantItem_Previews: PreviewProvider {
 //    static var previews: some View {
-//        RestaurantContentView()
+//        RestaurantContentView(restaurant: Restaurant(id: "", reservationRestrictions: ReservationRestrictions(paxMin: 0, paxMax: 10, slotGapMinutes: 120, daysReservableInFuture: 30, openingHours: ["" : ReservationRestrictions.OpeningHours(start: "", end: "")]), storeInfo: StoreInfo(name: "", subtitle: <#T##String#>, picturesFolderId: <#T##String?#>, pictures: <#T##[ImageResponse]?#>, description: <#T##String#>, address: <#T##String#>, phone: <#T##String#>, openingHours: <#T##String#>, city: <#T##String#>, cuisine: <#T##String#>)))
 //            .previewLayout(.sizeThatFits)
 //            .frame(width: 500)
 //    }

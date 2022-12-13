@@ -52,7 +52,6 @@ struct RestaurantListView: View {
             }
         }
         .onReceive(restaurantVM.$restaurantList, perform: { _ in
-//            self.restaurantList = $0
             isLoading = false
         })
     }
@@ -60,6 +59,7 @@ struct RestaurantListView: View {
 
 struct searchBar: View {
     @ObservedObject var restaurantQueryVM: RestaurantQuery
+    @State var category = Cuisine.all
     
     var body: some View {
         HStack {
@@ -67,18 +67,15 @@ struct searchBar: View {
                 .padding()
                 .background(.gray.opacity(0.1))
                 .cornerRadius(18)
-            // 카테고리(식사 종류 기준으로 정렬하는 것?)
-            Image(systemName: "fork.knife")
+            Text("\(category.emoji)")
+                .font(.system(size: 33))
                 .contextMenu {
-                    Button("\(Cuisine.korean.rawValue)", action: {
-                        restaurantQueryVM.query.cuisine = Cuisine.korean.rawValue
-                    })
-                    Button("\(Cuisine.italian.rawValue)", action: {
-                        restaurantQueryVM.query.cuisine = Cuisine.italian.rawValue
-                    })
-                    Button("\(Cuisine.japanese.rawValue)", action: {
-                        restaurantQueryVM.query.cuisine = Cuisine.japanese.rawValue
-                    })
+                    ForEach(Cuisine.allCases, id: \.self) { kindOfFood in
+                        Button("\(kindOfFood.name)", action: {
+                            restaurantQueryVM.query.cuisine = kindOfFood.query
+                            category = kindOfFood
+                        })
+                    }
                 }
         }
         .padding()

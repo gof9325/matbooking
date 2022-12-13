@@ -33,6 +33,22 @@ struct StoreInfo: Codable, Equatable, Hashable {
     let cuisine: String
 }
 
-enum Cuisine: String, CaseIterable {
-    case korean = "한식", italian = "이탈리아음식", japanese = "일식"
+struct Cuisine: Hashable {
+    let name: String
+    let emoji: String
+    let query: String
+    
+    
+    static var korean = Cuisine(name: "한식", systemImageName: "🥘", query: "한식")
+    static var italian = Cuisine(name: "이탈리아", systemImageName: "🍕", query: "이탈리아음식")
+    static var japanese = Cuisine(name: "일식", systemImageName: "🍣", query: "일식")
+    static var all = Cuisine(name: "전체", systemImageName: "🍽️", query: "")
+    
+    static var allCases = [Cuisine.korean, Cuisine.italian, Cuisine.japanese, Cuisine.all]
+
+    private init(name: String, systemImageName: String, query: String) {
+        self.name = name
+        self.emoji = systemImageName
+        self.query = query
+    }
 }
