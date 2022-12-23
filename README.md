@@ -1,15 +1,13 @@
-# matbooking
+# ✨ matbooking (맛북킹) ✨
 
 ### 사용된 기술 👉
 SwiftUI, Combine, Web Socket, Alamofire, Auth0, REST API
 
-## 라이브러리 관리 👉
+### 라이브러리 관리 👉
 CocoaPods
 
-## 사용된 디자인 패턴 👉
+### 사용된 디자인 패턴 👉
 MVVM
-
-✨ MATBOOKING (맛북킹) ✨
 
 > 기다림을 줄여주는 가게 예약 어플
 
