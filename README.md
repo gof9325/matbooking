@@ -1,4 +1,4 @@
-![matbooking - logo](https://user-images.githubusercontent.com/39786810/209287390-7c7496d5-8fd1-4e22-bf53-e5ab29f8798e.png)
+<img width="450px" height="300px">![matbooking - logo](https://user-images.githubusercontent.com/39786810/209287390-7c7496d5-8fd1-4e22-bf53-e5ab29f8798e.png)</img>
 
 # ✨ matbooking (맛북킹) ✨
 
