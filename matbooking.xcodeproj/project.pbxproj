@@ -110,7 +110,6 @@
 		1EBEDC4F292CB5D800FB41B8 /* ChatApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatApiService.swift; sourceTree = "<group>"; };
 		1EBEDC52292CC08200FB41B8 /* ChatListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListResponse.swift; sourceTree = "<group>"; };
 		1EDE654A291CF7A9004CC1B7 /* RestaurantResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantResponse.swift; sourceTree = "<group>"; };
-		1EDE654C291CF802004CC1B7 /* Empty.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Empty.md; sourceTree = "<group>"; };
 		1EDE654D291CF8B3004CC1B7 /* ImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResponse.swift; sourceTree = "<group>"; };
 		1EDE6553291CFDE4004CC1B7 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		1EE612F828EEBA7700797DD9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -221,7 +220,6 @@
 		1E2ED90A28E7441E005E1412 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				1EDE654C291CF802004CC1B7 /* Empty.md */,
 				1EDE6551291CFD4F004CC1B7 /* Reservation */,
 				1EDE6550291CFD34004CC1B7 /* User */,
 				1EDE654F291CFCFD004CC1B7 /* Restaurant */,

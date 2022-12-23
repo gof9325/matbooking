@@ -23,9 +23,12 @@ enum UserApiService {
     
     static func join(name: String, mobile: String) -> AnyPublisher<ApiResponse<JoinResponse>, AFError> {
         print("UserApiService - join() called")
-        
+        print("mobile: \(mobile)")
         return ApiClient.shared.session
             .request(UserRouter.join(name: name, mobile: mobile))
+            .responseString() { res in
+                print("res: \(res)")
+            }
             .publishDecodable(type: ApiResponse<JoinResponse>.self)
             .value()
             .eraseToAnyPublisher()

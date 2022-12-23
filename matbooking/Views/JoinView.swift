@@ -22,54 +22,35 @@ struct JoinView: View {
                 Text("맛북킹 회원가입")
                     .font(.largeTitle)
                     .padding()
-                Text("프로필 이미지")
-                AsyncImage(url: URL(string: userVM.user?.picture ?? ""))
-                { image in
-                    image.resizable()
-                } placeholder: {
-                    ProgressView()
+                VStack {
+                    TextField("닉네임", text: $name)
+                        .padding(9)
+                        .background(.white)
+                        .cornerRadius(10)
+                    TextField("00000000000", text: $mobile)
+                        .keyboardType(.phonePad)
+                        .padding(9)
+                        .background(.white)
+                        .cornerRadius(10)
                 }
-                .frame(width: 50, height: 50)
-                .scaledToFit()
+                .padding([.top, .bottom], 10)
+                .padding(30)
+                .background(Color.matSkin)
+                .cornerRadius(10)
                 .padding()
-                .cornerRadius(100)
-                Spacer()
-                Spacer()
-                Form {
-                    Section("닉네임") {
-                        TextField("닉네임", text: $name)
-                    }
-                    Section("전화번호") {
-                        TextField("00000000000", text: $mobile)
-                            .keyboardType(.phonePad)
-//                            .onChange(of: mobile, perform: { mobile in
-//                                if mobile.validatePhone(number: mobile) {
-//                                    self.mobile = mobile.withHypen
-//                                    validateMobileNumber = true
-//                                } else {
-//                                    validateMobileNumber = false
-//                                }
-//                            })
-//                            .foregroundColor(validateMobileNumber ? Color.black : Color.red)
-                    }
-                }
-                .padding()
-                .cornerRadius(80)
                 HStack {
                     Spacer()
                     Button("완료") {
-                        // published 쓸 필요 없다?
-                        // (간단한 자료형을 써야함 -> String이나 Bool과 같은 것들)
                         if let auth0User = userVM.auth0User {
                             userVM.join(name: name, mobile: mobile, auth0User)
                         }
                     }
-                    .matbookingButtonStyle(width: 100)
+                    .matbookingButtonStyle(width: 100, color: Color.matPeach)
                     Spacer()
                     Button("취소") {
                         isPresented = false
                     }
-                    .matbookingButtonStyle(width: 100)
+                    .matbookingButtonStyle(width: 100, color: Color.matPeach)
                     Spacer()
                 }
                 .onReceive(userVM.$user, perform: {
@@ -82,9 +63,3 @@ struct JoinView: View {
         
     }
 }
-
-//struct JoinView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        JoinView(userVM: UserViewModel(from: ""), isPresented: .constant(true))
-//    }
-//}

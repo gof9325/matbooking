@@ -117,5 +117,3 @@ struct ImageSlider: View {
         }
     }
 }
-
-
