@@ -21,7 +21,7 @@ MVVM
 ### 회원가입
 
 ### 로그인/로그아웃
-![Kapture 2022-12-23 at 16 02 21](https://user-images.githubusercontent.com/39786810/209288354-bdbc5997-0398-4cad-8f95-f628e1e3c6de.gif){: width="50" height="50"}
+<img src="https://user-images.githubusercontent.com/39786810/209288354-bdbc5997-0398-4cad-8f95-f628e1e3c6de.gif" width="200" height="400"/>
 
 ### 가게 목록 조회/검색
 
