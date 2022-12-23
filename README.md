@@ -1,5 +1,7 @@
 # ✨ matbooking (맛북킹) ✨
 
+> 기다림을 줄여주는 가게 예약 어플
+
 ### 사용된 기술 👉
 SwiftUI, Combine, Web Socket, Alamofire, Auth0, REST API
 
@@ -8,8 +10,6 @@ CocoaPods
 
 ### 사용된 디자인 패턴 👉
 MVVM
-
-> 기다림을 줄여주는 가게 예약 어플
 
 **주요기능:**
 - [회원가입](#회원가입)
