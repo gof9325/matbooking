@@ -1,5 +1,3 @@
-<img src="![matbooking - logo](https://user-images.githubusercontent.com/39786810/209287390-7c7496d5-8fd1-4e22-bf53-e5ab29f8798e.png)" width="450px" height="300px"></img>
-
 # ✨ matbooking (맛북킹) ✨
 
 > 기다림을 줄여주는 가게 예약 어플
@@ -23,6 +21,7 @@ MVVM
 ### 회원가입
 
 ### 로그인/로그아웃
+![Kapture 2022-12-23 at 16 02 21](https://user-images.githubusercontent.com/39786810/209288354-bdbc5997-0398-4cad-8f95-f628e1e3c6de.gif)
 
 ### 가게 목록 조회/검색
 
