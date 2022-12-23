@@ -20,7 +20,7 @@ MVVM
 
 ### 회원가입
 
-### 로그인/로그아웃
+### 로그인&로그아웃
 <img src="https://user-images.githubusercontent.com/39786810/209288354-bdbc5997-0398-4cad-8f95-f628e1e3c6de.gif" width="200" height="400"/>
 
 〰️ Flow 〰️
