@@ -24,10 +24,15 @@ struct RestaurantContentView: View {
     }
     
     var body: some View {
-        HStack(alignment: .top) {
+        HStack(alignment: .center) {
             if restaurant.imagesData.isEmpty {
-                Text("등록된 이미지가 없어요 :(")
-                    .frame(maxWidth: 120, maxHeight: 120)
+                if let uiImage = UIImage(named: "noImage") {
+                    Image(uiImage: uiImage)
+                        .resizable()
+                        .frame(maxWidth: 120, maxHeight: 120)
+                        .scaledToFit()
+                        .cornerRadius(25)
+                }
             }
             else {
                 if let firstImageData = restaurant.imagesData.first {
@@ -38,7 +43,7 @@ struct RestaurantContentView: View {
                             .scaledToFit()
                             .cornerRadius(25)
                     } else {
-                        Text("text")
+                        Text("이미지 로드에 실패했습니다.")
                     }
                 }
             }
@@ -56,9 +61,7 @@ struct RestaurantContentView: View {
                 Text("\(restaurant.storeInfo.description)")
             }
             .frame(maxHeight: 130)
-            .padding(.leading, 3)
         }
-        .padding()
     }
 }
 

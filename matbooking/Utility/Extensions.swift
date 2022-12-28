@@ -113,7 +113,11 @@ struct ImageSlider: View {
             }
             .tabViewStyle(PageTabViewStyle())
         } else {
-            Text("이미지가 없습니다.")
+            TabView {
+                Image(uiImage: UIImage(named: "noImage")!)
+                    .resizable()
+                    .scaledToFill()
+            }
         }
     }
 }

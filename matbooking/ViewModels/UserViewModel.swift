@@ -14,6 +14,11 @@ class UserViewModel: ObservableObject {
     private var subscription = Set<AnyCancellable>()
     var auth0User: Auth0User?
     @Published var user: User?
+    @Published var loginState: LoginState = .beforeTapped
+    
+    enum LoginState {
+        case beforeTapped, didTapped, loginSuccess, loginFail
+    }
     
     // 로그인 실패 이벤트
     var loginFail = PassthroughSubject<(), Never>()
@@ -27,12 +32,14 @@ class UserViewModel: ObservableObject {
     
     // MARK: Intant functions
     func login(){
+        loginState = .didTapped
         Auth0
             .webAuth()
             .audience("memos-node-docker")
             .start { [self] result in
                 switch result {
                 case .success(let credentials):
+                    self.loginState = .loginSuccess
                     print("Auth0Login Successs")
                     print("accessToken : \(credentials.accessToken)")
                     KeyChain.create(key: "userAccessToken", token: credentials.accessToken)
@@ -41,6 +48,7 @@ class UserViewModel: ObservableObject {
                         self.auth0User = auth0User
                     }
                 case .failure(let error):
+                    self.loginState = .loginFail
                     print("Failed with: \(error)")
                 }
             }
@@ -53,6 +61,7 @@ class UserViewModel: ObservableObject {
             .clearSession { result in
                 switch result {
                 case .success:
+                    self.loginState = .beforeTapped
                     self.auth0User = nil
                     self.user = nil
                     KeyChain.delete(key: "userAccessToken")

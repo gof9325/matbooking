@@ -19,31 +19,41 @@ struct LoginView: View {
         if isJoinViewPresented {
             JoinView(isPresented: $isJoinViewPresented)
         } else {
-            VStack {
-                Text("맛북킹")
-                    .font(.title)
-                    .padding([.top, .bottom])
-                Button("시작하기") {
-                    userVM.login()
+            switch userVM.loginState {
+            case .beforeTapped :
+                VStack {
+                    Text("맛북킹")
+                        .font(.title)
+                        .padding([.top, .bottom])
+                    Button("시작하기") {
+                        userVM.login()
+                    }
+                    .padding()
+                    .background(.blue)
+                    .foregroundColor(.white)
+                    .clipShape(Capsule())
                 }
-                .padding()
-                .background(.blue)
-                .foregroundColor(.white)
-                .clipShape(Capsule())
-            }
-            .frame(width: 300, height: 200)
-            .onReceive(userVM.haveToJoin, perform: {
-                self.isJoinViewPresented = true
-            })
-            .onReceive(userVM.loginFail, perform: { 
-                self.shouldShowAlert = true
-            })
-            .alert("로그인에 실패했습니다.", isPresented: $shouldShowAlert){
-                Button("확인", role: .cancel){
-                    self.dismiss()
+                .frame(width: 300, height: 200)
+                .onReceive(userVM.haveToJoin, perform: {
+                    self.isJoinViewPresented = true
+                })
+                .onReceive(userVM.loginFail, perform: {
+                    self.shouldShowAlert = true
+                })
+                .alert("로그인에 실패했습니다.", isPresented: $shouldShowAlert){
+                    Button("확인", role: .cancel){
+                        self.dismiss()
+                    }
                 }
+            case .didTapped:
+                ProgressView()
+            case .loginSuccess:
+                EmptyView()
+            case .loginFail:
+                Text("로그인실패")
             }
         }
+        
     }
 }
 

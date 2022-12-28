@@ -165,7 +165,7 @@ struct ChatDetailView: View {
                     Button("send") {
                         if !inputText.isEmpty {
                             _ = chatVM.socket.receive(.outgoingMessage(ChatSocketSend(data: ChatSocketSend.ChatData(to: restuarant.store.id, message: inputText))))
-                            chatDetailList.append(ChatDetail(id: UUID().uuidString, createdAt: Date(), message: inputText, type: .CustomerToStore))
+                            chatVM.chatDetailList?.append(ChatDetail(id: UUID().uuidString, createdAt: Date(), message: inputText, type: .CustomerToStore))
                             inputText = ""
                             sendNewMessage = true
                         }
