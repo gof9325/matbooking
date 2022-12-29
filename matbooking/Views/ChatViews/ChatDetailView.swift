@@ -189,6 +189,7 @@ struct ChatDetailView: View {
                     uiTabBarController = UITabBarController
                 }
             }.onDisappear{
+                isFirstSetting = true
                 if needsToControlTabbar {
                     uiTabBarController?.tabBar.isHidden = false
                 }

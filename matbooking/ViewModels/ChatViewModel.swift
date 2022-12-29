@@ -49,6 +49,7 @@ class ChatViewModel: ObservableObject {
     
     func getChatDetailList(id: String) {
         print("ChatViewModel - getChatDetailList() called")
+        chatDetailList?.removeAll()
         ChatApiService.getChatDetailList(id: id)
             .sink(receiveCompletion: { completion in
                 print("ChatViewModel getChatDetailList completion: \(completion)")
